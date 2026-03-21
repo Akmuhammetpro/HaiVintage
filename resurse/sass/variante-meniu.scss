@@ -1,0 +1,341 @@
+// ==========================================================
+// HaiVintage – variante-meniu.scss
+// Compilare: sass resurse/sass/variante-meniu.scss resurse/css/meniu.css
+// ==========================================================
+
+// ============================================================
+// VARIABILE SASS
+// ============================================================
+$culoare-fundal-meniu:    #2C160A;
+$culoare-text-meniu:      #F5ECD7;
+$culoare-accent-meniu:    #D4A96A;
+$culoare-hover-meniu:     #8B4513;
+$culoare-submeniu-bg:     #3E2010;
+$culoare-submeniu-hover:  #C4503A;
+$culoare-gradient-bara:   #F5ECD7;  // culoarea alba din gradientul barei
+
+$inaltime-optiune:        44px;
+$padding-optiune-lr:      18px;
+$border-radius-meniu:     6px;
+$durata-tranzitie:        0.35s;
+$durata-rotatie:          0.4s;
+
+// Breakpoints
+$ecran-mediu:             1100px;
+$ecran-mic:               700px;
+
+// ============================================================
+// VARIABILE CSS (in :root – depind de tema cromatica)
+// ============================================================
+:root {
+    --meniu-bg:               #{$culoare-fundal-meniu};
+    --meniu-text:             #{$culoare-text-meniu};
+    --meniu-accent:           #{$culoare-accent-meniu};
+    --meniu-hover:            #{$culoare-hover-meniu};
+    --meniu-submeniu-bg:      #{$culoare-submeniu-bg};
+    --meniu-submeniu-hover:   #{$culoare-submeniu-hover};
+    --meniu-inaltime:         #{$inaltime-optiune};
+}
+
+// ============================================================
+// PLACEHOLDER-URI PENTRU @extend
+// ============================================================
+
+// Baza pentru orice optiune din meniu (mare si submeniu)
+%baza-optiune {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition:
+        background-color $durata-tranzitie ease,
+        color $durata-tranzitie ease;
+}
+
+// Baza pentru optiunile din submeniu
+%optiune-submeniu {
+    @extend %baza-optiune;
+    padding: 11px $padding-optiune-lr;
+    color: var(--meniu-text);
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+
+    &:hover {
+        background-color: var(--meniu-submeniu-hover);
+        color: var(--meniu-text);
+    }
+}
+
+// ============================================================
+// MENIU PRINCIPAL – NAV
+// ============================================================
+nav#meniu-principal {
+    background-color: var(--meniu-bg);
+    padding: 0 20px;
+    border-bottom: 3px solid var(--meniu-accent);
+
+    // Lista principala
+    > ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        margin: 0;
+        padding: 0;
+        gap: 2px;
+
+        // Fiecare item principal
+        > li {
+            position: relative;
+
+            // Link / buton optiune principala
+            > a,
+            > button {
+                @extend %baza-optiune;
+                height: var(--meniu-inaltime);
+                line-height: var(--meniu-inaltime);
+                padding: 0 $padding-optiune-lr;
+                color: var(--meniu-text);
+                font-size: 0.95rem;
+                letter-spacing: 0.4px;
+                position: relative;
+                overflow: hidden;
+
+                // ---- bara glisanta ::before (ecran mare) ----
+                // Gradient 3 culori: meniu-bg → alb → meniu-bg
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -4px;
+                    left: 0;
+                    width: 100%;
+                    height: 3px;
+                    background: linear-gradient(
+                        to right,
+                        $culoare-fundal-meniu,
+                        $culoare-gradient-bara,
+                        $culoare-fundal-meniu
+                    );
+                    opacity: 0;
+                    transition:
+                        bottom $durata-tranzitie ease,
+                        opacity $durata-tranzitie ease;
+                }
+
+                &:hover {
+                    background-color: transparent;
+
+                    // bara coboara si devine opaca
+                    &::before {
+                        bottom: 0;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            // ---- Submeniu ----
+            > ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                min-width: 210px;
+                background-color: var(--meniu-submeniu-bg);
+                border: 1px solid $culoare-accent-meniu;
+                border-radius: 0 $border-radius-meniu $border-radius-meniu $border-radius-meniu;
+                z-index: 200;
+
+                // Animatie: scale de la 0 la 1 pe ambele axe, din centrul box-ului
+                transform: scale(0);
+                transform-origin: center top;
+                opacity: 0;
+                transition:
+                    transform $durata-tranzitie ease,
+                    opacity $durata-tranzitie ease;
+                pointer-events: none;
+
+                > li > a {
+                    @extend %optiune-submeniu;
+                }
+
+                > li:first-child > a { border-radius: 0 $border-radius-meniu 0 0; }
+                > li:last-child  > a { border-radius: 0 0 $border-radius-meniu $border-radius-meniu; }
+            }
+
+            // Deschide submeniu la hover
+            &:hover > ul {
+                transform: scale(1);
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        // Optiunea "Acasa" – stilizata distinct
+        > li.acasa > a {
+            color: var(--meniu-accent);
+            font-size: 1rem;
+        }
+    }
+}
+
+// ============================================================
+// @for – genereaza delay-uri pentru itemii din submeniu
+// (anima aparitia succesiva a optiunilor)
+// ============================================================
+@for $i from 1 through 6 {
+    nav#meniu-principal > ul > li:hover > ul > li:nth-child(#{$i}) > a {
+        transition-delay: #{($i - 1) * 0.04}s;
+    }
+}
+
+// ============================================================
+// HAMBURGER BUTON (ascuns pe ecran mare)
+// ============================================================
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    background: none;
+    border: none;
+
+    span {
+        display: block;
+        width: 26px;
+        height: 3px;
+        background-color: $culoare-text-meniu;
+        border-radius: 2px;
+        transition: transform $durata-rotatie ease, opacity $durata-tranzitie ease, background-color $durata-tranzitie ease;
+    }
+}
+
+// ============================================================
+// MEDIA QUERY – ECRAN MEDIU
+// ============================================================
+@media screen and (max-width: $ecran-mediu) {
+
+    nav#meniu-principal > ul {
+
+        > li > a,
+        > li > button {
+            font-size: 0.82rem;      // text mai mic pe ecran mediu
+            padding: 0 12px;
+        }
+
+        // Optiunea "Acasa" → icon casuta Font Awesome pe ecran mediu
+        > li.acasa > a {
+            font-size: 0;            // ascunde textul "Acasă"
+            padding: 0 14px;
+
+            &::after {
+                content: '\f015';    // cod Font Awesome: fa-home
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                font-size: 1.1rem;
+                color: var(--meniu-accent);
+            }
+
+            // Bara glisanta ramane activa si pe ecran mediu
+            &::before { bottom: -3px; }
+        }
+    }
+}
+
+// ============================================================
+// MEDIA QUERY – ECRAN MIC (hamburger menu)
+// ============================================================
+@media screen and (max-width: $ecran-mic) {
+
+    nav#meniu-principal {
+        padding: 0;
+        position: relative;
+
+        // Afiseaza butonul hamburger
+        .hamburger-btn {
+            display: flex;
+            margin: 8px 16px;
+        }
+
+        > ul {
+            display: none;           // ascunse initial
+            flex-direction: column;
+            width: 100%;
+            padding: 8px 0;
+
+            &.deschis {
+                display: flex;
+            }
+
+            > li {
+                width: 100%;
+
+                > a,
+                > button {
+                    height: auto;
+                    line-height: 1.4;
+                    padding: 12px 20px;
+                    font-size: 0.95rem;
+                    width: 100%;
+
+                    // Pe ecran mic: fara bara glisanta, doar schimb culoare bg
+                    &::before { display: none; }
+
+                    &:hover {
+                        background-color: var(--meniu-hover);
+                        color: var(--meniu-text);
+                    }
+                }
+
+                // Optiunea "Acasa" → icon casuta si pe ecran mic
+                &.acasa > a {
+                    font-size: 0;
+                    &::after {
+                        content: '\f015';
+                        font-family: 'Font Awesome 6 Free';
+                        font-weight: 900;
+                        font-size: 1.1rem;
+                        color: var(--meniu-accent);
+                    }
+                }
+
+                // Submeniu pe ecran mic
+                > ul {
+                    position: static;
+                    transform: none;
+                    opacity: 1;
+                    pointer-events: auto;
+                    min-width: 100%;
+                    border-radius: 0;
+                    border: none;
+                    border-left: 3px solid $culoare-accent-meniu;
+                    display: none;
+
+                    // Aparitie cu clip-path circular din coltul stanga-sus
+                    clip-path: circle(0% at 0% 0%);
+                    transition: clip-path 0.5s ease;
+
+                    &.deschis {
+                        display: block;
+                        clip-path: circle(150% at 0% 0%);
+                    }
+
+                    > li > a {
+                        padding-left: 32px;
+
+                        // Pe ecran mic: doar schimb culoare bg, fara alte tranzitii
+                        &:hover {
+                            background-color: var(--meniu-submeniu-hover);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

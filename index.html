@@ -1,236 +1,385 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="HaiVintage Team">
-  <meta name="keywords" content="haine vintage, moda retro, accesorii vintage, second-hand fashion">
-  <meta name="description" content="HaiVintage – magazin online de haine si accesorii vintage.">
-  <meta name="msapplication-TileColor" content="#8B4513">
-  <title>HaiVintage – Haine si Accesorii Vintage</title>
-<link rel="icon" type="image/png" href="resurse/ico/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/svg+xml" href="resurse/ico/favicon.svg">
-<link rel="shortcut icon" href="resurse/ico/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="resurse/ico/apple-touch-icon.png">
-<link rel="manifest" href="resurse/ico/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="author" content="jorayev ak">
+    <meta name="keywords" content="haine vintage, moda retro, accesorii vintage, second-hand fashion, colectii vintage, outfituri retro">
+    <meta name="description" content="HaiVintage – magazin online de haine si accesorii vintage autentice.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#8B4513">
+    <title>HaiVintage – Haine si Accesorii Vintage</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="resurse/ico/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="resurse/ico/favicon.svg">
+    <link rel="shortcut icon" href="resurse/ico/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="resurse/ico/apple-touch-icon.png">
+    <link rel="manifest" href="resurse/ico/site.webmanifest">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="resurse/css/reset.css">
+    <link rel="stylesheet" href="resurse/css/general.css">
+    <link rel="stylesheet" href="resurse/css/nav.css">
 </head>
 <body>
 
-<header>
-  <h1>HaiVintage</h1>
-  <nav>
-    <ul>
-      <li>
-        <a href="index.html">Acasa</a>
-        <ul>
-          <li><a href="#dama">Haine damă</a></li>
-          <li><a href="#barbati">Haine bărbați</a></li>
-          <li><a href="#accesori">Accesorii (genți, bijuterii, pălării)</a></li>
-          <li><a href="#speciale">Colecții speciale / ediții limitate</a></li>
-        </ul> </li>
-      <li><a href="produse.html">Produse</a>
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="principal">
+    <h1>HaiVintage</h1>
+
+    <!-- Buton hamburger (vizibil doar pe ecran mic) -->
+    <button class="hamburger-btn" id="hamburger" aria-label="Deschide meniu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="meniu-principal">
+        <ul id="lista-meniu">
+
+            <!-- Acasa – linkuri catre sectiuni din pagina principala -->
+            <li class="acasa">
+                <a href="index.html">Acasă</a>
             </li>
-      
-      <li><a href="despre.html">Despre noi</a></li>
-      <li><a href="blog.html">Blog / Stil & Tendințe </a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+
+            <!-- Submeniu 1: Colectii – linkuri catre alte pagini -->
+            <li>
+                <button type="button" class="btn-submeniu" aria-haspopup="true" aria-expanded="false">
+                    Colecții ▾
+                </button>
+                <ul>
+                    <li><a href="dama.html">Haine damă</a></li>
+                    <li><a href="barbati.html">Haine bărbați</a></li>
+                    <li><a href="accesorii.html">Accesorii</a></li>
+                    <li><a href="colectii-speciale.html">Colecții speciale</a></li>
+                </ul>
+            </li>
+
+            <!-- Submeniu 2: Pe aceasta pagina – linkuri catre sectiuni din index -->
+            <li>
+                <button type="button" class="btn-submeniu" aria-haspopup="true" aria-expanded="false">
+                    Pe această pagină ▾
+                </button>
+                <ul>
+                    <li><a href="#despre">Despre HaiVintage</a></li>
+                    <li><a href="#evenimente">Evenimente</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#oferte">Produse populare</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#faq">Întrebări frecvente</a></li>
+                </ul>
+            </li>
+
+            <li><a href="despre.html">Despre noi</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+
+        </ul>
+    </nav>
 </header>
 
+<!-- ============================================================
+     MAIN – GRID (zone 1–8)
+     ============================================================ -->
 <main>
 
-  <section id="despre">
-    <hgroup>
-      <h2>Despre HaiVintage</h2>
-      <p>Piese autentice si stil retro</p>
-    </hgroup>
+    <!-- ZONA 1: Prezentare (Z-pattern / F-pattern) -->
+    <section id="prezentare">
+        <div class="text-prezentare">
+            <hgroup>
+                <h2>Despre HaiVintage</h2>
+                <p>Piese autentice și stil retro</p>
+            </hgroup>
+            <p>Bine ai venit la <b>HaiVintage</b>! Vindem <b>haine vintage</b> și <b>accesorii retro</b> autentice pentru toți pasionații de <b>modă retro</b>.</p>
+            <p><strong>Atenție: stocurile pentru colecția de primăvară sunt limitate!</strong></p>
+            <blockquote>„Moda vintage înseamnă să porți cu mândrie poveștile altora."</blockquote>
 
-    <p>Bine ai venit la <b>HaiVintage</b>! Vindem <b>haine vintage</b> si <b>accesorii retro</b> autentice pentru toti pasionatii de <b>moda retro</b>.</p>
+            <article id="istoria-modei">
+                <h3>Istoria modei vintage</h3>
+                <p>Termenul <dfn>vintage</dfn> se referă la haine produse între anii 1920 și 1980. <abbr title="Asociația Internațională a Comercianților de Modă Vintage">AIVCM</abbr> spune că piesele trebuie să aibă minim 20 de ani vechime.</p>
+                <p>Piesele de <i>haute couture</i> și <i>second-hand fashion</i> sunt foarte căutate. Hainele <s>produse în serie</s> <ins>confecționate artizanal</ins> au valoare mai mare. Designerii sunt <em>fascinați</em> de estetica retro, iar <q>stilul adevărat nu are termen de expirare</q>. Am citit în <cite>Vogue Romania</cite> că stilul vintage revine puternic.</p>
+                <p>
+                    <i class="fa-solid fa-shirt icon-static" style="color: var(--culoare-secundara);"></i> Explorează colecțiile noastre:
+                    <a href="https://www.vam.ac.uk/collections/fashion" target="_blank">Victoria and Albert Museum</a>.
+                </p>
+                <dl>
+                    <dt>Vintage</dt>
+                    <dd>Articole vestimentare cu minim 20 de ani vechime.</dd>
+                    <dt>Retro</dt>
+                    <dd>Stil care imită moda din perioade anterioare.</dd>
+                </dl>
 
-    <p><strong>Atentie: stocurile pentru colectia de primavara sunt limitate!</strong></p>
+                <section id="colectii">
+                    <h4>Colecții populare</h4>
+                    <p>Descoperă cele mai apreciate <b>colecții vintage</b> ale momentului.</p>
+                    <aside>
+                        <h5>Sfatul stilistului</h5>
+                        <p>Combină o piesă <b>vintage</b> cu articole moderne pentru un look echilibrat.</p>
+                    </aside>
+                </section>
+            </article>
 
-    <blockquote>„Moda vintage inseamna sa porti cu mandrie povestile altora."</blockquote>
+            <!-- Icon animat Font Awesome -->
+            <p>
+                <i class="fa-solid fa-rotate icon-animat"></i>
+                Colecție reînnoită săptămânal!
+            </p>
 
-    <article id="istoria-modei">
-      <h3>Istoria modei vintage</h3>
+            <!-- Link catre resursa externa cu wbr -->
+            <p>Resurse despre istoria modei:
+                <a href="https://en.wikipedia.org/wiki/History_of_Western_fashion#20th-century_fashion">
+                    https://en.wikipedia.org/wiki/History_of_Western_<wbr>fashion#20th-century_fashion
+                </a>
+            </p>
 
-      <p>Termenul <dfn>vintage</dfn> se refera la haine produse intre anii 1920 si 1980. <abbr title="Asociatia Internationala a Comerciantilor de Moda Vintage">AIVCM</abbr> spune ca piesele trebuie sa aiba minim 20 de ani vechime.</p>
+            <!-- Link download -->
+            <p><a href="resurse/img/colectie_mare.png" download="catalog_haivintage_primavara2025.png">
+                <i class="fa-solid fa-download"></i> Descarcă catalogul foto
+            </a></p>
+        </div>
 
-      <p>Piesele de <i>haute couture</i> si <i>second-hand fashion</i> sunt foarte cautate. Hainele <s>produse in serie</s> <ins>confectionate artizanal</ins> au valoare mai mare. Designerii sunt <em>fascinati</em> de estetica retro, iar <q>stilul adevarat nu are termen de expirare</q>. Am citit in <cite>Vogue Romania</cite> ca stilul vintage revine puternic.</p>
+        <div class="imagine-prezentare">
+            <figure>
+                <picture>
+                    <source media="(max-width: 600px)"  srcset="resurse/img/colectie-mica.jpg">
+                    <source media="(max-width: 1024px)" srcset="resurse/img/colectie-medie.jpg">
+                    <img src="resurse/img/colectie-mare.jpg"
+                         alt="Haine vintage și accesorii retro"
+                         title="Colecție HaiVintage – primăvară 2025">
+                </picture>
+                <figcaption>Colecția de primăvară – <b>haine vintage</b> și <b>accesorii retro</b>.</figcaption>
+            </figure>
 
-      <p>Mai multe detalii pe <a href="https://www.vam.ac.uk/collections/fashion" target="_blank">Victoria and Albert Museum</a>.</p>
+            <!-- Link cu imagine – click deschide imaginea mare -->
+            <a href="resurse/img/colectie_mare.png">
+                <img src="resurse/img/colectie_mare.png" alt="Click pentru versiunea mare" title="Mărește imaginea">
+            </a>
+        </div>
+    </section>
 
-      <dl>
-        <dt>Vintage</dt>
-        <dd>Articole vestimentare cu minim 20 de ani vechime.</dd>
-        <dt>Retro</dt>
-        <dd>Stil care imita moda din perioade anterioare.</dd>
-      </dl>
+    <!-- ZONA 2: Tabel produse populare -->
+    <section id="oferte">
+        <h2>Cele mai vândute produse</h2>
+        <div class="container-tabel">
+            <table>
+                <caption>Top produse – HaiVintage 2025</caption>
+                <thead>
+                    <tr>
+                        <th>Produs</th>
+                        <th>Categorie</th>
+                        <th>Perioada</th>
+                        <th>Preț (RON)</th>
+                        <th>Disponibilitate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jachetă denim anii 80</td>
+                        <td>Haine damă vintage</td>
+                        <td>1980–1989</td>
+                        <td>180</td>
+                        <td>Stoc limitat</td>
+                    </tr>
+                    <tr>
+                        <td>Cămașă flanelă bărbați</td>
+                        <td>Haine bărbați vintage</td>
+                        <td>1970–1979</td>
+                        <td>120</td>
+                        <td>Disponibil</td>
+                    </tr>
+                    <tr>
+                        <td>Geantă din piele retro</td>
+                        <td>Accesorii vintage</td>
+                        <td>1960–1969</td>
+                        <td>250</td>
+                        <td>Disponibil</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Pachet Duo – Rochie + Geantă</td>
+                        <td>1970–1979</td>
+                        <td>350</td>
+                        <td>Ofertă specială</td>
+                    </tr>
+                    <tr>
+                        <td>Pălărie fedora</td>
+                        <td>Accesorii vintage</td>
+                        <td>1950–1960</td>
+                        <td>95</td>
+                        <td>Disponibil</td>
+                    </tr>
+                    <tr>
+                        <td>Pantaloni evazați</td>
+                        <td>Haine damă vintage</td>
+                        <td>1970–1979</td>
+                        <td>140</td>
+                        <td>Disponibil</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Prețurile includ TVA. Livrare gratuită pentru comenzi peste 300 RON.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
 
-      <section id="colectii">
-        <h4>Colectii populare</h4>
-        <p>Descopera cele mai apreciate <b>colectii vintage</b> ale momentului.</p>
-        <aside>
-          <h5>Sfatul stilistului</h5>
-          <p>Combina o piesa <b>vintage</b> cu articole moderne pentru un look echilibrat.</p>
-        </aside>
-      </section>
-    </article>
-  </section>
+    <!-- ZONA 3: Calendar evenimente (placeholder) -->
+    <section id="evenimente">
+        <h2>Evenimente</h2>
+        <ol>
+            <li><time datetime="2025-03-15T10:00">15 martie 2025, ora 10:00</time> – <b>Târg de Modă Retro</b> – Shopping de <b>haine vintage</b> și schimb de piese unicat. Intrare liberă.</li>
+            <li><time datetime="2025-04-05T14:00">5 aprilie 2025, ora 14:00</time> – <b>Atelier de Styling</b> – Workshop de <b>stil vintage</b>. Locuri limitate.</li>
+            <li><time datetime="2025-05-20T11:00">20 mai 2025, ora 11:00</time> – <b>Lansarea Colecției de Vară</b> – <b>Haine damă</b> și <b>haine bărbați</b> pentru vară.</li>
+            <li><time datetime="2025-06-01T09:00">1 iunie 2025, ora 09:00</time> – <b>Ziua Ușilor Deschise</b> – Piese <b>second-hand</b> la prețuri speciale.</li>
+        </ol>
+        <p>
+            <meter value="47" min="0" max="100" low="20" high="80" optimum="60">47/100</meter>
+            47/100 locuri ocupate – Târg de Modă Retro
+        </p>
+        <p>
+            <meter value="92" min="0" max="100" low="20" high="80" optimum="60">92/100</meter>
+            92/100 locuri ocupate – Atelier de Styling
+        </p>
+        <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em></p>
+    </section>
 
-  <section id="evenimente">
-    <h2>Evenimente</h2>
-    <ol>
-      <li><time datetime="2025-03-15T10:00">15 martie 2025, ora 10:00</time> – <b>Targ de Moda Retro</b> – Shopping de <b>haine vintage</b> si schimb de piese unicat. Intrare libera.</li>
-      <li><time datetime="2025-04-05T14:00">5 aprilie 2025, ora 14:00</time> – <b>Atelier de Styling</b> – Workshop de <b>stil vintage</b>. Locuri limitate.</li>
-      <li><time datetime="2025-05-20T11:00">20 mai 2025, ora 11:00</time> – <b>Lansarea Colectiei de Vara</b> – <b>Haine dama</b> si <b>haine barbati</b> pentru vara.</li>
-      <li><time datetime="2025-06-01T09:00">1 iunie 2025, ora 09:00</time> – <b>Ziua Usilor Deschise</b> – Piese <b>second-hand</b> la preturi speciale.</li>
-    </ol>
+    <!-- ZONA 4: Anunturi (placeholder) -->
+    <section id="galerie">
+        <h2>Anunțuri</h2>
+        <details>
+            <summary>Ce sunt hainele vintage autentice?</summary>
+            <p>Sunt articole produse cu cel puțin 20 de ani în urmă, verificate de experți.</p>
+        </details>
+        <details>
+            <summary>Cum se face livrarea?</summary>
+            <p>Livrăm în toată România în 2–4 zile. Comenzile peste 300 RON au livrare gratuită.</p>
+        </details>
+        <details>
+            <summary>Pot returna un produs?</summary>
+            <p>Da, acceptăm retururi în 14 zile de la primire.</p>
+        </details>
+        <details>
+            <summary>Cum îngrijesc hainele vintage?</summary>
+            <p>Recomandăm spălarea la mână la temperaturi scăzute.</p>
+        </details>
 
-    <p><meter value="47" min="0" max="100" low="20" high="80" optimum="60">47/100</meter> 47/100 locuri ocupate – Targ de Moda Retro</p>
-    <p><meter value="92" min="0" max="100" low="20" high="80" optimum="60">92/100</meter> 92/100 locuri ocupate – Atelier de Styling</p>
+        <!-- Taburi + iframe -->
+        <h3>Videoclipuri recomandate</h3>
+        <div class="container-iframe">
+            <div class="taburi-iframe">
+                <a href="https://www.youtube.com/embed/uLxFLyV6HrA" target="player-vintage">Vintage Shop Tour</a>
+                <a href="https://www.youtube.com/embed/fqFsNP3lPKU" target="player-vintage">Thrift Styling Tips</a>
+            </div>
+            <iframe name="player-vintage"
+                    src="https://www.youtube.com/embed/uLxFLyV6HrA"
+                    title="Vintage Shop Tour"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </section>
 
-  </section>
+    <!-- ZONA 5: Useri online (placeholder) -->
+    <aside id="useri-online">
+        <h2><i class="fa-solid fa-users"></i> Utilizatori online</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utilizatori activi acum: <b>42</b>.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </aside>
 
-  <section id="galerie">
-    <h2>Galerie</h2>
-    <figure>
-      <picture>
-        <source media="(max-width: 600px)" srcset="resurse/img/colectie-mica.jpg">
-        <source media="(max-width: 1024px)" srcset="resurse/img/colectie-medie.jpg">
-        <img src="resurse/img/colectie-mare.jpg" alt="Haine vintage si accesorii retro" title="Colectie HaiVintage">
-      </picture>
-      <figcaption>Colectia de primavara – <b>haine vintage</b> si <b>accesorii retro</b>.</figcaption>
-    </figure>
+    <!-- ZONA 6: Statistici user (placeholder) -->
+    <aside id="statistici">
+        <h2><i class="fa-solid fa-chart-bar"></i> Statistici</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vizite azi: <b>1.204</b>.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Produse vândute: <b>89</b>.</p>
+    </aside>
 
-    <a href="resurse/img/colectie_mare.png">
-      <img src="resurse/img/colectie_mare.png" alt="Click pentru versiunea mare" title="Mareste imaginea">
-    </a>
-    <p>https://www.vogue.com/article/best-vintage-stores-in-berlin</p>
+    <!-- ZONA 7: Date server (placeholder) -->
+    <aside id="date-server">
+        <h2><i class="fa-solid fa-server"></i> Date despre server</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Versiune server: <b>Node.js 20 LTS</b>. Uptime: <b>99.9%</b>.</p>
+    </aside>
 
-    <p><a href="resurse/img/colectie_mare.png" download="catalog_haivintage_primavara2025.jpg">Descarca catalogul foto</a></p>
-  </section>
-
-  <section id="oferte">
-    <h2>Cele mai vandute produse</h2>
-    <table>
-      <caption>Top produse – HaiVintage 2025</caption>
-      <thead>
-        <tr>
-          <th>Produs</th>
-          <th>Categorie</th>
-          <th>Perioada</th>
-          <th>Pret (RON)</th>
-          <th>Disponibilitate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Jacheta denim anii 80</td>
-          <td>Haine dama vintage</td>
-          <td>1980–1989</td>
-          <td>180</td>
-          <td>Stoc limitat</td>
-        </tr>
-        <tr>
-          <td>Camasa flanela barbati</td>
-          <td>Haine barbati vintage</td>
-          <td>1970–1979</td>
-          <td>120</td>
-          <td>Disponibil</td>
-        </tr>
-        <tr>
-          <td>Geanta din piele retro</td>
-          <td>Accesorii vintage</td>
-          <td>1960–1969</td>
-          <td>250</td>
-          <td>Disponibil</td>
-        </tr>
-        <tr>
-          <td colspan="2">Pachet Duo – Rochie + Geanta</td>
-          <td>1970–1979</td>
-          <td>350</td>
-          <td>Oferta speciala</td>
-        </tr>
-        <tr>
-          <td>Palarie fedora</td>
-          <td>Accesorii vintage</td>
-          <td>1950–1960</td>
-          <td>95</td>
-          <td>Disponibil</td>
-        </tr>
-        <tr>
-          <td>Pantaloni evazati</td>
-          <td>Haine dama vintage</td>
-          <td>1970–1979</td>
-          <td>140</td>
-          <td>Disponibil</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="5">Preturile includ TVA. Livrare gratuita pentru comenzi peste 300 RON.</td>
-        </tr>
-      </tfoot>
-    </table>
-  </section>
-
-  <section id="video">
-    <h2>Video</h2>
-    <div>
-      <a href="https://youtu.be/uLxFLyV6HrA" target="player-vintage">
-Inside One of America's Best Vintage Shops</a> |
-      <a href="https://youtu.be/fqFsNP3lPKU" target="player-vintage">How To Thrift For Your Summer Fit Like a Pro</a> |
-    </div>
-    <iframe name="player-vintage" width="560" height="315" src="https://www.youtube.com/embed/uLxFLyV6HrA?si=-z-G3aO8lZKj7G2x" title="
-Inside One of America's Best Vintage Shops" allowfullscreen></iframe>
-    <iframe name="player-vintage" width="560" height="315" src="https://www.youtube.com/embed/fqFsNP3lPKU?si=rgk4gY0eiXghXSPw" title="
-How To Thrift For Your Summer Fit Like a Pro" allowfullscreen></iframe>
-  </section>
-
-  <section id="resurse">
-    <h2>Resurse utile</h2>
-    <p><a href="https://en.wikipedia.org/wiki/History_of_Western_fashion#20th-century_fashion">https://en.wikipedia.org/wiki/History_of_Western_<wbr>fashion#20th-century_fashion</a></p>
-  </section>
-
-  <section id="faq">
-    <h2>Intrebari frecvente</h2>
-    <details>
-      <summary>Ce sunt hainele vintage autentice?</summary>
-      <p>Sunt articole produse cu cel putin 20 de ani in urma, verificate de experti.</p>
-    </details>
-    <details>
-      <summary>Cum se face livrarea?</summary>
-      <p>Livram in toata Romania in 2-4 zile. Comenzile peste 300 RON au livrare gratuita.</p>
-    </details>
-    <details>
-      <summary>Pot returna un produs?</summary>
-      <p>Da, acceptam retururi in 14 zile de la primire.</p>
-    </details>
-    <details>
-      <summary>Cum ingrijesc hainele vintage?</summary>
-      <p>Recomandam spalarea la mana la temperaturi scazute.</p>
-    </details>
-  </section>
+    <!-- ZONA 8: Libera – Club HaiVintage (stilizare creativa) -->
+    <section id="club-vintage">
+        <h2>Club HaiVintage</h2>
+        <p>Abonează-te pentru oferte exclusive și noutăți despre colecțiile noastre vintage.</p>
+        <p><i class="fa-solid fa-envelope icon-animat"></i> Newsletter săptămânal cu piese noi.</p>
+    </section>
 
 </main>
 
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
 <footer>
-  <address>
-    <a href="tel:+40754620300">+40 754 620 300</a><br>
-    Bulevardul Regina Elisabeta Nr. 4-12, 030018 <br>
-    București, Romania<br>
-    <a href="https://maps.google.com/?q=Facultatea+de+Matematica+si+Informatica+Universitatea+din+Bucuresti" target="_blank">Facultatea de Matematica si Informatica, Universitatea din Bucuresti</a><br>
-    <a href="mailto:contact@haivintage.ro">contact@haivintage.ro</a><br>
-    <a href="https://wa.me/40754620300">Contacteaza-ne pe WhatsApp</a>
-  </address>
+    <!-- Banner proiect scolar – ascuns pe ecran, vizibil la print -->
+    <p id="banner-scolar">Acesta este un proiect școlar!</p>
 
-  <iframe src="https://www.google.com/maps?q=Facultatea+de+Matematica+si+Informatica,+Universitatea+din+Bucuresti&output=embed" width="400" height="250" title="Locatia pe Google Maps" allowfullscreen></iframe>
+    <address>
+        <a href="tel:+40754620300"><i class="fa-solid fa-phone"></i> +40 754 620 300</a><br>
+        Bulevardul Regina Elisabeta Nr. 4-12,<br>
+        030018 București, România<br>
+        <a href="https://maps.google.com/?q=Facultatea+de+Matematica+si+Informatica+Universitatea+din+Bucuresti" target="_blank">
+            <i class="fa-solid fa-location-dot"></i> Facultatea de Matematică și Informatică
+        </a><br>
+        <a href="mailto:contact@haivintage.ro"><i class="fa-solid fa-envelope"></i> contact@haivintage.ro</a><br>
+        <a href="https://wa.me/40754620300"><i class="fa-brands fa-whatsapp"></i> Contactează-ne pe WhatsApp</a>
+    </address>
 
-  <p><a href="#">Inapoi sus</a></p>
+    <iframe src="https://www.google.com/maps?q=Facultatea+de+Matematica+si+Informatica,+Universitatea+din+Bucuresti&output=embed"
+            width="400" height="250"
+            title="Locația pe Google Maps"
+            allowfullscreen>
+    </iframe>
 
-  <small>&copy; HaiVintage <time datetime="2025-06-03">6 martie 2025</time>.</small>
+    <small>&copy; HaiVintage <time datetime="2025-03-06">6 martie 2025</time>. Toate drepturile rezervate.</small>
 </footer>
+
+<!-- ============================================================
+     LINK TOP
+     ============================================================ -->
+<a id="link-top" href="#" data-tooltip="Înapoi la începutul paginii">
+    <span class="cerc-btn">
+        <span class="sageata">&#8593;</span>
+    </span>
+</a>
+
+<!-- ============================================================
+     JAVASCRIPT – Hamburger + submeniu ecran mic
+     ============================================================ -->
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const listaMeniu = document.getElementById('lista-meniu');
+
+    hamburger.addEventListener('click', () => {
+        listaMeniu.classList.toggle('deschis');
+    });
+
+    document.querySelectorAll('.btn-submeniu').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const submeniu = btn.nextElementSibling;
+            const esteDesschis = submeniu.classList.contains('deschis');
+
+            document.querySelectorAll('nav#meniu-principal ul ul').forEach(ul => {
+                ul.classList.remove('deschis');
+            });
+            document.querySelectorAll('.btn-submeniu').forEach(b => {
+                b.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!esteDesschis) {
+                submeniu.classList.add('deschis');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
