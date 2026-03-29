@@ -2,93 +2,69 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="jorayev ak">
+    <meta name="author" content="Jorayev Akmuhammet">
     <meta name="keywords" content="haine vintage, moda retro, accesorii vintage, second-hand fashion, colectii vintage, outfituri retro">
     <meta name="description" content="HaiVintage – magazin online de haine si accesorii vintage autentice.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="msapplication-TileColor" content="#8B4513">
     <title>HaiVintage – Haine si Accesorii Vintage</title>
 
-    <!-- Favicon -->
+
     <link rel="icon" type="image/png" href="resurse/ico/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="resurse/ico/favicon.svg">
     <link rel="shortcut icon" href="resurse/ico/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="resurse/ico/apple-touch-icon.png">
     <link rel="manifest" href="resurse/ico/site.webmanifest">
 
-    <!-- Font Awesome -->
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- CSS -->
+  
     <link rel="stylesheet" href="resurse/css/reset.css">
     <link rel="stylesheet" href="resurse/css/general.css">
     <link rel="stylesheet" href="resurse/css/nav.css">
 </head>
 <body>
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
+
 <header class="principal">
-    <h1>HaiVintage</h1>
+  <h1>HaiVintage</h1>
+  <nav id="meniu-principal">
+   
+    <ul id="lista-meniu">
 
-    <!-- Buton hamburger (vizibil doar pe ecran mic) -->
-    <button class="hamburger-btn" id="hamburger" aria-label="Deschide meniu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
-    <nav id="meniu-principal">
-        <ul id="lista-meniu">
-
-            <!-- Acasa – linkuri catre sectiuni din pagina principala -->
-            <li class="acasa">
-                <a href="index.html">Acasă</a>
-            </li>
-
-            <!-- Submeniu 1: Colectii – linkuri catre alte pagini -->
-            <li>
-                <button type="button" class="btn-submeniu" aria-haspopup="true" aria-expanded="false">
-                    Colecții ▾
-                </button>
-                <ul>
-                    <li><a href="dama.html">Haine damă</a></li>
-                    <li><a href="barbati.html">Haine bărbați</a></li>
-                    <li><a href="accesorii.html">Accesorii</a></li>
-                    <li><a href="colectii-speciale.html">Colecții speciale</a></li>
-                </ul>
-            </li>
-
-            <!-- Submeniu 2: Pe aceasta pagina – linkuri catre sectiuni din index -->
-            <li>
-                <button type="button" class="btn-submeniu" aria-haspopup="true" aria-expanded="false">
-                    Pe această pagină ▾
-                </button>
-                <ul>
-                    <li><a href="#despre">Despre HaiVintage</a></li>
-                    <li><a href="#evenimente">Evenimente</a></li>
-                    <li><a href="#galerie">Galerie</a></li>
-                    <li><a href="#oferte">Produse populare</a></li>
-                    <li><a href="#video">Video</a></li>
-                    <li><a href="#faq">Întrebări frecvente</a></li>
-                </ul>
-            </li>
-
-            <li><a href="despre.html">Despre noi</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-
+      <li class="acasa">
+        <a href="index.html">Acasă ▾</a>
+        <ul>
+          <li><a href="#prezentare">Despre HaiVintage</a></li>
+          <li><a href="#evenimente">Evenimente</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#oferte">Produse populare</a></li>
+          <li><a href="#video">Video</a></li>
+          <li><a href="#faq">Întrebări frecvente</a></li>
         </ul>
-    </nav>
+      </li>
+
+
+      <li>
+        <button type="button" class="btn-submeniu">
+          Colecții ▾
+        </button>
+        <ul>
+          <li><a href="dama.html">Haine damă</a></li>
+          <li><a href="barbati.html">Haine bărbați</a></li>
+          <li><a href="accesorii.html">Accesorii</a></li>
+          <li><a href="colectii-speciale.html">Colecții speciale</a></li>
+        </ul>
+      </li>
+      <li><a href="despre.html">Despre noi</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 </header>
 
-<!-- ============================================================
-     MAIN – GRID (zone 1–8)
-     ============================================================ -->
 <main>
 
-    <!-- ZONA 1: Prezentare (Z-pattern / F-pattern) -->
+
     <section id="prezentare">
         <div class="text-prezentare">
             <hgroup>
@@ -146,23 +122,21 @@
         <div class="imagine-prezentare">
             <figure>
                 <picture>
-                    <source media="(max-width: 600px)"  srcset="resurse/img/colectie-mica.jpg">
                     <source media="(max-width: 1024px)" srcset="resurse/img/colectie-medie.jpg">
+                    <source media="(max-width: 600px)"  srcset="resurse/img/colectie-mica.jpg">
                     <img src="resurse/img/colectie-mare.jpg"
-                         alt="Haine vintage și accesorii retro"
                          title="Colecție HaiVintage – primăvară 2025">
                 </picture>
                 <figcaption>Colecția de primăvară – <b>haine vintage</b> și <b>accesorii retro</b>.</figcaption>
             </figure>
 
-            <!-- Link cu imagine – click deschide imaginea mare -->
             <a href="resurse/img/colectie_mare.png">
                 <img src="resurse/img/colectie_mare.png" alt="Click pentru versiunea mare" title="Mărește imaginea">
             </a>
         </div>
     </section>
 
-    <!-- ZONA 2: Tabel produse populare -->
+
     <section id="oferte">
         <h2>Cele mai vândute produse</h2>
         <div class="container-tabel">
@@ -200,7 +174,7 @@
                         <td>Disponibil</td>
                     </tr>
                     <tr>
-                        <td colspan="2">Pachet Duo – Rochie + Geantă</td>
+                        <td colspan="1">Pachet Duo – Rochie + Geantă</td>
                         <td>1970–1979</td>
                         <td>350</td>
                         <td>Ofertă specială</td>
@@ -229,7 +203,7 @@
         </div>
     </section>
 
-    <!-- ZONA 3: Calendar evenimente (placeholder) -->
+    <!-- ZONA 3: Calendar evenimente -->
     <section id="evenimente">
         <h2>Evenimente</h2>
         <ol>
@@ -249,63 +223,67 @@
         <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em></p>
     </section>
 
-    <!-- ZONA 4: Anunturi (placeholder) -->
+    <!-- ZONA 4: Anunturi + FAQ + Video -->
     <section id="galerie">
         <h2>Anunțuri</h2>
-        <details>
-            <summary>Ce sunt hainele vintage autentice?</summary>
-            <p>Sunt articole produse cu cel puțin 20 de ani în urmă, verificate de experți.</p>
-        </details>
-        <details>
-            <summary>Cum se face livrarea?</summary>
-            <p>Livrăm în toată România în 2–4 zile. Comenzile peste 300 RON au livrare gratuită.</p>
-        </details>
-        <details>
-            <summary>Pot returna un produs?</summary>
-            <p>Da, acceptăm retururi în 14 zile de la primire.</p>
-        </details>
-        <details>
-            <summary>Cum îngrijesc hainele vintage?</summary>
-            <p>Recomandăm spălarea la mână la temperaturi scăzute.</p>
-        </details>
 
-        <!-- Taburi + iframe -->
-        <h3>Videoclipuri recomandate</h3>
-        <div class="container-iframe">
-            <div class="taburi-iframe">
-                <a href="https://www.youtube.com/embed/uLxFLyV6HrA" target="player-vintage">Vintage Shop Tour</a>
-                <a href="https://www.youtube.com/embed/fqFsNP3lPKU" target="player-vintage">Thrift Styling Tips</a>
+        <div id="faq">
+            <details>
+                <summary>Ce sunt hainele vintage autentice?</summary>
+                <p>Sunt articole produse cu cel puțin 20 de ani în urmă, verificate de experți.</p>
+            </details>
+            <details>
+                <summary>Cum se face livrarea?</summary>
+                <p>Livrăm în toată România în 2–4 zile. Comenzile peste 300 RON au livrare gratuită.</p>
+            </details>
+            <details>
+                <summary>Pot returna un produs?</summary>
+                <p>Da, acceptăm retururi în 14 zile de la primire.</p>
+            </details>
+            <details>
+                <summary>Cum îngrijesc hainele vintage?</summary>
+                <p>Recomandăm spălarea la mână la temperaturi scăzute.</p>
+            </details>
+        </div>
+
+        <!-- FIX 3: id="video" pe subsecțiunea cu videoclipuri,
+             astfel âncora #video din meniu funcționează corect -->
+        <div id="video">
+            <h3>Videoclipuri recomandate</h3>
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                    <a href="https://www.youtube.com/embed/uLxFLyV6HrA" target="player-vintage">Vintage Shop Tour</a>
+                    <a href="https://www.youtube.com/embed/fqFsNP3lPKU" target="player-vintage">Thrift Styling Tips</a>
+                </div>
+                <iframe name="player-vintage"
+                        src="https://www.youtube.com/embed/uLxFLyV6HrA"
+                        title="Vintage Shop Tour"
+                        allowfullscreen>
+                </iframe>
             </div>
-            <iframe name="player-vintage"
-                    src="https://www.youtube.com/embed/uLxFLyV6HrA"
-                    title="Vintage Shop Tour"
-                    allowfullscreen>
-            </iframe>
         </div>
     </section>
 
-    <!-- ZONA 5: Useri online (placeholder) -->
+    
     <aside id="useri-online">
         <h2><i class="fa-solid fa-users"></i> Utilizatori online</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utilizatori activi acum: <b>42</b>.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </aside>
 
-    <!-- ZONA 6: Statistici user (placeholder) -->
     <aside id="statistici">
         <h2><i class="fa-solid fa-chart-bar"></i> Statistici</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vizite azi: <b>1.204</b>.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Produse vândute: <b>89</b>.</p>
     </aside>
 
-    <!-- ZONA 7: Date server (placeholder) -->
     <aside id="date-server">
         <h2><i class="fa-solid fa-server"></i> Date despre server</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <p>Versiune server: <b>Node.js 20 LTS</b>. Uptime: <b>99.9%</b>.</p>
     </aside>
 
-    <!-- ZONA 8: Libera – Club HaiVintage (stilizare creativa) -->
+ 
     <section id="club-vintage">
         <h2>Club HaiVintage</h2>
         <p>Abonează-te pentru oferte exclusive și noutăți despre colecțiile noastre vintage.</p>
@@ -314,12 +292,9 @@
 
 </main>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+
 <footer>
-    <!-- Banner proiect scolar – ascuns pe ecran, vizibil la print -->
-    <p id="banner-scolar">Acesta este un proiect școlar!</p>
+
 
     <address>
         <a href="tel:+40754620300"><i class="fa-solid fa-phone"></i> +40 754 620 300</a><br>
@@ -341,45 +316,15 @@
     <small>&copy; HaiVintage <time datetime="2025-03-06">6 martie 2025</time>. Toate drepturile rezervate.</small>
 </footer>
 
-<!-- ============================================================
-     LINK TOP
-     ============================================================ -->
+
 <a id="link-top" href="#" data-tooltip="Înapoi la începutul paginii">
     <span class="cerc-btn">
         <span class="sageata">&#8593;</span>
     </span>
 </a>
 
-<!-- ============================================================
-     JAVASCRIPT – Hamburger + submeniu ecran mic
-     ============================================================ -->
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const listaMeniu = document.getElementById('lista-meniu');
 
-    hamburger.addEventListener('click', () => {
-        listaMeniu.classList.toggle('deschis');
-    });
 
-    document.querySelectorAll('.btn-submeniu').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const submeniu = btn.nextElementSibling;
-            const esteDesschis = submeniu.classList.contains('deschis');
-
-            document.querySelectorAll('nav#meniu-principal ul ul').forEach(ul => {
-                ul.classList.remove('deschis');
-            });
-            document.querySelectorAll('.btn-submeniu').forEach(b => {
-                b.setAttribute('aria-expanded', 'false');
-            });
-
-            if (!esteDesschis) {
-                submeniu.classList.add('deschis');
-                btn.setAttribute('aria-expanded', 'true');
-            }
-        });
-    });
-</script>
 
 </body>
 </html>

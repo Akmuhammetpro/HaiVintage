@@ -18,6 +18,7 @@ nav#meniu-principal > ul > li > button, nav#meniu-principal > ul > li > ul > li 
   border: none;
   background: none;
   transition: background-color 0.35s ease, color 0.35s ease;
+
 }
 
 nav#meniu-principal > ul > li > ul > li > a {
@@ -30,6 +31,7 @@ nav#meniu-principal > ul > li > ul > li > a {
 nav#meniu-principal > ul > li > ul > li > a:hover {
   background-color: var(--meniu-submeniu-hover);
   color: var(--meniu-text);
+  
 }
 
 nav#meniu-principal {
@@ -75,6 +77,7 @@ nav#meniu-principal > ul > li > button::before {
 nav#meniu-principal > ul > li > a:hover,
 nav#meniu-principal > ul > li > button:hover {
   background-color: transparent;
+  
 }
 nav#meniu-principal > ul > li > a:hover::before,
 nav#meniu-principal > ul > li > button:hover::before {
@@ -117,26 +120,32 @@ nav#meniu-principal > ul > li.acasa > a {
 
 nav#meniu-principal > ul > li:hover > ul > li:nth-child(1) > a {
   transition-delay: 0s;
+  width: 210px;
 }
 
 nav#meniu-principal > ul > li:hover > ul > li:nth-child(2) > a {
   transition-delay: 0.04s;
+  width: 210px;
 }
 
 nav#meniu-principal > ul > li:hover > ul > li:nth-child(3) > a {
   transition-delay: 0.08s;
+  width: 210px;
 }
 
 nav#meniu-principal > ul > li:hover > ul > li:nth-child(4) > a {
   transition-delay: 0.12s;
+  width: 210px;
 }
 
 nav#meniu-principal > ul > li:hover > ul > li:nth-child(5) > a {
   transition-delay: 0.16s;
+  width: 210px;
 }
 
 nav#meniu-principal > ul > li:hover > ul > li:nth-child(6) > a {
   transition-delay: 0.2s;
+  width: 210px;
 }
 
 .hamburger-btn {

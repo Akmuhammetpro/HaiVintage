@@ -113,9 +113,7 @@ footer small   { color: var(--culoare-bordura); font-size: 0.8rem; }
 /* Banner "proiect scolar" – ascuns pe ecran, apare la print */
 #banner-scolar { display: none; }
 
-/* ============================================================
-   MAIN – GRID LAYOUT RESPONSIV (task: layout-responsive)
-   ============================================================ */
+/* Main*/
 main {
     margin: 0 var(--margine-pagina) 20px;
     display: grid;
@@ -129,7 +127,6 @@ main {
         "z8-libre      z8-libre      z8-libre      z8-libre";
 }
 
-/* ---- Alocare zone grid ---- */
 #prezentare   { grid-area: z1-prezentare; }
 #oferte       { grid-area: z2-tabel;      }
 #evenimente   { grid-area: z3-calendar;   }
@@ -139,7 +136,7 @@ main {
 #date-server  { grid-area: z7-server;     }
 #club-vintage { grid-area: z8-libre;      }
 
-/* ---- Stilizare comune zone grid (task: design rudimentar) ---- */
+
 main > section,
 main > article,
 main > aside {
@@ -151,7 +148,7 @@ main > aside {
     width: 100%;
 }
 
-/* ---- Zona 1: Prezentare ---- */
+/* Zona 1 */
 #prezentare {
     display: flex;
     flex-direction: row;
@@ -161,7 +158,7 @@ main > aside {
 #prezentare .text-prezentare    { flex: 1; }
 #prezentare .imagine-prezentare { flex: 1.2; }
 
-/* ---- Zona 8: Libera (stilizare creativa) ---- */
+/* Zona 8*/
 #club-vintage {
     background-color: var(--culoare-primara);
     color: var(--culoare-text-invers);
@@ -176,9 +173,7 @@ main > aside {
 #club-vintage h2 { color: var(--culoare-accent); border-bottom-color: var(--culoare-accent); }
 #club-vintage p  { color: var(--culoare-text-invers); }
 
-/* ============================================================
-   TABEL – stilizare (task: stilizare-tabel)
-   ============================================================ */
+/*  TABEL */
 .container-tabel {
     width: 100%;
     overflow-x: auto;
@@ -308,7 +303,7 @@ table tbody tr:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s ease;
+    transition: transform 0.8s ease;
 }
 
 #link-top .sageata {
@@ -426,59 +421,3 @@ summary:hover { color: var(--culoare-secundara); }
     *, *::before, *::after { animation: none !important; }
 }
 
-/* ============================================================
-   STILURI PRINTARE (task: css-printare)
-   ============================================================ */
-@media print {
-
-    /* 1. Banner – sus, centrat, 80% latime, border punctat negru */
-    #banner-scolar {
-        display: block;
-        text-align: center;
-        width: 80%;
-        margin: 0 auto 20px;
-        border: 1px dotted black;
-        padding: 8px;
-    }
-
-    /* 2. Ascunde media, nav, link-top */
-    img, video, iframe, object, embed,
-    figure, figcaption, #link-top, nav { display: none !important; }
-
-    /* 3. Grid ca block */
-    main { display: block !important; }
-
-    /* 4. Linkuri ca text normal */
-    a { color: black !important; text-decoration: none !important; }
-
-    /* 5. H1 – prima pagina, centrat, subliniat, 2.5x; meniu ascuns */
-    h1 {
-        font-size: 2.5em;
-        text-decoration: underline;
-        text-align: center;
-        page-break-after: always;
-    }
-    footer { page-break-before: always; }
-
-    /* 6. Watermark – latime 100px, inaltime 2cm, border dublu, opacitate 0.65 */
-    body::after {
-        content: 'jorayev ak';
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        width: 100px;
-        height: 2cm;
-        border: 4px double black;
-        opacity: 0.65;
-        font-size: 0.75rem;
-        text-align: center;
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* 7. Margini pagini stanga/dreapta */
-    @page :left  { margin-left: 2.5cm; margin-right: 0.5cm; }
-    @page :right { margin-left: 0.5cm; margin-right: 2.5cm; }
-}
