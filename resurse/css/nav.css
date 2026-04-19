@@ -1,15 +1,20 @@
-:root {
+@charset "UTF-8";
+body {
   --meniu-bg: #2C160A;
   --meniu-text: #F5ECD7;
   --meniu-accent: #D4A96A;
-  --meniu-hover: #8B4513;
-  --meniu-submeniu-bg: #3E2010;
-  --meniu-submeniu-hover: #C4503A;
-  --meniu-inaltime: 44px;
+  --meniu-sub-bg: #3E2010;
 }
 
-nav#meniu-principal > ul > li > a,
-nav#meniu-principal > ul > li > button, nav#meniu-principal > ul > li > ul > li > a {
+nav#meniu-principal ul,
+nav#meniu-principal li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav#meniu-principal > ul > li > ul li a, nav#meniu-principal > ul > li > a,
+nav#meniu-principal > ul > li > button {
   display: block;
   font-family: "Lato", sans-serif;
   font-weight: 700;
@@ -17,35 +22,40 @@ nav#meniu-principal > ul > li > button, nav#meniu-principal > ul > li > ul > li 
   cursor: pointer;
   border: none;
   background: none;
-  transition: background-color 0.35s ease, color 0.35s ease;
-
-}
-
-nav#meniu-principal > ul > li > ul > li > a {
-  padding: 11px 18px;
-  color: var(--meniu-text);
-  white-space: nowrap;
-  width: 100%;
-  text-align: left;
-}
-nav#meniu-principal > ul > li > ul > li > a:hover {
-  background-color: var(--meniu-submeniu-hover);
-  color: var(--meniu-text);
-  
+  transition: all 0.35s ease;
 }
 
 nav#meniu-principal {
-  background-color: var(--meniu-bg);
-  padding: 0 20px;
+  background: var(--meniu-bg);
   border-bottom: 3px solid var(--meniu-accent);
+  padding: 0 20px;
+  position: relative;
+}
+nav#meniu-principal .hamburger-btn {
+  display: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+  height: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+nav#meniu-principal .hamburger-btn span {
+  width: 100%;
+  height: 4px;
+  background: #F5ECD7;
+  border-radius: 4px;
 }
 nav#meniu-principal > ul {
-  list-style: none;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  margin: 0;
-  padding: 0;
+  align-items: center;
   gap: 2px;
 }
 nav#meniu-principal > ul > li {
@@ -53,14 +63,16 @@ nav#meniu-principal > ul > li {
 }
 nav#meniu-principal > ul > li > a,
 nav#meniu-principal > ul > li > button {
-  height: var(--meniu-inaltime);
-  line-height: var(--meniu-inaltime);
+  height: 44px;
+  line-height: 44px;
   padding: 0 18px;
   color: var(--meniu-text);
-  font-size: 0.95rem;
-  letter-spacing: 0.4px;
   position: relative;
   overflow: hidden;
+}
+nav#meniu-principal > ul > li > a i,
+nav#meniu-principal > ul > li > button i {
+  margin-right: 6px;
 }
 nav#meniu-principal > ul > li > a::before,
 nav#meniu-principal > ul > li > button::before {
@@ -70,14 +82,9 @@ nav#meniu-principal > ul > li > button::before {
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(to right, #2C160A, #F5ECD7, #2C160A);
+  background: linear-gradient(to right, #2C160A, white, #2C160A);
   opacity: 0;
-  transition: bottom 0.35s ease, opacity 0.35s ease;
-}
-nav#meniu-principal > ul > li > a:hover,
-nav#meniu-principal > ul > li > button:hover {
-  background-color: transparent;
-  
+  transition: 0.35s;
 }
 nav#meniu-principal > ul > li > a:hover::before,
 nav#meniu-principal > ul > li > button:hover::before {
@@ -85,178 +92,191 @@ nav#meniu-principal > ul > li > button:hover::before {
   opacity: 1;
 }
 nav#meniu-principal > ul > li > ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 210px;
-  background-color: var(--meniu-submeniu-bg);
-  border: 1px solid #D4A96A;
+  background: var(--meniu-sub-bg);
+  min-width: 200px;
   border-radius: 0 6px 6px 6px;
-  z-index: 200;
   transform: scale(0);
   transform-origin: center top;
   opacity: 0;
-  transition: transform 0.35s ease, opacity 0.35s ease;
   pointer-events: none;
+  transition: 0.35s;
 }
-nav#meniu-principal > ul > li > ul > li:first-child > a {
-  border-radius: 0 6px 0 0;
+nav#meniu-principal > ul > li > ul li a {
+  padding: 10px;
+  color: var(--meniu-text);
 }
-nav#meniu-principal > ul > li > ul > li:last-child > a {
-  border-radius: 0 0 6px 6px;
+nav#meniu-principal > ul > li > ul li a:hover {
+  background: #C4503A;
 }
 nav#meniu-principal > ul > li:hover > ul {
   transform: scale(1);
   opacity: 1;
   pointer-events: auto;
 }
-nav#meniu-principal > ul > li.acasa > a {
-  color: var(--meniu-accent);
-  font-size: 1rem;
-}
 
-nav#meniu-principal > ul > li:hover > ul > li:nth-child(1) > a {
-  transition-delay: 0s;
-  width: 210px;
-}
-
-nav#meniu-principal > ul > li:hover > ul > li:nth-child(2) > a {
-  transition-delay: 0.04s;
-  width: 210px;
-}
-
-nav#meniu-principal > ul > li:hover > ul > li:nth-child(3) > a {
-  transition-delay: 0.08s;
-  width: 210px;
-}
-
-nav#meniu-principal > ul > li:hover > ul > li:nth-child(4) > a {
-  transition-delay: 0.12s;
-  width: 210px;
-}
-
-nav#meniu-principal > ul > li:hover > ul > li:nth-child(5) > a {
-  transition-delay: 0.16s;
-  width: 210px;
-}
-
-nav#meniu-principal > ul > li:hover > ul > li:nth-child(6) > a {
-  transition-delay: 0.2s;
-  width: 210px;
-}
-
-.hamburger-btn {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 10px;
-  background: none;
-  border: none;
-}
-.hamburger-btn span {
-  display: block;
-  width: 26px;
-  height: 3px;
-  background-color: #F5ECD7;
-  border-radius: 2px;
-  transition: transform 0.4s ease, opacity 0.35s ease, background-color 0.35s ease;
-}
-
-@media screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
+  nav#meniu-principal > ul > li > a span,
+  nav#meniu-principal > ul > li > button span {
+    display: none;
+  }
   nav#meniu-principal > ul > li > a,
   nav#meniu-principal > ul > li > button {
-    font-size: 0.82rem;
     padding: 0 12px;
-  }
-  nav#meniu-principal > ul > li.acasa > a {
-    font-size: 0;
-    padding: 0 14px;
-  }
-  nav#meniu-principal > ul > li.acasa > a::after {
-    content: "\f015";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 1.1rem;
-    color: var(--meniu-accent);
-  }
-  nav#meniu-principal > ul > li.acasa > a::before {
-    bottom: -3px;
+    font-size: 0.85rem;
   }
 }
-@media screen and (max-width: 700px) {
+@media (max-width: 700px) {
+  header.principal {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+  }
+  header.principal h1 {
+    display: none;
+  }
   nav#meniu-principal {
     padding: 0;
-    position: relative;
   }
   nav#meniu-principal .hamburger-btn {
     display: flex;
-    margin: 8px 16px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+  }
+  nav#meniu-principal .background-clip {
+    position: fixed;
+    inset: 0;
+    background: #2C160A;
+    clip-path: circle(0% at 0 0);
+    transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
   }
   nav#meniu-principal > ul {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    padding: 8px 0;
-  }
-  nav#meniu-principal > ul.deschis {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 100px 20px 40px 20px;
+    margin: 0;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
   }
   nav#meniu-principal > ul > li {
     width: 100%;
+    max-width: 300px;
+    list-style: none;
+    margin: 0;
   }
-  nav#meniu-principal > ul > li > a,
-  nav#meniu-principal > ul > li > button {
-    height: auto;
-    line-height: 1.4;
-    padding: 12px 20px;
-    font-size: 0.95rem;
+  nav#meniu-principal > ul > li > a, nav#meniu-principal > ul > li > button {
+    display: flex;
+    align-items: center;
     width: 100%;
+    padding: 12px 15px;
+    font-size: 1.2rem;
+    color: #F5ECD7;
+    background: transparent;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 0;
   }
-  nav#meniu-principal > ul > li > a::before,
-  nav#meniu-principal > ul > li > button::before {
-    display: none;
-  }
-  nav#meniu-principal > ul > li > a:hover,
-  nav#meniu-principal > ul > li > button:hover {
-    background-color: var(--meniu-hover);
-    color: var(--meniu-text);
-  }
-  nav#meniu-principal > ul > li.acasa > a {
-    font-size: 0;
-  }
-  nav#meniu-principal > ul > li.acasa > a::after {
-    content: "\f015";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
+  nav#meniu-principal > ul > li > a i, nav#meniu-principal > ul > li > button i {
+    width: 30px;
+    margin-right: 15px;
     font-size: 1.1rem;
-    color: var(--meniu-accent);
+    color: #D4A96A;
+    text-align: center;
+  }
+  nav#meniu-principal > ul > li > a span, nav#meniu-principal > ul > li > button span {
+    flex: 1;
+    display: inline-block !important;
+  }
+  nav#meniu-principal > ul > li:first-child > a span {
+    display: none !important;
+  }
+  nav#meniu-principal > ul > li:first-child > a i {
+    margin-right: 0;
   }
   nav#meniu-principal > ul > li > ul {
     position: static;
-    transform: none;
-    opacity: 1;
-    pointer-events: auto;
-    min-width: 100%;
-    border-radius: 0;
-    border: none;
-    border-left: 3px solid #D4A96A;
-    display: none;
-    clip-path: circle(0% at 0% 0%);
-    transition: clip-path 0.5s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
+    border-radius: 0 0 6px 6px;
   }
-  nav#meniu-principal > ul > li > ul.deschis {
+  nav#meniu-principal > ul > li > ul li a {
     display: block;
-    clip-path: circle(150% at 0% 0%);
+    padding: 10px 10px 10px 60px;
+    font-size: 1rem;
+    color: rgb(234.8, 216.62, 174.2);
+    border-bottom: 1px solid rgba(212, 169, 106, 0.05);
   }
-  nav#meniu-principal > ul > li > ul > li > a {
-    padding-left: 32px;
+  nav#meniu-principal > ul > li > ul li a:hover {
+    color: white;
+    background: #C4503A;
   }
-  nav#meniu-principal > ul > li > ul > li > a:hover {
-    background-color: var(--meniu-submeniu-hover);
+  nav#meniu-principal > ul > li:hover > ul {
+    max-height: 500px;
+    opacity: 1;
+  }
+  nav#meniu-principal > ul > li:hover > a, nav#meniu-principal > ul > li:hover > button {
+    color: #D4A96A;
+  }
+  nav#meniu-principal.afiseaza-meniu .background-clip {
+    clip-path: circle(150% at 0 0);
+  }
+  nav#meniu-principal.afiseaza-meniu > ul {
+    opacity: 1;
+    visibility: visible;
+  }
+  nav#meniu-principal a::before,
+  nav#meniu-principal button::before {
+    display: none !important;
+  }
+}
+@media print {
+  nav, .hamburger-btn {
+    display: none !important;
+  }
+  footer::before {
+    content: "Acesta este un proiect școlar!";
+    display: block;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    border: 2px dotted black;
+    padding: 10px;
+  }
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  body::after {
+    content: "Akmuhammet";
+    position: fixed;
+    bottom: 1cm;
+    right: 1cm;
+    width: 100px;
+    height: 2cm;
+    border: 3px double black;
+    opacity: 0.65;
+  }
+  footer {
+    page-break-before: always;
   }
 }
 

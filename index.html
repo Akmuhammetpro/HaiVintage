@@ -28,38 +28,65 @@
 <header class="principal">
   <h1>HaiVintage</h1>
   <nav id="meniu-principal">
-   
-    <ul id="lista-meniu">
+  <div class="background-clip"></div>
 
-      <li class="acasa">
-        <a href="index.html">Acasă ▾</a>
-        <ul>
-          <li><a href="#prezentare">Despre HaiVintage</a></li>
-          <li><a href="#evenimente">Evenimente</a></li>
-          <li><a href="#galerie">Galerie</a></li>
-          <li><a href="#oferte">Produse populare</a></li>
-          <li><a href="#video">Video</a></li>
-          <li><a href="#faq">Întrebări frecvente</a></li>
-        </ul>
-      </li>
+  <button class="hamburger-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
+  <ul id="lista-meniu">
 
-      <li>
-        <button type="button" class="btn-submeniu">
-          Colecții ▾
-        </button>
-        <ul>
-          <li><a href="dama.html">Haine damă</a></li>
-          <li><a href="barbati.html">Haine bărbați</a></li>
-          <li><a href="accesorii.html">Accesorii</a></li>
-          <li><a href="colectii-speciale.html">Colecții speciale</a></li>
-        </ul>
-      </li>
-      <li><a href="despre.html">Despre noi</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+    <li class="acasa">
+      <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Acasă ▾</span>
+      </a>
+      <ul>
+        <li><a href="#prezentare">Despre</a></li>
+        <li><a href="#evenimente">Evenimente</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#oferte">Produse</a></li>
+        <li><a href="#video">Video</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <button class="btn-submeniu">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Colecții ▾</span>
+      </button>
+      <ul>
+        <li><a href="dama.html">Haine damă</a></li>
+        <li><a href="barbati.html">Haine bărbați</a></li>
+        <li><a href="accesorii.html">Accesorii</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="despre.html">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Despre</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="blog.html">
+        <i class="fa-solid fa-pen"></i>
+        <span>Blog</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="contact.html">
+        <i class="fa-solid fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </li>
+
+  </ul>
+</nav>
 </header>
 
 <main>
@@ -174,17 +201,17 @@
                         <td>Disponibil</td>
                     </tr>
                     <tr>
-                        <td colspan="1">Pachet Duo – Rochie + Geantă</td>
+                        <td id="colsp" colspan="2">Pachet Duo – Rochie + Geantă</td>
                         <td>1970–1979</td>
                         <td>350</td>
-                        <td>Ofertă specială</td>
+                        <td id="rowsp" rowspan="2">Ofertă specială</td>
                     </tr>
                     <tr>
                         <td>Pălărie fedora</td>
                         <td>Accesorii vintage</td>
                         <td>1950–1960</td>
                         <td>95</td>
-                        <td>Disponibil</td>
+                        
                     </tr>
                     <tr>
                         <td>Pantaloni evazați</td>
@@ -323,7 +350,36 @@
     </span>
 </a>
 
+<script>
 
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.hamburger-btn');
+  const nav = document.getElementById('meniu-principal');
+  const items = document.querySelectorAll('#lista-meniu > li');
+
+  // Открытие всего меню
+  btn.addEventListener('click', () => {
+    nav.classList.toggle('afiseaza-meniu');
+  });
+
+  // Открытие подменю на мобильных
+  items.forEach(item => { 
+    const trigger = item.querySelector('a, button');
+
+    trigger.addEventListener('click', (e) => {
+      if (window.innerWidth <= 700) {
+        const submenu = item.querySelector('ul');
+
+        if (submenu) {
+          e.preventDefault();
+          item.classList.toggle('open');
+        }
+      }
+    });
+  });
+});
+
+</script>
 
 
 </body>
