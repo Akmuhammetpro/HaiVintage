@@ -8,14 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HaiVintage – Haine si Accesorii Vintage</title>
 
-
     <link rel="icon" type="image/png" href="resurse/ico/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="resurse/ico/favicon.svg">
     <link rel="shortcut icon" href="resurse/ico/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="resurse/ico/apple-touch-icon.png">
     <link rel="manifest" href="resurse/ico/site.webmanifest">
 
- 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
     <link rel="stylesheet" href="resurse/css/reset.css">
@@ -24,73 +22,90 @@
 </head>
 <body>
 
-
 <header class="principal">
   <h1>HaiVintage</h1>
   <nav id="meniu-principal">
-  <div class="background-clip"></div>
 
-  <button class="hamburger-btn">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+    <!-- Чекбокс гамбургера -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" hidden>
 
-  <ul id="lista-meniu">
+    <label for="menu-toggle" class="hamburger-btn" aria-label="Deschide meniul">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
 
-    <li class="acasa">
-      <a href="index.html">
-        <i class="fa-solid fa-house"></i>
-        <span>Acasă ▾</span>
-      </a>
-      <ul>
-        <li><a href="#prezentare">Despre</a></li>
-        <li><a href="#evenimente">Evenimente</a></li>
-        <li><a href="#galerie">Galerie</a></li>
-        <li><a href="#oferte">Produse</a></li>
-        <li><a href="#video">Video</a></li>
+    <!-- Обёртка: фон + меню растягиваются вместе -->
+    <div class="menu-wrapper">
+      <ul id="lista-meniu">
+
+        <li class="acasa has-submenu">
+          <input type="checkbox" id="sub-acasa" class="sub-toggle" hidden>
+          <!-- Десктоп: ссылка -->
+          <a href="index.html" class="menu-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Acasă ▾</span>
+          </a>
+          <!-- Мобильный: label-триггер -->
+          <label for="sub-acasa" class="menu-trigger">
+            <i class="fa-solid fa-house"></i>
+            <span>Acasă ▾</span>
+          </label>
+          <ul>
+            <li><a href="#prezentare">Despre</a></li>
+            <li><a href="#evenimente">Evenimente</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#oferte">Produse</a></li>
+            <li><a href="#video">Video</a></li>
+          </ul>
+        </li>
+
+        <li class="has-submenu">
+          <input type="checkbox" id="sub-colec" class="sub-toggle" hidden>
+          <!-- Десктоп: кнопка -->
+          <button class="btn-submeniu menu-link">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Colecții ▾</span>
+          </button>
+          <!-- Мобильный: label-триггер -->
+          <label for="sub-colec" class="menu-trigger">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Colecții ▾</span>
+          </label>
+          <ul>
+            <li><a href="dama.html">Haine damă</a></li>
+            <li><a href="barbati.html">Haine bărbați</a></li>
+            <li><a href="accesorii.html">Accesorii</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="despre.html">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Despre</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="blog.html">
+            <i class="fa-solid fa-pen"></i>
+            <span>Blog</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="contact.html">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Contact</span>
+          </a>
+        </li>
+
       </ul>
-    </li>
-
-    <li>
-      <button class="btn-submeniu">
-        <i class="fa-solid fa-layer-group"></i>
-        <span>Colecții ▾</span>
-      </button>
-      <ul>
-        <li><a href="dama.html">Haine damă</a></li>
-        <li><a href="barbati.html">Haine bărbați</a></li>
-        <li><a href="accesorii.html">Accesorii</a></li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="despre.html">
-        <i class="fa-solid fa-circle-info"></i>
-        <span>Despre</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="blog.html">
-        <i class="fa-solid fa-pen"></i>
-        <span>Blog</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="contact.html">
-        <i class="fa-solid fa-envelope"></i>
-        <span>Contact</span>
-      </a>
-    </li>
-
-  </ul>
-</nav>
+    </div>
+  </nav>
 </header>
 
 <main>
-
 
     <section id="prezentare">
         <div class="text-prezentare">
@@ -127,20 +142,17 @@
                 </section>
             </article>
 
-            <!-- Icon animat Font Awesome -->
             <p>
                 <i class="fa-solid fa-rotate icon-animat"></i>
                 Colecție reînnoită săptămânal!
             </p>
 
-            <!-- Link catre resursa externa cu wbr -->
             <p>Resurse despre istoria modei:
                 <a href="https://en.wikipedia.org/wiki/History_of_Western_fashion#20th-century_fashion">
                     https://en.wikipedia.org/wiki/History_of_Western_<wbr>fashion#20th-century_fashion
                 </a>
             </p>
 
-            <!-- Link download -->
             <p><a href="resurse/img/colectie_mare.png" download="catalog_haivintage_primavara2025.png">
                 <i class="fa-solid fa-download"></i> Descarcă catalogul foto
             </a></p>
@@ -162,7 +174,6 @@
             </a>
         </div>
     </section>
-
 
     <section id="oferte">
         <h2>Cele mai vândute produse</h2>
@@ -211,7 +222,6 @@
                         <td>Accesorii vintage</td>
                         <td>1950–1960</td>
                         <td>95</td>
-                        
                     </tr>
                     <tr>
                         <td>Pantaloni evazați</td>
@@ -230,7 +240,6 @@
         </div>
     </section>
 
-    <!-- ZONA 3: Calendar evenimente -->
     <section id="evenimente">
         <h2>Evenimente</h2>
         <ol>
@@ -250,7 +259,6 @@
         <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em></p>
     </section>
 
-    <!-- ZONA 4: Anunturi + FAQ + Video -->
     <section id="galerie">
         <h2>Anunțuri</h2>
 
@@ -273,8 +281,6 @@
             </details>
         </div>
 
-        <!-- FIX 3: id="video" pe subsecțiunea cu videoclipuri,
-             astfel âncora #video din meniu funcționează corect -->
         <div id="video">
             <h3>Videoclipuri recomandate</h3>
             <div class="container-iframe">
@@ -291,7 +297,6 @@
         </div>
     </section>
 
-    
     <aside id="useri-online">
         <h2><i class="fa-solid fa-users"></i> Utilizatori online</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utilizatori activi acum: <b>42</b>.</p>
@@ -310,7 +315,6 @@
         <p>Versiune server: <b>Node.js 20 LTS</b>. Uptime: <b>99.9%</b>.</p>
     </aside>
 
- 
     <section id="club-vintage">
         <h2>Club HaiVintage</h2>
         <p>Abonează-te pentru oferte exclusive și noutăți despre colecțiile noastre vintage.</p>
@@ -319,10 +323,7 @@
 
 </main>
 
-
 <footer>
-
-
     <address>
         <a href="tel:+40754620300"><i class="fa-solid fa-phone"></i> +40 754 620 300</a><br>
         Bulevardul Regina Elisabeta Nr. 4-12,<br>
@@ -343,44 +344,11 @@
     <small>&copy; HaiVintage <time datetime="2025-03-06">6 martie 2025</time>. Toate drepturile rezervate.</small>
 </footer>
 
-
 <a id="link-top" href="#" data-tooltip="Înapoi la începutul paginii">
     <span class="cerc-btn">
         <span class="sageata">&#8593;</span>
     </span>
 </a>
-
-<script>
-
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.hamburger-btn');
-  const nav = document.getElementById('meniu-principal');
-  const items = document.querySelectorAll('#lista-meniu > li');
-
-  // Открытие всего меню
-  btn.addEventListener('click', () => {
-    nav.classList.toggle('afiseaza-meniu');
-  });
-
-  // Открытие подменю на мобильных
-  items.forEach(item => { 
-    const trigger = item.querySelector('a, button');
-
-    trigger.addEventListener('click', (e) => {
-      if (window.innerWidth <= 700) {
-        const submenu = item.querySelector('ul');
-
-        if (submenu) {
-          e.preventDefault();
-          item.classList.toggle('open');
-        }
-      }
-    });
-  });
-});
-
-</script>
-
 
 </body>
 </html>
