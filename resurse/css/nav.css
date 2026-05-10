@@ -13,9 +13,6 @@ nav#meniu-principal li {
   padding: 0;
 }
 
-/* =========================================================
-   DESKTOP
-   ========================================================= */
 nav#meniu-principal {
   background: var(--meniu-bg);
   border-bottom: 3px solid var(--meniu-accent);
@@ -107,7 +104,7 @@ nav#meniu-principal .menu-wrapper > ul > li > ul {
   min-width: 200px;
   border-radius: 0 6px 6px 6px;
   transform: scale(0);
-  transform-origin: center top;
+  transform-origin: center;
   opacity: 0;
   pointer-events: none;
   transition: 0.35s;
@@ -133,9 +130,6 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
   pointer-events: auto;
 }
 
-/* =========================================================
-   TABLET
-   ========================================================= */
 @media (max-width: 1100px) {
   nav#meniu-principal .menu-wrapper > ul > li > a span,
   nav#meniu-principal .menu-wrapper > ul > li > button span {
@@ -147,10 +141,38 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     font-size: 0.85rem;
   }
 }
-/* =========================================================
-   MOBILE — CSS-only checkbox-hack
-   ========================================================= */
 @media (max-width: 700px) {
+  nav#meniu-principal .menu-wrapper > ul > li:not(.has-submenu) > a, nav#meniu-principal .menu-wrapper > ul > li.has-submenu > label.menu-trigger {
+    display: block;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: all 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 8px 15px;
+    font-size: 1rem;
+    color: #F5ECD7;
+    background: transparent;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 0;
+  }
+  nav#meniu-principal .menu-wrapper > ul > li:not(.has-submenu) > a i, nav#meniu-principal .menu-wrapper > ul > li.has-submenu > label.menu-trigger i {
+    width: 30px;
+    margin-right: 15px;
+    font-size: 1.1rem;
+    color: #D4A96A;
+    text-align: center;
+  }
+  nav#meniu-principal .menu-wrapper > ul > li:not(.has-submenu) > a span, nav#meniu-principal .menu-wrapper > ul > li.has-submenu > label.menu-trigger span {
+    display: inline-block !important;
+  }
   header.principal {
     display: flex;
     align-items: center;
@@ -182,9 +204,9 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     overflow-y: auto;
     z-index: 999;
     background: #2C160A;
-    clip-path: circle(0% at 35px 35px);
+    clip-path: circle(0% at 0px 0px);
     pointer-events: none;
-    transition: clip-path 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   nav#meniu-principal .menu-wrapper > ul {
     display: flex;
@@ -207,69 +229,6 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
   nav#meniu-principal .menu-wrapper > ul > li.has-submenu > a,
   nav#meniu-principal .menu-wrapper > ul > li.has-submenu > button {
     display: none;
-  }
-  nav#meniu-principal .menu-wrapper > ul > li.has-submenu > label.menu-trigger {
-    display: block;
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    background: none;
-    transition: all 0.35s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 8px 15px;
-    font-size: 1rem;
-    color: #F5ECD7;
-    background: transparent;
-    border-radius: 6px;
-    border: none;
-    margin-bottom: 0;
-    cursor: pointer;
-  }
-  nav#meniu-principal .menu-wrapper > ul > li.has-submenu > label.menu-trigger i {
-    width: 30px;
-    margin-right: 15px;
-    font-size: 1.1rem;
-    color: #D4A96A;
-    text-align: center;
-  }
-  nav#meniu-principal .menu-wrapper > ul > li.has-submenu > label.menu-trigger span {
-    display: inline-block !important;
-  }
-  nav#meniu-principal .menu-wrapper > ul > li:not(.has-submenu) > a {
-    display: block;
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    background: none;
-    transition: all 0.35s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 8px 15px;
-    font-size: 1rem;
-    color: #F5ECD7;
-    background: transparent;
-    border-radius: 6px;
-    border: none;
-    margin-bottom: 0;
-  }
-  nav#meniu-principal .menu-wrapper > ul > li:not(.has-submenu) > a i {
-    width: 30px;
-    margin-right: 15px;
-    font-size: 1.1rem;
-    color: #D4A96A;
-    text-align: center;
-  }
-  nav#meniu-principal .menu-wrapper > ul > li:not(.has-submenu) > a span {
-    display: inline-block !important;
   }
   nav#meniu-principal .menu-wrapper > ul > li:not(:first-child) > a i,
   nav#meniu-principal .menu-wrapper > ul > li:not(:first-child) > label.menu-trigger i {
@@ -329,7 +288,7 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     opacity: 1;
   }
   nav#meniu-principal .menu-toggle:checked ~ .menu-wrapper {
-    clip-path: circle(200% at 35px 35px);
+    clip-path: circle(200% at 0px 0px);
     pointer-events: auto;
   }
   nav#meniu-principal .menu-toggle:checked ~ .menu-wrapper > ul > li {
