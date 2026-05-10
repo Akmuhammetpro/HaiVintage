@@ -361,6 +361,11 @@ nav#meniu-principal {
           .sub-toggle:checked ~ label.menu-trigger {
             color: $accent;
           }
+
+          &.has-submenu:hover > ul {
+            max-height: 400px;
+            opacity: 1;
+          }
         }
       }
     }

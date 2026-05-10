@@ -320,6 +320,10 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
   nav#meniu-principal .menu-wrapper > ul > li .sub-toggle:checked ~ label.menu-trigger {
     color: #D4A96A;
   }
+  nav#meniu-principal .menu-wrapper > ul > li.has-submenu:hover > ul {
+    max-height: 400px;
+    opacity: 1;
+  }
   nav#meniu-principal .menu-toggle:checked ~ .menu-wrapper {
     clip-path: circle(200% at 35px 35px);
     pointer-events: auto;
