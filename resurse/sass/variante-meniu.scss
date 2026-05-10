@@ -310,7 +310,15 @@ nav#meniu-principal {
             }
           }
 
-          // Home: только иконка
+          // All items except home: hide icon
+          &:not(:first-child) {
+            > a i,
+            > label.menu-trigger i {
+              display: none !important;
+            }
+          }
+
+          // Home: icon only, no text
           &:first-child {
             > a span,
             > label.menu-trigger span {
