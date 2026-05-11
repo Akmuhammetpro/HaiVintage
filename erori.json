@@ -1,0 +1,31 @@
+{
+  "cale_baza": "resurse/img/erori",
+  "eroare_default": {
+    "titlu": "A apărut o eroare",
+    "text": "Eroare generică.",
+    "imagine": "default.ico"
+  },
+  "info_erori": [
+    {
+      "identificator": 404,
+      "status": true,
+      "titlu": "Pagina nu a fost gasita",
+      "text": "Pagina pe care o cautati nu exista.",
+      "imagine": "404.ico"
+    },
+    {
+      "identificator": 403,
+      "status": true,
+      "titlu": "Acces interzis",
+      "text": "Nu aveti permisiunea de a accesa acest director.",
+      "imagine": "403.ico"
+    },
+    {
+      "identificator": 400,
+      "status": true,
+      "titlu": "Cerere gresita",
+      "text": "Fisierele ejs nu pot fi accesate direct.",
+      "imagine": "400.ico"
+    }
+  ]
+}
