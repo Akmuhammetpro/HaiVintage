@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php -->
+<html lang="ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="./Cerinte custom_files/stil.css">
+    <link rel="shortcut icon" type="image/x-icon" href="http://irinaciocan.ro/tehnici_web/favicon.ico">
+	<!--<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />-->
+	
+	<meta name="author" content="Irina Ciocan">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="./Cerinte custom_files/jquery-3.1.1.js.Без названия"></script>          
+	<script type="text/javascript" src="./Cerinte custom_files/modernizr-custom.js.Без названия"></script> 
+	<!--[if lt IE 9]>	
+		<script type="text/javascript" src="/biblioteca/html5shiv.js"></script>
+	<![endif]-->
+		<script type="text/javascript" src="./Cerinte custom_files/functiile_mele.js.Без названия"></script>
+	
+	<script type="text/javascript" src="./Cerinte custom_files/cuprins.js.Без названия"></script>
+
+
+<title>Cerinte custom</title>
+
+ 
+<script type="text/javascript">
+<!--
+
+
+//pentru cookie-uri
+
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+  {
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+function setCookie(c_name,value,exdays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+}
+
+
+
+
+function st_pag_menu()
+{
+var url_pag=document.URL;
+var ind_menu_pag=url_pag.lastIndexOf("/");// http://irinaciocan.ro... => index 19
+var menu_pag=url_pag.substr(ind_menu_pag+1,url_pag.length-ind_menu_pag-5);//5=.html
+//alert(menu_pag);
+var opt_meniu=document.getElementById(menu_pag);
+if(opt_meniu)
+	//opt_meniu.style.color="black";
+	opt_meniu.style.boxShadow="0px 0px 0.2em inset black";
+}
+
+
+function pozitioneazaMeniu(offset) 
+		{
+			var $sidebar   = $("nav#meniu_sus");
+			$window    = $(window);
+			var margine_sus=$("header.principal").outerHeight();
+			if ($window.scrollTop() > margine_sus) 
+			//if ($sidebar.scrollTop() > 0) 
+			{
+					//$sidebar.css("top", $window.scrollTop()); //- offset.top);
+					$sidebar.css("position","fixed");
+					$sidebar.css("top","0px");
+				
+			} 
+			else 
+			{
+					$sidebar.css("position","absolute");
+					$sidebar.css("top",margine_sus+"px");
+
+			}
+		}
+
+
+
+
+$(document).ready(
+	function()
+	{
+			//pozitioneazaMeniu();
+			var $sidebar   = $("nav#meniu_sus");
+			$window    = $(window);
+			var offset_meniu = $sidebar.offset();
+			$(window).scroll(function(){
+				pozitioneazaMeniu(offset_meniu);
+			});	
+			$(".opt_meniu").attr("dataDeschis","inchis");
+			$(".opt_meniu").append("<img class='acces_submeniu' src='/imagini/triunghi_alb_mic_b_jos.png' alt=''>");
+			$(".opt_meniu").click(
+				function()
+				{
+					
+					//$plusulet=$(this).find("span.acces_submeniu");
+					//if($(".opt_meniu").attr("dataDeschis")=="inchis")
+					if($(this).attr("dataDeschis")=="inchis")
+					{
+						//$plusulet.text("-");
+						$elem_curent=$(this);
+						//$plusulet.text("+");
+						$(".opt_meniu").each(
+							function() {
+								if($(this)!=$elem_curent)
+								{
+									$(this).attr("dataDeschis","inchis");
+									$submeniu=$(this).next("ul");
+									$submeniu.css("display","none");
+									$(this).find(".acces_submeniu").attr("src",'/imagini/triunghi_alb_mic_b_jos.png');
+								}
+							}
+						);
+						$(this).attr("dataDeschis","deschis");		
+						$submeniu=$(this).next("ul");
+						$submeniu.css("display","block");
+						$(this).find(".acces_submeniu").attr("src",'/imagini/triunghi_alb_mic_b_sus.png');
+					}
+					else
+					{
+
+
+						$(this).attr("dataDeschis","inchis");
+						$submeniu=$(this).next("ul");
+						$submeniu.css("display","none");
+						$(this).find(".acces_submeniu").attr("src",'/imagini/triunghi_alb_mic_b_jos.png');
+
+					}
+
+				}
+			);
+	}
+);
+
+//daca ecranul e mai lat, expandeaza divurile in latime
+
+
+//-->
+</script>
+
+</head>
+<body onload="initial()">
+	<header class="principal">
+		<h1>Tehnici Web</h1>
+		<div id="nume_login">
+			<p class="alerta">Esti logat drept <span class="user">jorayev__ak</span></p> <a class="link_login" href="http://irinaciocan.ro/tehnici_web/logout.php">Logout</a><br>		</div>
+		<nav id="meniu_sus" style="position: fixed; top: 0px;">
+			<ul class="meniu_principal">
+
+
+				<li>
+					<a id="index" href="http://irinaciocan.ro/tehnici_web/index.php">Principal</a>
+				</li>
+				<li>
+					<a id="inregistrare" href="http://irinaciocan.ro/tehnici_web/inregistrare.php">Profil</a>
+				</li>
+				<li>
+					<a id="regulament" href="http://irinaciocan.ro/tehnici_web/regulament.php">Regulament</a>
+				</li>
+				<li>
+					<!--<a style="color:red;" id="regulament" href="/tehnici_web/regulament.php">Proiect HTML+CSS</a>-->
+					<button class="opt_meniu optiune_importanta" id="proiect_html" datadeschis="inchis">Proiect HTML+CSS<img class="acces_submeniu" src="./Cerinte custom_files/triunghi_alb_mic_b_jos.png" alt=""></button>
+					<ul>
+						<!--<li><a id="idei_proiecte" href="/tehnici_web/idei_proiecte.php">Idei proiecte</a></li><li><a id="barem_proiect" href="/tehnici_web/barem_proiect_html.php">Barem proiect</a></li>-->
+						<li><a id="proiect" href="http://irinaciocan.ro/tehnici_web/proiect.php">Realizare proiect</a></li>
+						<!--<li><a id="teme_proiect" href="/tehnici_web/teme_proiect.php">Teme proiect</a></li>-->
+						<li><a id="greseli_frecvente_html_css" href="http://irinaciocan.ro/tehnici_web/greseli_frecvente_html_css.php">Greseli frecvente</a></li>
+						<li><a id="proiect_pe_net" href="http://irinaciocan.ro/tehnici_web/proiect_pe_net.php">Pus pe net</a></li>
+
+					</ul>
+				</li>
+				<!--
+				<li>
+					<a id="barem_proiect" class="optiune_importanta" href="/tehnici_web/barem_proiect.php">Barem proiect</a>
+				</li>
+				-->
+				<li>
+					<button class="opt_meniu" id="laboratoare" datadeschis="inchis">Laboratoare<img class="acces_submeniu" src="./Cerinte custom_files/triunghi_alb_mic_b_jos.png" alt=""></button>
+					<ul>
+						<!--<li><a id="lab0" href="/tehnici_web/lab0.php">Laborator 0<br></a></li>-->
+						<li><a id="lab1" href="http://irinaciocan.ro/tehnici_web/lab1.php">Laborator 1<br></a></li>
+						<li><a id="lab2" href="http://irinaciocan.ro/tehnici_web/lab2.php">Laborator 2<br></a></li>
+						<li><a id="lab3" href="http://irinaciocan.ro/tehnici_web/lab3.php">Laborator 3<br></a></li>
+						<li><a id="lab4" href="http://irinaciocan.ro/tehnici_web/lab4.php">Laborator 4<br></a></li>
+						<li><a id="lab5" href="http://irinaciocan.ro/tehnici_web/lab5.php">Laborator 5<br></a></li>
+						<li><a id="lab6" href="http://irinaciocan.ro/tehnici_web/lab6.php">Laborator 6<br></a></li>
+						<li><a id="lab7" href="http://irinaciocan.ro/tehnici_web/lab7.php">Laborator 7<br></a></li>
+						<li><a id="lab8" href="http://irinaciocan.ro/tehnici_web/lab8.php">Laborator 8<br></a></li>
+						<li><a id="lab9" href="http://irinaciocan.ro/tehnici_web/lab9.php">Laborator 9<br></a></li>
+						<li><a id="lab10" href="http://irinaciocan.ro/tehnici_web/lab10.php">Laborator 10<br></a></li>
+						<li><a id="lab11" href="http://irinaciocan.ro/tehnici_web/lab11.php">Laborator 11<br></a></li>
+						<li><a id="lab12" href="http://irinaciocan.ro/tehnici_web/lab12.php">Laborator 12<br></a></li>
+					</ul>
+				</li>
+				<li>
+					<button class="opt_meniu" id="mi" datadeschis="inchis">M.I.<img class="acces_submeniu" src="./Cerinte custom_files/triunghi_alb_mic_b_jos.png" alt=""></button>
+					<ul>
+						<!--<li><a id="lab0" href="/tehnici_web/lab0.php">Laborator 0<br></a></li>-->
+						<li><a id="mi_lab1" href="http://irinaciocan.ro/tehnici_web/mi_lab1.php">M.I. 1<br></a></li>
+						<li><a id="mi_lab2" href="http://irinaciocan.ro/tehnici_web/mi_lab2.php">M.I. 2<br></a></li>
+						<li><a id="mi_lab3" href="http://irinaciocan.ro/tehnici_web/mi_lab3.php">M.I. 3<br></a></li>
+						<li><a id="mi_lab4" href="http://irinaciocan.ro/tehnici_web/mi_lab4.php">M.I. 4<br></a></li>
+						<li><a id="mi_lab5" href="http://irinaciocan.ro/tehnici_web/mi_lab5.php">M.I. 5<br></a></li>
+						<li><a id="mi_lab6" href="http://irinaciocan.ro/tehnici_web/mi_lab6.php">M.I. 6<br></a></li>
+						<li><a id="mi_lab7" href="http://irinaciocan.ro/tehnici_web/mi_lab7.php">M.I. 7<br></a></li>
+						<li><a id="mi_lab8" href="http://irinaciocan.ro/tehnici_web/mi_lab8.php">M.I. 8<br></a></li>
+						<li><a id="mi_lab9" href="http://irinaciocan.ro/tehnici_web/mi_lab9.php">M.I. 9<br></a></li>
+						<li><a id="mi_lab10" href="http://irinaciocan.ro/tehnici_web/mi_lab10.php">M.I. 10<br></a></li>
+						<li><a id="mi_lab11" href="http://irinaciocan.ro/tehnici_web/mi_lab11.php">M.I. 11<br></a></li>
+						<li><a id="mi_lab12" href="http://irinaciocan.ro/tehnici_web/mi_lab12.php">M.I. 12<br></a></li>
+						<!--<li><a id="mi_lab12" href="/tehnici_web/mi_lab12.php">M.I. 12<br></a></li>
+						<li><a id="exercitii_foarte_simple" href="/tehnici_web/exercitii_foarte_simple.php">M.I. mai simplu<br></a></li>-->
+						<li><a id="exercitii_recapitulative" href="http://irinaciocan.ro/tehnici_web/exercitii_recapitulative.php">M.I.recapitulativ<br></a></li>
+					</ul>
+				</li>
+
+				<li>
+					<a id="note" href="http://irinaciocan.ro/tehnici_web/note.php">Note</a>
+				</li>
+				<li>
+					<button class="opt_meniu" id="proiect_js" datadeschis="inchis">Proiect JS<img class="acces_submeniu" src="./Cerinte custom_files/triunghi_alb_mic_b_jos.png" alt=""></button>
+					<ul>
+
+						<!--<li><a id="barem_proiect_js" href="/tehnici_web/barem_proiect_js.php">Barem proiect JS</a></li>
+						<!--<li><a id="formular_proiect_js" href="/tehnici_web/formular_proiect_js.php">Formular proiect JS</a></li>-->
+						<li><a id="cerinta_aleatoare_js" href="http://irinaciocan.ro/tehnici_web/cerinta_aleatoare_js.php">Cerinta JS</a></li>
+						</ul>
+				</li>
+			
+				<li>
+					<button class="opt_meniu" id="recapitulare" datadeschis="inchis">Recapitulare<img class="acces_submeniu" src="./Cerinte custom_files/triunghi_alb_mic_b_jos.png" alt=""></button>
+					<ul>
+						<li><a id="corectati_greseala" href="http://irinaciocan.ro/tehnici_web/corectati_greseala.php">Corectati greseala</a></li>
+						<li><a id="recapitulare_js" href="http://irinaciocan.ro/tehnici_web/recapitulare_js.php">Pregatire examen</a></li>
+					
+						<li><a id="exercitii_recapitulative" href="http://irinaciocan.ro/tehnici_web/exercitii_recapitulative.php">MI recapitulativ</a></li>
+					</ul>
+				</li>
+				<li>
+					<button class="opt_meniu" id="anexe" datadeschis="inchis">Anexe<img class="acces_submeniu" src="./Cerinte custom_files/triunghi_alb_mic_b_jos.png" alt=""></button>
+					<ul>
+					<!--<li>
+							<a id="model_test_css" href="/tehnici_web/model_test_css.php">Model test CSS</a>
+					</li>-->
+					<li>
+							<a id="exemple" href="http://irinaciocan.ro/tehnici_web/exemple" target="_blank">Exemple</a>
+					</li>
+					<!--
+						<li><a id="backup" href="/biblioteca/backup.php?folder=tehnici_web">Backup<br></a></li>
+						<li><a id="debug" href="/tehnici_web/debug.php">Debug<br></a></li>
+						<li>
+							<a id="exemplu_tema" href="/tehnici_web/exemplu_tema.php">Exemplu tema</a>
+						</li>
+						<li>
+							<a id="modele_test_prolog" href="/tehnici_web/modele_test_prolog.php">Model test 1</a>
+						</li>
+						<li>
+							<a id="modele_test_algoritmi" href="/tehnici_web/modele_test_algoritmi.php">Model test 2</a>
+						</li>
+						<li>
+							<a id="interfata_grafica" href="/tehnici_web/interfata_grafica.php">Interfata</a>
+						</li>
+					-->	
+					</ul>
+					
+				</li>
+				<!--
+				<li>
+					<button class="opt_meniu" id="proiecte">Proiecte si exercitii</button>
+					<ul>
+						<li><a id="proiecte" href="/tehnici_web/proiecte.php">Proiecte JS</a></li>
+						<li><a id="exercitii_simple" href="/tehnici_web/exercitii_simple.php">Exercitii simple</a></li>
+						<li><a id="exercitii_pregatire_examen" href="/tehnici_web/exercitii_pregatire_examen.php">Exercitii-proiect</a></li>
+						<li><a id="exercitii_foarte_simple" href="/tehnici_web/exercitii_foarte_simple.php">Exercitii f. simple</a></li>
+						<li><a id="test_JS1" href="/tehnici_web/test_JS1.php">Test JS</a>
+						</li>
+					</ul>
+				</li>
+				-->	<!--
+
+	<li class="meniu_bord"><a id="seminar1" href="seminar1.php">Seminar 1</a></li>
+
+	<li  class="meniu_bord"><a id="bibliografie" href="bibliografie.php" style="color:red" title="pentru proiect!">Bibliografie</a></li>
+	<li><a id="exemplu_tema" href="exemplu_tema.php">Regulament teme</a></li>
+	<hr style="margin:0; padding:0; border:0; height:1px; color:grey; background-color:grey;"/>
+	<br/>-->
+
+			</ul>
+		</nav>
+	</header>
+<main>
+<h2>Cerinte custom - proiect</h2>
+<p><strong>Atentie</strong> pentru cerințele care pornesc de la un exemplu dat, se vor puncta doar modificările făcute.</p>
+<p>Ca să vă vedeți cerințele alocate strict vouă, trebuie să fiți logați.</p>
+<p>Rezolvarea unei alte variante decât cea alocată duce la anularea punctajului.</p>
+<p class="def"><strong>Important!!!</strong> dacă cerința primită nu se potrivește cu proiectul vostru sau pur și simplu nu vă place stilizarea indicată îmi puteți da mesaj și vă aloc o altă variantă.</p>
+<p>Dacă nu știți să rezolvați ceva, întrebați pe chat, precedând mesajul cu textul [întrebare], ca să știu să aloc prioritate mesajului. E important să puneți întrebări când nu știți să rezolvați ceva, fiindcă în funcție de asta știu că e nevoie de mai multe exemple sau explicații.</p>
+
+
+<!--
+<section>
+<h3>Cerinte custom - etapa 7</h3>
+	
+</section>
+<section>
+
+<h3>Cerinte custom - etapa 6</h3>
+	
+</section>
+
+<section>
+
+<h3>Cerinte custom - etapa 5</h3>
+	
+</section>
+<section>
+
+<h3>Cerinte custom - etapa 4</h3>
+	
+</section>
+
+<section>
+
+<h3>Cerinte custom - etapa 8</h3>
+	
+</section><section>
+
+<h3>Cerinte custom - etapa 7</h3>
+	
+</section>
+<section>
+
+<h3>Cerinte custom - etapa 6</h3>
+	
+</section>
+<section>
+
+<h3>Cerinte custom - etapa 5</h3>
+	
+</section>
+<h3>Cerinte custom - etapa 4</h3>
+	
+</section>
+
+<section>
+<h3>Cerinte custom - etapa 8</h3>
+	
+</section>
+<section>
+<h3>Cerinte custom - etapa 7</h3>
+	
+</section>
+<section>
+<h3>Cerinte custom - etapa 6</h3>
+	
+</section>
+
+<section>
+<h3>Cerinte custom - etapa 5</h3>
+	
+</section>
+<section>
+<h3>Cerinte custom - etapa 4</h3>
+	
+</section>
+
+-->
+<section>
+
+
+<h3>Cerinte custom - etapa 2</h3>
+	<ol start="1" style="text-indent:0; font-weight:bold;"><section class="afis_exercitiu">
+				<form id="f185" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>schema-cromatica</b><br>Alegeți o culoare de bază reprezentativă pentru site-ul vostru. Alegeti o schemă cromatică de minim 5 culori folosind site-ul: <a href="https://color.adobe.com/create/color-wheel" target="_blank">https://color.adobe.com/create/color-wheel</a> având drept culoare principală(culoarea din mijloc, în cadrul toolului) culoarea aleasă de voi.
+Specificați în fisierul-documentație (creat în etapa 1) schema cromatică aleasă și motivul alegerii acelui tip de culoare (referindu-va la tema site-ului și psihologia culorilor)
+În interiorul tagului body, pentru cele 5 culori alese definiți variabile pentru culori de background, de text, de border, de highlight etc. Veți folosi in CSS <strong>doar</strong> valorile variabilelor, nu valorile specificate propriu-zis. Puteți alege și mai mult de 5 culori dar să fie toate în armonie cu culoarea principală a schemei cromatice.
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier185[]" id="fisier185" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis185" id="numefis185" value="schema-cromatica.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f186" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>layout-responsive</b><br>	
+	<p>Se va realiza un layout responsive pentru prima pagină (pentru celelalte pagini alegeți voi layoutul). Pentru layout aveți următoarele cerințe:</p>
+<ol>
+<li>
+	<p>Layoutul paginii se va face cu ajutorul unui grid <strong>care va cuprinde conținutul din mainul paginii</strong> (nu e obligatoriu ca headerul si footerul sa fie si ele intr-un grid). Pe ecranul mare layoutul va avea forma:<br>
+	<img src="./Cerinte custom_files/layout-5.png" alt="imagine layout" class="w400">
+	</p>
+	<p>Atenție imaginea indică doar harta gridului (rândurile șî coloanele) nu și dimensiunile. Nu trebuie să respectați faptul că o coloană din grid pare să fie de aceeași lătime cu altă coloană din grid; idem pentru rânduri.</p>
+	<p>
+	Veți stabili voi forma pentru ecranul mediu și cel mic, cu condiția să schimbați forma pe ecranul mediu (să nu se afișeze la fel ca pe ecranul mare, iar pe ecranul mic trebuie să nu mai existe coloane. </p>
+	<p>Rolul propus al zonelor (nu e obligatoriu, puteti decide alt rol pentru ele) din imagine este următorul (pentru zonele unde se specifică să puneți un placeholder, veți folosi un text de tipul <a href="https://www.lipsum.com/" target="_blank">"Lorem ipsum"</a>:</p>
+	<ul>
+		<li>Zona 1 este pentru prezentare. Este primul lucru pe care îl vede utilizatorul când intră pe pagină. Va avea un rol de poster cu text sau imagini atractive care să descrie scopul site-ului. Alegeți unul dintre tipurile de layout în funcție de conținut:
+		<ul>
+			<li><b>Z-pattern</b> pentru un conținut cuprinzând mai mult imagini</li>
+			<li><b>F-pattern</b> dacă zona 1 cuprinde în special text.</li>
+		</ul>
+		</li>
+		<li>
+			Zona 2 este pentru tabel.
+		</li>
+		<li>
+			Zona 3 este pentru calendarul de evenimente. Veți pune un placeholder.
+		</li>
+		<li>
+			Zona 4 este pentru anunțuri. Veți pune un placeholder.
+		</li>
+		<li>
+			Zona 5 este pentru lista de utilizatori online. Placeholder.
+		</li>
+		<li>
+			Zona 6 este pentru date despre utilizator și statistici. Placeholder.
+		</li>
+		<li>
+			Zona 7 este pentru date despre site și server. Placeholder.
+		</li>
+		<li>Zona 8 este pentru diverse alte tipuri de conținut (ce considerați că ar mai trebui să aibă pagina; textul scris în etapa 1 etc.). <strong>Pe aceasta o puteți stiliza așa cum vă place vouă și veți primi punctaj pe aspect și creativitate.</strong></li>
+	</ul>
+<p><span class="important">Atenție, o pondere mare din punctaj este dată de faptul că layoutul nu apare tăiat (de exemplu din cauza unui overflow:hidden pe un container cu conțiunut prea mare și nu există scrollbar orizontal pe viewport (se acceptă scrollbar orizontal doar unde e cerut în mod explicit de către un task).</span>
+Gridul va fi definit prin grid-template-areas.</p>
+</li>
+<li>Scrisul trebuie să descrească odată cu redimensionarea paginii (pe ecran mic să fie scris mic, pe ecran mediu scrisul un pic mai mare, iar pe ecran mare scrisul să fie un pic mai mare decât pe mediu. Diferențele vor fi mici de 1-2px. <strong>În afară de font-size-ul html-ului restul dimensiunilor de text se vor da în unități relative (em, rem, vw etc.)</strong>. (Des)creșterea dimensiunii textului de la o dimensiune la alta de ecran se va face printr-o tranziție.</li>
+<li>Animațiile (cu excepția celor cerute în mod special, în alte taskuri) vor fi dezactivate pe ecran mic (eventual și mediu, dacă doriți).</li>
+</ol>
+<p><strong class="important">Important!</strong> La prezentare veți fi întrebați care sunt principiile de design și ierarhie vizuală folosite (și va trebui să justificați cum anume le-ați aplicat în pagină).</p>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier186[]" id="fisier186" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis186" id="numefis186" value="layout-responsive.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f190" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>stilizare-taburi</b><br>	
+	<p>Linkurile către iframe se vor stiliza asemănător cu ce se vede în videoclipul de mai jos. Încerați să identificați din videoclip elementele de stil ce trebuie aplicate. Dreptunghiul alb cu border este iframe-ul (in care eu nu am mai pus vreo pagină).  În rezolvare e obligatoriu să folosiți undeva și flexbox.<br>
+	<video width="320" height="240" controls="controls">
+		  <source src="http://irinaciocan.ro/tehnici_web/video/exercitii/proiect/stilizare-taburi/taburi-1.mp4" type="video/mp4">
+		  <source src="http://irinaciocan.ro/tehnici_web/video/exercitii/proiect/stilizare-taburi/taburi-1.ogv" type="video/ogg">
+
+	</video><br>
+				
+				</p><div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier190[]" id="fisier190" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis190" id="numefis190" value="stilizare-taburi.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f192" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				<b>Atentie! acest exercitiu necesita prezentare!</b><br>Identificator: <b>stilizare-tabel</b><br>	
+	<p>Tabelul trebuie să aibă <strong>minim</strong> 4 rânduri și 4 coloane.</p>
+<p>Minim una dintre celule va avea rowspan sau colspan setat la valoare diferită de 1</p>
+
+<p>Se va stiliza tabelul din fișierul HTML astfel:</p>
+<ul>
+	<li>Tabelul va avea capțiune (caption) poziționată sub tabel (folosind css).</li>
+	<li>Borderele dintre doua coloane vor avea culori alternate (borderele care au în stânga o celulă cu număr par și în dreapta o celulă cu număr impar vor fi de culoarea c1, iar borderele care au în stânga o celulă cu număr impar și în dreapta o celulă cu număr par vor avea culoarea c2). Culorile le alegeți voi în funcție de tema site-ului.</li>
+	<li>Grosimea borderului care desparte zona de thead de cea de tbody, respectiv zona de tbody de cea de tfoot va fi de 2 ori sau de 3 ori mai mare (alegeți voi cât de mare să fie în funcție de aspect) decât grosimea borderelor (minim 1px) dintre rânduri obișnuite.</li>
+	<li>Când se vine cu cursorul pe un rând, apare treptat în interiorul lui un box-shadow mai grosuț (ca să se vadă bine), complet suprapus pe rând (adică nedeplasat în stânga sau dreapta). Tranziția apariției va dura jumătate de secundă.</li>
+	<li>Pe ecran mic (eventual și mediu), tabelul va fi într-un container cu un scrollbar orizontal (atenție doar containerul cu tabelul va avea scrollbar, nu toată pagina). Hint: tabelul va fi pus într-un div cu un anume tip de overflow orizontal)</li>
+</ul>
+
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier192[]" id="fisier192" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis192" id="numefis192" value="stilizare-tabel.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f189" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>link-top</b><br>	
+	<p>Linkul către începutul paginii trebuie să îndeplinească următoarele cerințe:</p>
+<ol class="lista_abc">
+	<li>Nu se vor folosi deloc imagini în realiza acestui task!</li>
+	<li>va avea forma de mai jos (obligatoriu, nu veți folosi culorile din videoclip, ci le veți seta conform schemei cromatice alese pentru site-ul vostru; nici nu e nevoie să aveți același dimensiuni - width și height- pentru elemente):<br>
+	<video width="160" height="120" controls="controls">
+		  <source src="http://irinaciocan.ro/tehnici_web/video/exercitii/proiect/link-top/link-top-sageata-border-dashed-rotit.mp4" type="video/mp4">
+		  <source src="http://irinaciocan.ro/tehnici_web/video/exercitii/proiect/link-top/link-top-sageata-border-dashed-rotit.ogv" type="video/ogg">
+
+	</video><br>
+	Observăm că atunci când venim cu cursorul pe el se petrece o tranziție. În videoclip tranziția e mai lentă pentru a se observa ușor detaliile, dar voi veți une un timp scurt 300-700ms ca să nu devină neplăcut pentru utilizator.
+	</li>
+	<li>Indicații de rezolvare: Linkul e de tip block sau conține un alt element de tip block pentru care bordura este rotunjită. Are un background în gradient, de la o culoare închisă la una mai deschisa și apoi iar aceeași culoare închisă. Borderul elementului este liniat (dashed). Săgețica e creata cu ajutorul unui element din link care conține caracterul ↑(cod:&amp;#8593;).  Săgețica este centrată orizontal și vertical. La venirea cu cursorul pe element, se rotește elementul rotund (ca în videoclip), săgețica rămânând nemișcată. Revine, apoi, prin rotire inversă, la starea inițială când luăm cursorul de pe el</li>
+	<li>va avea o poziție fixă, în josul paginii, în stânga sau în dreapta</li>
+	<li>Când venim cu cursorul pe el se va afișa un tooltip cu un text care explică că e butonul care duce în susul paginii (veți pune propriul vostru text în locul lui "text explicativ"</li>
+	<li>Butonul e semi-transparent (proprietatea opacity), pentru a nu ascunde părți din pagină. Devine opac când venim cu cursorul pe el.</li>
+</ol>
+
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier189[]" id="fisier189" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis189" id="numefis189" value="link-top.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section></ol>
+</section>
+<section>
+<h3>Cerinte custom - etapa 3</h3>
+	<ol start="6" style="text-indent:0; font-weight:bold;"><section class="afis_exercitiu">
+				<form id="f187" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				<b>Atentie! acest exercitiu necesita prezentare!</b><br>Identificator: <b>variante-meniu</b><br>	
+	<p>Se va implementa un meniu derulant al site-ului care va fi prezent pe fiecare pagină și va lega toate paginile între ele. <span class="important">Nu e obligatoriu să folosiți aceleași culori, fonturi, dimensiuni ca în enunț și imagini/videoclipuri.</span></p>
+<p><b>Cerinte HTML.</b> Meniul va fi implementat cu ajutorul tagului &lt;nav&gt; care contine o lista neordonata cu linkuri.</p>
+<p> Pentru fiecare opțiune principală a meniului veți adăuga un icon reprezentativ din Font Awesome. </p>
+<p>Meniul va prezenta minim două submeniuri dintre care:</p>
+<ul>
+	<li>
+	unul conține linkuri către <b>alte pagini din site</b>(chiar dacă nu există încă). Aceste pagini sunt grupate în meniu sub un nume descriptiv (exemplu: opțiunea <i>galerii</i> cu subopțiunile <i>galerie statică</i> și <i>galerie dinamică</i>).</li>
+	<li>Al doilea conține <b>linkuri către secțiuni dintr-una din pagini</b>. Nume opțiunii care deschide submeniul va fi numele acelei pagini.</li>
+</ul>
+<p><b>Cerințe SASS/CSS.</b> Stilul pentru meniu se va implementa în SASS și va fi compilat în CSS având în vedere următoarele cerințe:</p>
+<ul>
+	<li> Pentru realizarea selectorilor complecși, se va folosi <b>imbricarea din SASS</b></li>
+	<li> Pentru blocuri de cod similare, în care diferă doar valorile proprietăților, se va folosi <b>@extend și, dacă e nevoie, instrucțiuni repetitive: @for, @while.</b></li>
+	<li>Se vor folosi variabile SASS sau CSS pentru orice valoare repetitiva.</li>
+	<li>Puneți în variabile CSS (declarate în selectorul body) orice informații care ar putea depinde de tema cromatică a site-ului (pentru a o putea schimba ușor).
+</li></ul>
+<p>
+Se va realiza meniul pentru <b>ecran mare</b>, cu următoarele cerințe:
+</p>
+<ol class="lista_abc">
+	<li>Când venim cu cursorul pe o opțiune din meniu, se va realiza tranziția indicată în videoclip:cu ajutorul unui element ::before sau ::after se va genera o bara cu un background în gradient cu 3 culori (în exemplu gradientul este: negru, alb, negru). Cand venim cu cursorul pe opțiune, bara coboara devenind din total transparentă, opacă, și se aliniază cu marginea de jos a butonului.</li>
+	<li>Deschiderea submeniului se va face prin următoarea tranziție: se va scala de la 0 la înălțimea si lățimea totală (deci scalarea va fi pe verticală și orizontală) pornind din centrul boxului corespunzător submeniului.</li>
+	<li>Când venim cu cursorul pe o opțiune din submeniu culoarea de background a opțiunii se va schimba.</li>
+	
+<video width="320" height="240" controls="controls">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/variante-meniu/meniu-opt-tranzitie-5.mp4" type="video/mp4">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/variante-meniu/meniu-opt-tranzitie-5.ogv" type="video/ogg">
+
+</video>
+<p>La redimensionarea paginii, pe <b>ecran mediu</b>, meniul își va schimba afișarea. Textul se va face mai mic, iar pentru opțiunile principale din meniu vor rămâne doar icon-urile din FontAwesome (textul va fi ascuns)</p>
+ 
+
+<p>Pentru <b>ecran mic</b>, se vor ascunde opțiunile afișându-se într-un hamburger menu (sau veggie-burger menu pt vegetarieni 😁). Vedeți exemplul de layout. În afișarea <i>burger</i> submeniul se va deschide ca mai jos, înlocuind opțiunea pentru prima pagină cu un icon-căsuță. La apariția submeniului, acesta va deveni vizibil cu ajutorul unui clip-path circular, care crește din colțul stânga-sus al submeniului până se afișează meniul complet. Tranzițiile pe opțiunile meniului se schimbă, dispărând bara glisantă, unicul comportament pe orice opțiune din meniu și submeniu fiind schimbarea culorii de background.<br>
+<video width="320" height="240" controls="controls">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/variante-meniu/meniu-ecran-mic-animatie-5.mp4" type="video/mp4">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/variante-meniu/meniu-ecran-mic-animatie-5.ogv" type="video/ogg">
+</video>
+</p>
+
+
+
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier187[]" id="fisier187" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis187" id="numefis187" value="variante-meniu.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</ol></div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f195" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				<b>Atentie! acest exercitiu necesita prezentare!</b><br>Identificator: <b>css-printare</b><br>	
+	<p><strong>Observație</strong>: banner-ul care e menționat în mai multe exerciții/subpuncte este un paragraf (aflat în footer) cu textul "Acesta este un proiect școlar!".</p>
+<p>Stilul pentru printare va avea următoarele lucruri implementate:</p>
+<ol>
+	<li>Bannerul să fie afișat în susul primei pagini, centrat pe orizontală, întins pe 80% din lățimea paginii, într-un border negru punctat</li>
+	<li>imaginile, videoclipurile, iframe-urile și alte elemente media împreună cu elemente dependente de ele (de exemplu descrierile imaginilor) vor fi ascunse. Linkul către începutul paginii va fi de asemenea ascuns</li>
+	<li>Gridul paginii va fi afișat ca <i>block</i> ca să nu apară celulele secționate în paginile printate.</li>
+	<li>toate linkurile din pagină se vor afișa ca text normal (nu colorate sau subliniate)</li>
+	<li>Headingul de nivel 1, cu titlu site-ului, va fi pe prima pagină, centrat pe verticală și orizontală. Va fi subliniat și cu litere de 2.5 ori mai mari decât dimensiunea de font a html-ului. Meniul va fi ascuns. După heading va fi un page break. Inaintea footerului, de asemenea va fi un page break</li>
+	<li>Pe <strong>fiecare</strong> pagină va exista un "watermark" care va conține numele vostru. Acesta va avea lățime de 100px și înalțime de 2cm, border dublu, și opacitate 0.65</li>
+	<li>La printare, paginile din stânga (în print preview) să aibă margine în stânga de 2.5cm și margine în dreapta de 0.5cm, iar cele din dreapta să aibă margine în dreapta de 2.5cm și 0.5cm în stânga.</li>
+</ol>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier195[]" id="fisier195" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis195" id="numefis195" value="css-printare.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section></ol>
+</section>
+<section>
+<h3>Cerinte custom - etapa 4</h3>
+	<ol start="8" style="text-indent:0; font-weight:bold;"><section class="afis_exercitiu">
+				<form id="f196" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				<b>Atentie! acest exercitiu necesita prezentare!</b><br>Identificator: <b>video-vtt</b><br>	
+	<ol>
+	<li>Videoclipul va avea o imagine poster (atributul poster) relevantă pentru conținut. Videoclipul va avea și elementele de control afișate implicit. Videoclipul trebuie să se afișeze frumos pe ecran mic, deci va avea în css lățimea setată în procentaje, cât și o lățime minimă și maximă, ca să nu devină greu de urmărit pe ecrane mici sau foarte mari.</li>
+	<li>Videoclipul va avea mai multe trackuri (minim 2), în limbi diferite (de exemplu română și engleză) cu atributele setate conform limbii. Trackul în limba română va fi cel default. Trackurile trebuie să aibă măcar 3 mesaje.</li>
+	<li>Videoclipul va avea preîncărcate metainformațiile (preload).</li>
+	<li>Videoclipul va avea minim 2 surse: același videoclip dar în formate diferite. Puteți converti online videoclipul în mai multe formate.</li>
+	<li>Textul VTT asociat videoclipului va avea background de culoare albă transparentă (transparența culorii fiind de 0.3). Textul va fi scris cu o culoare închisă, conform schemei cromatice. La începutul videoclipului se va afișa un text din vtt (din secunda 0) care să conțină fie titlul videoclipului fie o scurtă informație introductivă despre videclip. Acest prim text va fi centrat pe videoclip atât pe orizontală cât și pe verticală </li>
+</ol>
+<p>Observație: realizați acest task abia după ce ați trecut site-ul pe node, altfel nu vă vor merge track-urile.</p>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier196[]" id="fisier196" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis196" id="numefis196" value="video-vtt.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f207" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>stilizare-linkuri</b><br>	
+	Linkurile din pagini se vor stiliza conform următoarelor cerințe:
+<ul>
+	<li>Linkurile vizitate vor avea o culoare diferită de cea implicită, setată printr-o variabilă CSS, la una dintre culorile schemei cromatice alese.</li>
+	<li>Linkurile externe vor avea generat cu ajutorul unui pseudoelement ::before cu simbolul <a href="https://symbl.cc/en/2BB3/" target="_blank">⮳</a> cu font-size cu 50% mai mare față de dimensiunea fontului linkului (folosiți unități de măsură relative).<br>
+	Indicație: putem selecta linkurile externe, selectând tagurile a cu atributul href a cărui valoare începe cu "http".</li>
+	<li>La aducerea cursorului pe un link extern, simbolul (generat prin css) își va schimba culoarea</li>
+	<li>La aducerea cursorului pe un link din conținutul paginii (linkuri din main, nu din meniu) , o pata de culoare va crește din centru, așa cum se vede în videoclip, și se va micșora la loc când luăm cursorul de pe link. Pata de culoare s-a realizat folosind o imagine de background de tip gradient radial, având (în cadrul gradientului) atăt la 0% cât și la 40% din gradient o culoare c1, iar la 80% și 100% culoarea <i>transparent</i>. Imaginea de background e poziționată centrat (background-position) și de dimensiune 0 (background-size). Când se vine cu cursorul pe link, imaginea de background crește la 100% cu ajutorul unei tranziții.
+	<br>
+	<video width="160" height="120" controls="controls">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/exercitii/proiect/stilizare-linkuri/stilizare-linkuri-gradient-radial.mp4" type="video/mp4">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/exercitii/proiect/stilizare-linkuri/stilizare-linkuri-gradient-radial.ogv" type="video/ogg">
+
+	</video>
+	</li>
+	<li>La click pe un link din pagină (:active), va apărea un border în jurul lui așa cum se vede în videclip.</li>
+	
+</ul>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier207[]" id="fisier207" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis207" id="numefis207" value="stilizare-linkuri.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section></ol></section>
+
+<section>
+<h3>Cerinte custom - etapa 5</h3>
+	<ol start="10" style="text-indent:0; font-weight:bold;"><section class="afis_exercitiu">
+				<form id="f188" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>efect-css-stilizare-hr</b><br>	
+	<p>Adăugați în pagină un &lt;hr&gt; (de exemplu între două secțiuni, două paragrafe cu teme diferite, două anunțuri). Stilizați hr-ul astfel încât să semene cu imaginea de mai jos. <strong> Atenție! Nu folosiți culorile din imagine ci culori din schema cromatică aleasă de voi. dimesniunile hr-ului sunt la alegerea voastră (atâta timp cât e totuși vizibil)</strong> <br>
+<img src="./Cerinte custom_files/stilizare-hr-balonase.png" alt="stilizare hr" class="w400"><br>
+</p><p><b>Indicații de rezolvare.</b> Se genereaza cu radial gradient mai multe "balonase" (se vor pune mai multe astfel de gradiente în background-image). Pot fi de culori si dimensiuni diferite fata de imagine. De asemenea pot fi în număr diferit și amplasate pe poziții diferite, dar minim două și balonașele să nu se alinieze pe verticală sau orizontală (să fie aliniate ușor oblic, ca în exemplu).  Pentru a realiza spatierea dintre balonașe, gradientul radial va avea si o zona transparenta (spre exterior). Pentru gradientul spre transparență din margini, se aplică și un mask-image. </p>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier188[]" id="fisier188" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis188" id="numefis188" value="efect-css-stilizare-hr.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f205" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>efect-css-duotone</b><br>	
+	<p>În cadrul site-ului va apărea o imagine (de fapt un div cu background-ul egal cu acea imagine) pe care s-a aplicat efectul duotone (pentru culorile c1 și c2) folosind pseudoelementele before și after și proprietatea mix-blend-mode. Când se vine cu cursorul pe element, trece treptat într-un duotone cu alte două culori c3 și c4. Observați un astfel de efect în videoclip.</p>
+
+<video width="320" height="240" controls="controls">
+ <source src="/tehnici_web/video/exercitii/proiect/efect-css/duotone/duotone-alt-duotone.mp4" type="video/mp4">
+ <source src="/tehnici_web/video/exercitii/proiect/efect-css/duotone/duotone-alt-duotone.ogv" type="video/ogv">
+</video>
+<p>
+Puteți porni de la un <a href="http://irinaciocan.ro/tehnici_web/exemple/exemple_css/exemplu-duotone/" target="_blank">exemplu cu duotone</a> implementat.
+</p>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier205[]" id="fisier205" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis205" id="numefis205" value="efect-css-duotone.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f206" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>efect-css-reflexie-text</b><br>	
+	<p>Să se aleagă un text, de exemplu, un heading, pe care să se aplice reflexia. Se poate folosi <a href="http://irinaciocan.ro/tehnici_web/exemple/exemple_css/exemplu-reflexie-dublare-element/" target="_blank">exemplul de refelexie prin dublarea elementului</a>, sau se pot folosi proprietăți precum box-reflect însă trebuie să găsiți metode prin care reflexia e vizibilă pe orice browser, măcar cele mai noi versiuni (varianta din exemplu este portabilă).</p>
+<p>Modul de aplicare al reflexiei trebuie să fie următorul:</p>
+<ul>
+	<li>Reflexia trebuie să fie dedesubt și să dea senzația de unde eliptice pe apă (se poate realiza cu un mask-image cu repating-linear-gradient)</li>
+	<li>Când se vine cu cursorul pe text sau reflexie, reflexia dă senzația de unde în continuă mișcare, cu ajutorul unei animații, care schimbă puntele gradientului repetitiv radial, așa cum se observă în videoclip.</li>
+</ul>
+<p>
+<video width="320" height="240" controls="controls">
+ <source src="/tehnici_web/video/exercitii/proiect/efect-css/reflexie-prin-dublare-element/reflexie-prin-dublare-element-unde.mp4" type="video/mp4">
+ <source src="/tehnici_web/video/exercitii/proiect/efect-css/reflexie-prin-dublare-element/reflexie-prin-dublare-element-unde.ogv" type="video/ogv">
+</video>
+</p>
+
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier206[]" id="fisier206" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis206" id="numefis206" value="efect-css-reflexie-text.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f193" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				<b>Atentie! acest exercitiu necesita prezentare!</b><br>Identificator: <b>galerie-statica</b><br>	
+	Se va implementa o galerie statică. Galeria va fi vizibilă atât pe pagina principală cât și într-o pagină separată, dedicată ei (indicație: nu duplicați codul ci includeți un fragment care să conțină galeria), folosind grid și îndeplinind cerințele de mai jos:
+<ul>
+	<li>Detaliile pentru imaginile galeriei se vor lua dintr-un json cu următorul format:
+		<ul>
+			<li>Obiectul principal al json-ului va avea o proprietate numită "cale_galerie" cu calea către folderul în care se află toate imaginile galeriei</li>
+			<li>Obiectul principal al json-ului va avea și o proprietate imagini, care va fi de tip vector și va avea ca elemente obiecte în formatul urmator:
+<hr class="despartitor"><button type="button" class="selecteaza_textul" onclick="selectText(this)">selecteaza textul</button><code class="cod">
+
+		{<br>
+			"cale_fisier":"imagine.png",<br>
+			"titlu":"Nume imagine",<br>
+			"alt":"text alternativ imagine",
+			"text_descriere":"text descriere",<br>
+			"luni":["ianuarie","februarie","iunie"]<br>
+		}<br>
+				</code>
+			</li>
+		</ul>
+		aceste detalii se vor transmite către fișierul EJS și vor fi folosite în template-ul de afișare a imaginilor.
+	</li>
+	<li>Serverul nu va transmite toate imaginile către pagină, ci doar cele care îndeplinesc un anumit criteriu.
+	Imaginile se vor afișa în funcție de luna (preluata din data curentă). De exemplu, dacă data curentă se incadreaza in una din lunile decembrie, ianuari sau februarie, se va afisa imaginea din exemplu.</li>
+	<li> Imaginile vor avea toate aceleași dimensiuni. Acest lucru se poate realiza folosind aproape orice  utilitar grafic, ajutându-vă de funcționalitățile <i lang="en">crop</i>(decupare) și <i lang="en">resize</i>(redimensionare).
+	Un tool online care e destul de ușore de folosit: <a href="https://picresize.com/en/edit" target="_blank">https://picresize.com/en/edit</a>. Imaginile vor fi editate astfel încât să aibă o dimensiune pentru ecran mare (de exemplu o lățime de 400-500px).
+	</li>
+	<li>Imaginile vor avea toate câte un nume sau descriere asociată (vizibilă) cu ajutorul tagurilor &lt;figure&gt; și &lt;figcaption&gt;. <strong>Imaginile vor fi indexate, iar indexul va fi scris la începutul descrierii din figcaption. Indexarea se va face cu litere mici grecești (α, β, γ, ...) (ideal folosind un <i>counter css</i>)</strong>. Imaginile vor fi puse într-un tag picture, în care vor mai exista surse pentru ecran mediu și mic. <strong>Se vor genera imagini de dimensiune mai mică (dacă nu există deja) prin node</strong> (atunci când un client cere pagina). Indicație: pachetul sharp. Descrierea imaginilor se va adăuga în atributul title. În proprietatea alt a imaginilor se va adăuga valoarea proprietății alt din JSON, sau dacă aceasta nu există în formatul primit, se va adăuga numele imaginii.
+	</li>
+	<li>Galeria se va întinde pe toată lătimea paginii site-ului (în sensul că nu vor fi elemente în stânga sau dreapta, ci doar eventuale spațieri).
+	</li>
+	<li>Forma galeriei e descrisă mai jos (zonele cu negru reprezintă imagini iar cele cu alb, locuri libere în grid). Veți folosi un grid pentru a o afișa:
+		<ul>
+			<li>În cazul în care mai multe imagini se potrivesc criteriului de afișare, numărul de imagini afișate se va trunchia la 12 (acest lucru trebuie implementat în program, nu obținut doar din date).</li>
+			<li>Pe ecran mare imaginile se vor aseza într-un grid nx3, cu n divizibil cu 2, ca în imaginea de mai jos, folosind grid:<br> <img src="./Cerinte custom_files/galerie-statica-5a.png" alt="[imagine schema galerie]"></li>
+			<li>Pe ecran mediu, imaginile se vor aseza pe două coloane, folosind grid. </li>
+			<li>Pe ecran mic, imaginile se vor aseza una sub alta, pe o coloană.</li>
+		</ul>
+			
+	</li>
+	<li><b>Tranziție.</b> Când se vine cu cursorul pe o imagine din galerie, se va realiza următoarea tranziție: textul din figcaption, asociat imaginii, se va scala treptat (fără a se scala și imaginea), simetric față de centrul boxului descrierii, iar imaginii îi va crește treptat contrastul la 200% (proprietatea filter). Tranziția va dura o secunđă și 100 milisecunde.
+	</li>
+	<li>Imaginile folosite trebuie să aibă o licență corespunzătoare (să nu fie folosite ilegal). Puteți folosi imagini din "public domain" (domeniul public), licențiate CC0 (creative commons 0). Totuși pentru a învăța cum să inserați o atribuire de autor pentru o imagine folosită, minim una dintre ele va fi luată de pe un site care o oferă cu licență CC-BY (necesită atribuire). Datele pentru atribuire vor fi salvate în JSON.</li>
+</ul>
+<p><strong>Observație:</strong> nu e nevoie să folosiți aceleași culori, fonturi, dimensiuni de text, stiluri de scris etc cu cele date în cerință. Importantă e forma galeriei și tranziția pe fiecare imagine.
+</p>
+<p><strong>Observație:</strong> Pentru verificarea afișării imaginilor în funcție de timp veți schimba valoarea variabilei de tip dată care preia data și ora curentă, la o dată și o oră care să arate schimbarea de afișare.</p>
+<p></p>
+<p>Puteți, de asemenea, să îmbogățiți galeria cu propriile voastre idei dar doar adăugând funcționalități, și nu modificând cerința de bază. <strong>Se va da un bonus pentru creativitate</strong> în cazul unor astfel de adăugări.</p>
+
+
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier193[]" id="fisier193" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis193" id="numefis193" value="galerie-statica.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section><section class="afis_exercitiu">
+				<form id="f194" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>galerie-animata</b><br>	
+	<p>Realizați o galerie de imagini cu un număr aleator de poze între 7 și 11, dar diferit de 10, conform videoclipului de mai jos. La fiecare încărcare a paginii se va genera un nou număr de imagini. Imaginile se vor încărca din JSON-ul de imagini pentru galeria statică. Imaginile se vor alege aleator din JSON.  </p>
+<p>Imaginile din galerie trebuie să fie distincte.</p>
+<p>
+ Galeria va avea un border-image cu o imagine aleasă de voi. Folosiți SASS în realizarea galeriei. Observație: CSS-ul va trebui generat prin node pe baza fișierului SASS ca să acomodeze noul număr de imagini.</p>
+<p>Trecerea  la următoarea imagine se face prin turtirea imaginii pe verticală și apoi rotirea ei pentru a fi scoasă din "ecranul" galeriei.</p>
+<video width="320" height="240" controls="controls">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/galerie-animata-1.mp4" type="video/mp4">
+	  <source src="http://irinaciocan.ro/tehnici_web/video/galerie-animata-1.ogv" type="video/ogg">
+</video>
+<p>
+Galeria va relua inaginile după ce o afișează pe ultima, rezultând într-o afișare continuă, repetitivă. <strong>Când se vine cu cursorul pe galerie, animația se oprește. Observați pauzele pe care le face în videoclip când cursorul este pe galerie.</strong>
+Galeria animată nu se va afișa pe ecran mediu și mic. 
+</p>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier194[]" id="fisier194" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis194" id="numefis194" value="galerie-animata.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section></ol>
+</section>
+<section>
+<h3>Cerinte custom - etapa 6</h3>
+	<ol start="15" style="text-indent:0; font-weight:bold;"><section class="afis_exercitiu">
+				<form id="f197" action="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="upload" id="upload" value="oac-oac">
+				<input type="hidden" name="upload_clasa" id="upload_clasa" value="laborator">
+				<input type="hidden" name="nr_clasa_up" id="nr_clasa_up" value="5002">
+				<input type="hidden" name="student" id="student" value="jorayev__ak">
+
+				<div style="font-weight:normal">
+				<div class="exercitiu">
+				Identificator: <b>format-entitati</b><br>	
+	<p><b>Aplicatie de sortare, filtrare si calculare</b></p>
+<ol>
+	<li><p><b>Descriere cerință. Pagină produse.</b></p>
+	<p>Va exista o pagina de produse in care trebuie listate datele pentru anumite produse/entitati specifice site-ului (le vom numi de acum inainte "entitatile aplicatiei"). 
+	Entitatile aplicatiei vor fi, de exemplu,carti pentru o librarie sau un site de lectii online, 
+	tipuri de prajituri si fursecuri pentru o cofetarie, 
+	flori si buchete pentru o florarie etc. 
+	- dacă nu aveți idei de produse, îmi dați mesaj și ne gândim împreună.
+	Tipul de entitate trebuie sa fie strict legat de tema site-ului. 
+	În pagina de produse <strong>nu</strong> se vor afișa toate detaliile produselor ci doar cele relevante pentru filtrare/sortare (ideal cele mai importante detalii, precum specificații des căutate de către utilizatori).
+	</p></li>
+	<li><p><b>Descriere cerință. Pagină produs unic.</b>. Se va genera automat prin program câte o pagină pentru fiecare produs (conform exemplului dat la curs si/sau laborator). Pagina respectivă va afisa toate detaliile produsului (inclusiv cele care nu apar in pagina de produse). Pentru asta, se trimit prin intermediul obiectului <i>locals</i>(ejs) datele produsului.</p>
+	</li>
+	<li>
+		<p><b>Baza de date. Tabelul de produse</b></p>
+		<p>Se va crea o bază de date pentru proiect. Se va crea un tabel de produse. Se va crea un utilizator (al bazei de date), folosit în program, pentru care se aloca drepturi pe baza de date și tabel. Datele cuprinzand proprietățile produselor (pentru afișarea în pagină) se vor prelua din tabel.  Produsele trebuie sa contina minim urmatoarele proprietati (pentru a avea cu ce să lucrăm în aplicația de sortare/filtrare):
+		</p>
+		<ol class="lista_abc">
+			<li>id (identificatorul unic, din json; id-ul trebuie sa fie numeric)</li>
+			<li>nume</li>
+			<li>descriere</li>
+			<li>o imagine (in tabel se va salva doar calea catre imagine)</li>
+			<li>categorie mare (o clasificare a entitatilor din date, de exemplu, daca e vorba de pisici, sa fie clasificate dupa rasa sau talie, daca e vorba de carti, dupa tematica, daca e vorba de calculatoare: de birou, de gaming etc). Categoria se va face cu ajutorul unei enumerații, nu va fi de tip string. Enumerația ar trebui să aibă maxim 5 valori.</li>
+			<li>Un mod de categorizare mai puțin important (de exemplu, pentru pisici: după culoare sau după lungimea blanei, pentru cărți: o subtematică sau tipul de hârtie folosit (carte cartonată, hârtie simplă, hârtie lucioasă, carte cu învelitoare), sau tipul de expediere posibilă (curier, de la centrul de distribuție, poștă), vârsta pentru care e indicat produsul respectiv (copii, adolescenți, adulți), pentru flori, de exemplu, pot fi modurile de prezentare( floare singură, buchet, ghiveci, floare presată etc). </li>
+			<li>pret (sau alta caracteristica cu valoare numerica)</li>
+			<li>o a doua caracteristică numerică (de exemplu - pentru diverse produse- poate fi: dimensiune, volum, o specificație tehnică precum putere sau tensiune, numărul de pagini pentru o carte, numărul de caractere/randuri/imagini/alte elemente care apar pe o felicitare, numărul de culori, timpul de garanție, gramaj, număr de calorii pentru un produs alimentar etc)</li>
+			<li>caracteristica cu valoare de tip Date (data calendaristica) - de exemplu poate fi data de când există produsul în oferta magazinului.</li>
+			<li>caracteristica care poate sa aiba doar o singura valoare pentru o entitate (dint-un set de valori - de exemplu, culoarea)</li>
+			<li>caracteristica care poate sa aiba mai multe valori pentru o entitate (poate fi folosit intr-un select de tip multiplu; in tabel valorile vor fi puse intr-un singur camp si vor fi separate cu virgula, de exemplu pentru un produs alimentar, campul ar putea fi ingrediente cu valoarea "sare, faina, lapte, branza").</li>
+			<li>caracteristica booleana (de exemplu, are sau nu are o anumită caracteristică, poate sau nu să fie expediat prin poștă, admite sau nu voucher; exemple pentru diverse proprietăți: pentru cărți: include sau nu semn de carte; pentru prăjituri: bun sau nu pentru bolnavii de diabet, pentru fast-food, include sau nu un anumit alergen, pentru imagini/felicitări e color sau nu, etc.)</li>
+		</ol>
+		<p><strong>Dacă nu aveți idei pentru o anumită caracteristică potrivită pentru produsele site-ului vostru, îmi dați mesaj și discutăm ce s-ar potrivi mai bine.</strong></p>
+		<p>Se vor introduce în tabel 15-20 entitati cu caracteristici suficient de diversificate (pentru a putea verifica toate tipurile de filtre si sortari)</p>
+	</li>
+	<li><p><b>Meniu. Împărțirea pe categorii mari</b></p>
+		În meniu se va adăuga o opțiune nouă numită "Produse". Opțiunea va avea următoare subopțiuni: toate (în sensul că se afișează toate produsele), categ_1, categ_2, ...,categ_n (acestea sunt numele valorilor categoriei mari). <strong>Valorile categoriei mari, care apar în meniu trebuie generate pe baza enumerației din baza de date (<span class="important">nu se scriu manual ci se generează prin program</span> și se transmit în meniu prin locals)</strong>. La click pe o astfel de subopțiune, se vor afișa în pagină doar produsele corespunzătoare acelei categorii. Atenție, filtrarea se va face aici la nivel de server, în sensul că vectorul de produse trimis de server spre afișare conține doar produsele din categoria cerută din meniu. Toate subopțiunile vor face același ape get, dar cu parametri diferiți (cu alte cuvinte folosiți același ejs pentru afișarea tuturor produselor cât și afișarea pe categorii).
+		<p></p>
+	</li>
+	<li><p><b>Format afișare produse (pentru pagina de produse).</b></p>
+		<p>
+		Produsele se vor afisa prin ejs, cu ajutorul unui for care populeaza un template cu informatiile fiecarui element din fisierul de date. La inceput se vor afisa toate produsele, dar prin completarea unor inputuri de filtrare se vor pastra doar o parte din produse in pagina (cele care nu corespund filtrului setat doar vor fi ascunse, nu sterse din DOM, pentru a le putea folosi si in filtrari ulterioare).
+		</p>
+			<p>
+			<b>Formatul template-ului e cel precizat mai jos:</b>
+					</p>
+			<!-- .................................................... -->
+			<p>Va exista un element de tip article care va avea un heading de nivel corespunzator, cu numele entitatii.</p>
+			<p>Restul afisarii se va împărți pe doua coloane</p>
+			<p>Prima coloana va contine imaginea. Pentru estetica, imaginile ar trebui sa fie de aceeasi dimensiune si relativ mici ca sa incapa in formtul de afisare.</p>
+			<p>	
+			Tot in prima coloana, vor fi afisate una sub alta incadrul unei liste (deci fiecare caracteristica pe un rand separat):</p>
+			<ol>
+				<li>caracteristica numerica</li>
+				<li>caracteristica cu o singura valoare string</li>
+				<li>caracteristica cu mai multe valori string</li>
+				<li>caracteristica data</li>
+				<li>caracteristica booleana</li>
+			</ol>
+			<p>Fiecare caracteristica va fi precizata printr-o pereche de forma nume_caracteristica: valoare_caracteristica. Numele caracteristicii va fi bold si cu o culoare de background sau de text diferita de cea a valorii.</p>
+			<p>Data calendaristica se va scrie cu ajutorul tagului &lt;time&gt;. Continutul tagului va fi data in limba romana in formatul: 'zi nume_luna an [zi_saptamana]', de exemplu, 15 Septembrie 2018 [Sambata]</p>
+			<p>A doua coloana va contine categoria entitatii. De asemenea articolul cuprinzand entitatea va trebui sa aiba printre eventuale alte clase (atributul class) si numele categoriei (deci categoria trebuie sa nu cuprinda spatii)</p>
+			<p>Sub categorie (tot in a doua coloana) va fi afisata si descrierea. </p>			
+			<p>Id-ul fiecarui articol este de forma "artc-"+id, unde id e id-ul efectiv din fisierul de date (deci id-uri posibile ar fi: artc-2, artc-7, ...)</p>			
+						
+			<!-- .................................................... -->
+
+		Puteți adăuga alte elemente de stilizare dar fără a modifica cerința. Dacă aveți nevoie de date în plus pentru filtrare/sortare le puteți include în format, însă e important să nu apară toate detaliile produsului, acestea fiind rezervate pentru pagina proprie produsului.
+
+		<p></p>
+	</li>
+	<li><p><b>Filtre. Inputuri</b></p>
+		<p>Va exista si o sectiune (care sa nu fie form chiar daca contine inputuri) deasupra zonei de afisare a produselor, care va contine urmatoarele tipuri de input, fiecare corespunzând unui camp dintre caracteristicile entitatilor/produselor). Toate inputurile vor avea și o etichetă asociată (label). <strong>Pentru anumite inputuri din lista de mai jos veți primi cerințe specifice la subpunctul următor (deci le vețiintegra în acele cerințe, nu folosiți același tip de input de 2 ori); restul de inputuri vor avea rol decis de voi în filtrare. </strong>
+		</p>
+		<ol class="lista_abc">
+
+			<li>input de tip text</li>
+			<li>input de tip range. Pentru inputul de tip range trebuie sa apara valoarea minima in stanga lui si valoarea maxima in dreapta lui, și de asemenea să se afișeze valoarea selectată (de exemplu în paranteză, după valoarea maximă).</li>
+			<li>datalist</li>
+			<li>grup de inputuri de tip radio (va avea si o optiune generala care sa nu aplice niciun filtru)</li>
+			<li>input de tip checkbox sau grup de inputuri de tip checkbox (în funcție de tipul de filtru)</li>
+			<li>textarea</li>
+			<li>select simplu (prima optiune va fi si cea default (initial selectata), cu textul "nimic" sau "oricare" sau ceva asemănător care să se refere la situația în care acel filtru nu ne interesează.</li>
+			<li>select multiplu</li>
+		</ol>
+		<p>Valorile inițiale ale inputurilor vor fi de așa natură încât să se potrivească cu toate produsele. De exemplu dacă sunt mai multe tipuri de culoare pentru produs și folosim un grup de radiobuttons pentru ele, să existe și un radiobutton pentru opțiunea "orice culoare" care va fi implicit selectat.</p>
+	</li>
+	<li>
+		<p><b>Cerințe specifice filtre.</b></p>
+		<p>Produsele se vor afișa fie cu ajutorul unui grid, fie folosind flexbox.</p>
+			<!-- .................................................... -->
+			
+			<ol class="lista_abc">
+				<li><!--text-->Inputul de tip text va fi pentru numele produsului. Inputul de tip text acceptă și un nume greșit dacă nu diferă decât cu maxim 2 litere față de numele real. De exemplu dacă întorducem "saavrină" ne va da produsul "savarină" </li>
+				<li><!--checkbox+radiobutton-->Se va face un grup de checkbox fiecare având in dreptul său și un grup de radiobuttons cu valorile "are", "nu are" (sau alte etichete mai relevante). Grupul de checkbox-uri va fi dedicat caracteristicii care poate sa aiba mai multe valori. Se vor afișa dor produsele care au printre valorile multiple cele selectate în checkbox cu radiobuttonul setat pe valoarea "are" și care în același timp nu au printre valori o valoare din checkboxurile cu radiobutton-ul "nu are" setat. Valorile din checkboxurile nebifate nu participă la filtrare. Implicit toate checkboxurile sunt nebifate și în fiecare grup de radiobuttons e setată valoarea "are" </li>
+			</ol>
+						
+						
+			<!-- .................................................... -->
+		<p>Pentru filtrele/inputurile pentru care nu s-a precizat cum anume să fie implementate în pagină, alegeți voi pentru ce caracteristici să se aplice și în ce manieră. Nu e voie să aveți două filtre pentru aceeași proprietate a produsului.</p>
+	</li>
+	<li><p><b>Butoane. Operațiile efective de filtrare/sortare/calculare</b></p>
+		<p>Alături de filtre vor exista și următoarele butoane:</p>
+		<ol>
+			<li>Un buton cu textul "filtreaza" care va filtra entitatile dupa <strong>toate</strong> inputurile activate.</li>			
+			<li>Doua butoane de sortare (unul penru ascendent si unul pentru descendent). Sortarea se va face dupa doua chei, de exemplu daca se sorteaza după cheile c1 și c2, intai se va sorta după c1, si pentru valori egale pentru c1, se va sorta după c2. <strong>Cele două chei după care trebuie să sortați</strong> sunt, în ordine: raportul caracteristica_numerica_secundara/preț și subcategoria(categoria de mai mică importanță)  </li>
+			<li>Un buton de calculare (de exemplu, calculeaza suma/media/minimul/maximul tuturor preturilor sau doar al prețurilor elementelor selectate). Calculul va aparea într-un div cu poziție fixă, care va fi creat dinamic (createElement), va sta pe ecran 2 secunde și apoi va dispărea (va fi șters).</li>
+			<li>Un buton de resetare a filtrelor.</li>
+		</ol>
+	</li>
+	<li> (Specificatii pentru anul 2 CTI) La click pe butonul de resetare, printr-un mesaj de tip "confirm" utilizatorul va fi intrebat daca vrea cu adevarat sa reseteze filtrele. Daca raspunde "ok", toate filtrele vor reveni la valorile implicite care corespund afișării tuturor produselor. Se reafișează toate produsele (fără nicun filtru aplicat) și în ordinea inițială (resetarea anulează și sortarea).</li>
+	<li> [Edit: era inainte paragraf, l-am facut item de lista pentru claritate; enuntul e acelasi pentru anii 2,3,4] La click pe oricare dintre butoanele de filtrare/sortare/calculare se va verifica intai ca inputurile afectate de ele au valori valide (în special inputul de tip text și textarea-ul), si numai daca sunt valide se va realiza operatia. 
+		Daca valorile nu sunt valide, se afiseaza un mesaj de atentionare relevant. In cazul in care nu e specificat clar in cerintele de mai jos cum sa fie acest mesaj, studentul poate alege sa il afiseze cum doreste, astfel incat sa fie bine integrat in aplicatie (de exemplu un alert sau marcarea cu rosu a inputului cu probleme). Studentul va alege care sunt cazurile de input invalid (de exemplu in inputul de tip text a fost introdusa o cifra, si nu are sens pentru aplicatie, sau nu a fost selectat niciun radiobutton, sau inputul de tip textarea e vid etc).
+		<p></p>
+	</li>
+</ol>
+				
+				<div style="background-color:#eae6f8 ; border: 1px dashed #67d3ea"><b>Upload:</b><label for="file">Alege fisier:</label> <input type="file" name="fisier197[]" id="fisier197" multiple="multiple"> <br>
+
+							<input type="hidden" name="numefis197" id="numefis197" value="format-entitati.txt">
+<input type="submit" value="Uploadeaza"><br>
+<br><b><i>Fisiere uploadate:</i></b> 
+-
+				  
+			   </div>
+
+
+			</div></div></form><br></section></ol>
+</section>
+	</main>
+	<footer>
+		<div class="bara_jos">
+			<span id="final_pagina"></span> <a href="http://irinaciocan.ro/tehnici_web/cerinte_custom_cti.php#">sus <img class="triunghi_mic" src="./Cerinte custom_files/triunghi_alb_mic_b_jos.png" alt=""></a>
+			<a href="http://irinaciocan.ro/tehnici_web/termeni-si-conditii.php">Termeni si conditii</a>
+			<a href="http://irinaciocan.ro/tehnici_web/politica-de-confidentialitate.php">Politica de confidentialitate</a>
+		</div>
+
+		<p id="copyright"><small>Copyright © 2010-prezent Irina Ciocan (irinaciocan.ro, e-mail: irina.ciocan@gmail.com)</small></p>
+
+	</footer>
+	
+	
+
+
+
+</body></html>

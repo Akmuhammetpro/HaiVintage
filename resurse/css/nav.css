@@ -46,9 +46,6 @@ nav#meniu-principal .hamburger-btn span {
   background: #F5ECD7;
   border-radius: 4px;
 }
-nav#meniu-principal .menu-wrapper {
-  display: contents;
-}
 nav#meniu-principal .menu-wrapper > ul {
   display: flex;
   align-items: center;
@@ -101,8 +98,8 @@ nav#meniu-principal .menu-wrapper > ul > li > ul {
   top: 100%;
   left: 0;
   background: var(--meniu-sub-bg);
-  min-width: 200px;
-  border-radius: 0 6px 6px 6px;
+  min-width: 150px;
+  border-radius: 0 0 0 0;
   transform: scale(0);
   transform-origin: center;
   opacity: 0;
@@ -276,13 +273,6 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     color: white;
     background: #C4503A;
   }
-  nav#meniu-principal .menu-wrapper > ul > li .sub-toggle:checked ~ ul {
-    max-height: 400px;
-    opacity: 1;
-  }
-  nav#meniu-principal .menu-wrapper > ul > li .sub-toggle:checked ~ label.menu-trigger {
-    color: #D4A96A;
-  }
   nav#meniu-principal .menu-wrapper > ul > li.has-submenu:hover > ul {
     max-height: 400px;
     opacity: 1;
@@ -331,10 +321,14 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     display: none !important;
   }
 }
-/* =========================================================
-   PRINT
-   ========================================================= */
 @media print {
+  nav, .hamburger-btn, #link-top, img, video, iframe, object, .container-iframe {
+    display: none !important;
+  }
+  main {
+    display: block !important;
+    margin: 0 !important;
+  }
   nav, .hamburger-btn {
     display: none !important;
   }
@@ -346,6 +340,14 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     text-align: center;
     border: 2px dotted black;
     padding: 10px;
+  }
+  /*h1 2.5 bigger */
+  h1 {
+    font-size: 2.5rem !important;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 40vh;
+    page-break-after: always;
   }
   a {
     color: black !important;
@@ -360,6 +362,19 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     height: 2cm;
     border: 3px double black;
     opacity: 0.65;
+    font-size: 12pt;
+    z-index: 9999;
+  }
+  @page {
+    margin: 2cm;
+  }
+  @page :left {
+    margin-left: 2.5cm;
+    margin-right: 0.5cm;
+  }
+  @page :right {
+    margin-left: 0.5cm;
+    margin-right: 2.5cm;
   }
   footer {
     page-break-before: always;

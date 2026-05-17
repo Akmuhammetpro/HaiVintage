@@ -394,28 +394,13 @@ summary:hover { color: var(--culoare-secundara); }
 }
 
 @media print {
-    /* 7.1: Баннер из футера переносим вверх первой страницы */
-    footer .proiect-scolar-banner {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        border: 1px dotted black;
-        padding: 10px;
-        font-weight: bold;
-    }
+    
 
     /* 7.2: Скрываем навигацию, видео, картинки, iframe и кнопку "наверх" */
-    nav, .hamburger-btn, #link-top, img, video, iframe, object, .container-iframe {
-        display: none !important;
-    }
+
 
     /* 7.3: Сброс Grid-а в блочный вид */
-    main {
-        display: block !important;
-        margin: 0 !important;
-    }
+ 
     
     section, article, aside {
         border: none !important;
@@ -423,44 +408,14 @@ summary:hover { color: var(--culoare-secundara); }
         margin-bottom: 2cm;
     }
 
-    /* 7.5: Заголовок H1 в центре первой страницы, в 2.5 раза больше и подчеркнут */
-    h1 {
-        font-size: 2.5rem !important; /* В 2.5 раза больше базового 1rem */
-        text-align: center;
-        text-decoration: underline;
-        margin-top: 40vh; /* Примерно центр страницы */
-        page-break-after: always; /* Разрыв страницы после заголовка */
-    }
-
-    /* 7.6: Водяной знак (Watermark) с твоим именем */
-    body::after {
-        content: "Akmuhammet - HaiVintage Project"; /* Твое имя */
-        position: fixed;
-        bottom: 1cm;
-        right: 1cm;
-        border: 3px double black;
-        padding: 5px;
-        opacity: 0.65;
-        font-size: 12pt;
-        z-index: 9999;
-    }
+  
 
     /* 7.7: Разные поля для четных и нечетных страниц */
-    @page {
-        margin: 2cm;
-    }
-    @page :left {
-        margin-left: 2.5cm;
-        margin-right: 0.5cm;
-    }
-    @page :right {
-        margin-left: 0.5cm;
-        margin-right: 2.5cm;
-    }
+
 }
 /* Etapa 4 - Stilizare linkuri si video */
 :root {
-  --culoare-link-vizitat: #8B4513;
+  --culoare-link-vizitat: var(--culoare-primara);
 }
 
 a:visited {
@@ -468,18 +423,22 @@ a:visited {
 }
 
 a[href^="http"]::before {
-  content: "⮳ ";
+  content: "\2BB3 ";
   font-size: 1.5em;
-  transition: color 0.3s;
+  color: inherit;
+  transition: color 0.3s ease;
 }
 
 a[href^="http"]:hover::before {
-  color: #c97a2f; /* culoare secundara/hover */
+  color: var(--culoare-accent);
 }
+
+
+
 
 main a:not(#meniu-principal a) {
   position: relative;
-  background-image: radial-gradient(circle, rgba(200, 150, 100, 0.5) 0%, rgba(200, 150, 100, 0.5) 40%, transparent 80%, transparent 100%);
+  background-image: radial-gradient(circle, var(--culoare-accent) 0%, var(--culoare-accent) 40%, transparent 80%, transparent 100%);
   background-position: center;
   background-size: 0;
   background-repeat: no-repeat;
