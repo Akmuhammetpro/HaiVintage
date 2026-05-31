@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const sharp = require('sharp');
 
 const app = express();
 const port = 8080;
@@ -235,6 +236,55 @@ app.get(/^\/resurse\/.*/, (req, res, next) => {
 
 // Static files
 app.use('/resurse', express.static(path.join(__dirname, 'resurse')));
+
+// Middleware for gallery
+app.use(async (req, res, next) => {
+    const galPath = path.join(__dirname, 'resurse', 'json', 'galerie.json');
+    if (!fs.existsSync(galPath)) {
+        res.locals.galerie = null;
+        return next();
+    }
+    try {
+        const data = fs.readFileSync(galPath, 'utf8');
+        const galObj = JSON.parse(data);
+        const luni = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
+        const lunaCurenta = luni[new Date().getMonth()];
+        
+        let selectate = galObj.imagini.filter(img => img.luni && img.luni.includes(lunaCurenta));
+        selectate = selectate.slice(0, 12);
+        
+        let promisiuni = selectate.map(img => {
+            return new Promise((resImg) => {
+                let imgFile = path.join(__dirname, galObj.cale_galerie, img.cale_fisier);
+                let dirMediu = path.join(__dirname, galObj.cale_galerie, 'mediu');
+                let dirMic = path.join(__dirname, galObj.cale_galerie, 'mic');
+                
+                if (!fs.existsSync(dirMediu)) fs.mkdirSync(dirMediu, {recursive: true});
+                if (!fs.existsSync(dirMic)) fs.mkdirSync(dirMic, {recursive: true});
+                
+                let fileMediu = path.join(dirMediu, img.cale_fisier);
+                let fileMic = path.join(dirMic, img.cale_fisier);
+                
+                let calls = [];
+                if (!fs.existsSync(fileMediu) && fs.existsSync(imgFile)) {
+                    calls.push(sharp(imgFile).resize(400).toFile(fileMediu));
+                }
+                if (!fs.existsSync(fileMic) && fs.existsSync(imgFile)) {
+                    calls.push(sharp(imgFile).resize(200).toFile(fileMic));
+                }
+                
+                Promise.all(calls).then(() => resImg()).catch(() => resImg());
+            });
+        });
+        
+        await Promise.all(promisiuni);
+        res.locals.galerie = { cale_galerie: galObj.cale_galerie, imagini: selectate };
+    } catch (e) {
+        console.error("Eroare galerie:", e);
+        res.locals.galerie = null;
+    }
+    next();
+});
 
 // Home page
 app.get(['/', '/index', '/home'], (req, res) => {

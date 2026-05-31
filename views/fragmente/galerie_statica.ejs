@@ -1,0 +1,26 @@
+<% if (locals.galerie && locals.galerie.imagini && locals.galerie.imagini.length > 0) { %>
+<div id="galerie-statica">
+    <% locals.galerie.imagini.forEach(function(img) { %>
+        <figure>
+            <picture>
+                <source media="(max-width: 500px)" srcset="<%- locals.galerie.cale_galerie %>/mic/<%- img.cale_fisier %>">
+                <source media="(max-width: 800px)" srcset="<%- locals.galerie.cale_galerie %>/mediu/<%- img.cale_fisier %>">
+                <img src="<%- locals.galerie.cale_galerie %>/<%- img.cale_fisier %>" alt="<%- img.alt || img.cale_fisier %>" title="<%- img.text_descriere %>">
+            </picture>
+            <figcaption>
+                <div class="figcaption-inner">
+                    <span class="index-galerie"></span>
+                    <span class="titlu-imagine"><%- img.titlu %></span>
+                    <% if (img.licenta) { %>
+                        <div class="licenta">
+                            Licență: <%- img.licenta %> (Autor: <%- img.autor || 'Necunoscut' %>)
+                        </div>
+                    <% } %>
+                </div>
+            </figcaption>
+        </figure>
+    <% }); %>
+</div>
+<% } else { %>
+    <p>Nu există imagini pentru această lună.</p>
+<% } %>
