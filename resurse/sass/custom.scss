@@ -1,0 +1,116 @@
+// ====================================
+// Variabile customizate Bootstrap
+// ====================================
+
+// Schema cromatică HaiVintage
+$primary:   #8B4513;
+$secondary: #C4503A;
+$success:   #6B8E23;
+$warning:   #D4A96A;
+$danger:    #A3391F;
+$light:     #F5ECD7;
+$dark:      #2C160A;
+
+// Culori de font
+$body-color:        #3E2010;
+$headings-color:    #8B4513;
+
+// Dimensiuni ecran (mediu și mare diferite față de default)
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 850px,
+  lg: 1100px,
+  xl: 1400px,
+  xxl: 1700px
+);
+
+$container-max-widths: (
+  sm: 820px,
+  md: 1050px,
+  lg: 1300px,
+  xl: 1600px,
+  xxl: 1900px
+);
+
+// Raze de border
+$border-radius:    0.6rem;
+$border-radius-sm: 0.3rem;
+$border-radius-lg: 1rem;
+
+// Dimensiuni headinguri
+$h1-font-size: 2.5rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.6rem;
+$h4-font-size: 1.3rem;
+$h5-font-size: 1.1rem;
+$h6-font-size: 0.95rem;
+
+// Font implicit
+$font-family-base: 'Lato', sans-serif;
+$headings-font-family: 'Playfair Display', serif;
+
+// Padding butoane
+$btn-padding-y: 0.6rem;
+$btn-padding-x: 1.4rem;
+
+// ====================================
+// Importăm Bootstrap după variabile
+// ====================================
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+// ====================================
+// Corectare: Bootstrap poate strica aspectul site-ului
+// Rescriem ce e nevoie
+// ====================================
+
+// Resetăm img (Bootstrap pune max-width:100% pe toate img)
+header img,
+nav img {
+    width: auto;
+    max-width: none;
+}
+
+// Bootstrap schimbă box-sizing — lăsăm dar verificăm
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+// Rescriem link-urile din meniu care Bootstrap poate colora altfel
+nav#meniu-principal a,
+nav#meniu-principal button {
+    color: var(--meniu-text) !important;
+    text-decoration: none !important;
+}
+
+// Bootstrap pune margin pe body — anulăm dacă strică layout-ul
+body {
+    margin: 0;
+}
+
+// Exemplu Bootstrap: card cu tema noastră
+.card {
+    border-color: var(--culoare-bordura);
+    
+    .card-header {
+        background-color: $primary;
+        color: $light;
+        font-family: $headings-font-family;
+    }
+    
+    .card-body {
+        background-color: $light;
+        color: $body-color;
+    }
+}
+
+// Exemplu Bootstrap: buton cu tema noastră  
+.btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+    
+    &:hover {
+        background-color: $secondary;
+        border-color: $secondary;
+    }
+}

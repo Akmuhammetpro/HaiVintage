@@ -143,8 +143,10 @@ main {
         "z3-calendar   z2-tabel          z2-tabel           z4-anunturi"
         "z5-useri      z2-tabel          z2-tabel           z4-anunturi"
         "z5-useri      z6-statistici     z6-statistici      z7-server"
+        "z11-tabelescu z11-tabelescu     z11-tabelescu      z11-tabelescu"
         "z9-galerie    z9-galerie        z9-galerie         z9-galerie"
-        "z8-libre      z8-libre          z8-libre           z8-libre";
+        "z8-libre      z8-libre          z12-duotone        z12-duotone"
+        "z10-galerie-anim z10-galerie-anim z10-galerie-anim z10-galerie-anim";
 }
 
 #prezentare {
@@ -183,6 +185,21 @@ main {
     grid-area: z8-libre;
 }
 
+#tabelescu-section {
+    grid-area: z11-tabelescu;
+}
+
+#galerie-animata-sectiune {
+    grid-area: z10-galerie-anim;
+}
+
+#sectiune-duotone {
+    grid-area: z12-duotone;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 main>section,
 main>article,
@@ -459,6 +476,40 @@ summary:hover {
     }
 }
 
+/* Banner Animat Vertical */
+.banner-animat-container {
+    overflow: hidden;
+    height: 50px;
+    margin: 0 var(--margine-pagina) 20px var(--margine-pagina);
+    position: relative;
+    background-color: var(--culoare-secundara);
+    color: var(--culoare-text-invers);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--culoare-shadow);
+}
+
+.banner-animat-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: scrollVertical 5s linear infinite;
+}
+
+@keyframes scrollVertical {
+    0% {
+        transform: translateY(-100%);
+        top: 0;
+    }
+    100% {
+        transform: translateY(0);
+        top: 100%;
+    }
+}
+
 
 /* media*/
 
@@ -484,8 +535,9 @@ summary:hover {
             "z4-anunturi   z2-tabel"
             "z5-useri      z6-statistici"
             "z7-server     z7-server"
+            "z11-tabelescu z11-tabelescu"
             "z9-galerie    z9-galerie"
-            "z8-libre      z8-libre";
+            "z8-libre      z12-duotone";
     }
 
     #prezentare {
@@ -531,8 +583,10 @@ summary:hover {
             "z5-useri"
             "z6-statistici"
             "z7-server"
+            "z11-tabelescu"
             "z9-galerie"
-            "z8-libre";
+            "z8-libre"
+            "z12-duotone";
     }
 
 
@@ -648,18 +702,65 @@ main.galerie-main {
 /* Checkerboard pattern: groups of 3 images occupy 2 rows each.
    In each group, first two images go in cols 1 & 3 (same row),
    third image goes in col 2 (next row). Max 12 images = 8 rows. */
-#galerie-statica figure:nth-child(1)  { grid-column: 1; grid-row: 1; }
-#galerie-statica figure:nth-child(2)  { grid-column: 3; grid-row: 1; }
-#galerie-statica figure:nth-child(3)  { grid-column: 2; grid-row: 2; }
-#galerie-statica figure:nth-child(4)  { grid-column: 1; grid-row: 3; }
-#galerie-statica figure:nth-child(5)  { grid-column: 3; grid-row: 3; }
-#galerie-statica figure:nth-child(6)  { grid-column: 2; grid-row: 4; }
-#galerie-statica figure:nth-child(7)  { grid-column: 1; grid-row: 5; }
-#galerie-statica figure:nth-child(8)  { grid-column: 3; grid-row: 5; }
-#galerie-statica figure:nth-child(9)  { grid-column: 2; grid-row: 6; }
-#galerie-statica figure:nth-child(10) { grid-column: 1; grid-row: 7; }
-#galerie-statica figure:nth-child(11) { grid-column: 3; grid-row: 7; }
-#galerie-statica figure:nth-child(12) { grid-column: 2; grid-row: 8; }
+#galerie-statica figure:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#galerie-statica figure:nth-child(2) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#galerie-statica figure:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#galerie-statica figure:nth-child(4) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#galerie-statica figure:nth-child(5) {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+#galerie-statica figure:nth-child(6) {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+#galerie-statica figure:nth-child(7) {
+    grid-column: 1;
+    grid-row: 5;
+}
+
+#galerie-statica figure:nth-child(8) {
+    grid-column: 3;
+    grid-row: 5;
+}
+
+#galerie-statica figure:nth-child(9) {
+    grid-column: 2;
+    grid-row: 6;
+}
+
+#galerie-statica figure:nth-child(10) {
+    grid-column: 1;
+    grid-row: 7;
+}
+
+#galerie-statica figure:nth-child(11) {
+    grid-column: 3;
+    grid-row: 7;
+}
+
+#galerie-statica figure:nth-child(12) {
+    grid-column: 2;
+    grid-row: 8;
+}
 
 #galerie-statica figure {
     margin: 0;
@@ -719,4 +820,154 @@ main.galerie-main {
     font-size: 0.8rem;
     color: #ccc;
     margin-top: 5px;
+}
+
+/* BACKGROUND GALERIE */
+.body-galerie {
+    min-height: 100vh;
+    background-image: url("/resurse/img/background/back1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: schimbareBackground 10s infinite;
+}
+
+@keyframes schimbareBackground {
+    0% {
+        background-image: url("/resurse/img/background/back1.jpg");
+    }
+
+    50% {
+        background-image: url("/resurse/img/background/back2.jpg");
+    }
+
+    100% {
+        background-image: url("/resurse/img/background/back1.jpg");
+    }
+}
+
+/* Stiluri pentru Tabelescu */
+.tabelescu-wrapper {
+    border: 1px solid black;
+    padding: 15px;
+    background-color: white;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.tabel-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table.tabelescu {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    min-width: 600px;
+    border: none !important;
+}
+
+table.tabelescu th,
+table.tabelescu td {
+    border: 1px solid black !important;
+    padding: 12px 15px !important;
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: transparent !important;
+}
+
+table.tabelescu th {
+    text-align: center !important;
+    font-weight: bold;
+    color: black !important;
+}
+
+table.tabelescu tbody tr {
+    box-shadow: none !important;
+}
+
+table.tabelescu tbody tr:hover {
+    box-shadow: none !important;
+    background-color: #f0f0f0 !important;
+}
+
+.tabelescu-footer {
+    margin-top: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    color: black;
+    text-align: left;
+}
+
+/* EFECT DUOTONE */
+#imagine {
+    position: relative;
+    background-image: url("/resurse/img/galerie/Duotone.jpg");
+    background-size: cover;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    filter: brightness(200%) grayscale(0);
+    transition: all 2s linear;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#imagine:after,
+#imagine:before {
+    content: " ";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: all 2s linear;
+}
+
+#imagine:after {
+    background-color: rgb(0, 0, 255);
+    mix-blend-mode: lighten;
+}
+
+#imagine:before {
+    background-color: rgb(205, 0, 255);
+    mix-blend-mode: darken;
+}
+
+#imagine:hover:after {
+    background-color: rgb(86, 183, 126);
+    mix-blend-mode: lighten;
+}
+/* CSS Tricks - Full Page Background Video Styles */
+video#bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(/resurse/img/background/back1.jpg) no-repeat;
+    background-size: cover;
+    margin: 0;
+    max-width: none;
+}
+
+@media screen and (max-device-width: 800px) {
+  html {
+     background: url(/resurse/img/background/back1.jpg) #000 no-repeat center center fixed;
+  }
+  #bgvid {
+    display: none;
+  }
 }

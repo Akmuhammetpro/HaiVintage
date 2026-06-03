@@ -1,0 +1,9 @@
+{
+  "ignore": [
+    "resurse/json/galerie-animata.json",
+    "backup/*",
+    "logs/*",
+    "temp/*",
+    "fisiere_uploadate/*"
+  ]
+}

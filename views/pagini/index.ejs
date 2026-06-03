@@ -6,8 +6,17 @@
 </head>
 
 <body>
+    <video playsinline autoplay muted loop poster="/resurse/img/background/back1.jpg" id="bgvid">
+        <source src="/resurse/img/background/videoback.mp4" type="video/mp4">
+    </video>
 
     <%- include('../fragmente/header') %>
+
+        <div class="banner-animat-container">
+            <div class="banner-animat-text">
+                🎉 Colecția de primăvară este aici! Prinde cele mai bune oferte HaiVintage! 🎉
+            </div>
+        </div>
 
         <main>
 
@@ -155,6 +164,63 @@
                 </div>
             </section>
 
+            <section id="tabelescu-section">
+                <h2>Tabelescu</h2>
+                <div class="tabelescu-wrapper">
+                    <div class="tabel-responsive">
+                        <table class="tabelescu">
+                            <thead>
+                                <tr>
+                                    <th>Nume</th>
+                                    <th>Specie</th>
+                                    <th>Voce obisnuita</th>
+                                    <th>Voce suparata</th>
+                                    <th>Voce vesela</th>
+                                    <th>Voce aristocrata</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Miaunette</td>
+                                    <td>pisica</td>
+                                    <td>Miau.</td>
+                                    <td>Hisssss!</td>
+                                    <td>Mia-miau! Miau!</td>
+                                    <td>*Le miau</td>
+                                </tr>
+                                <tr>
+                                    <td>Chitzcoveanu</td>
+                                    <td>soarece</td>
+                                    <td>Chit.</td>
+                                    <td>CHIT!CHIT!!!</td>
+                                    <td>Tzi!Tzi!Tzi!</td>
+                                    <td>kitsch</td>
+                                </tr>
+                                <tr>
+                                    <td>Sir Dogus</td>
+                                    <td>catel</td>
+                                    <td>Ham.</td>
+                                    <td>Grrrrrr!</td>
+                                    <td>Yip!Yip!Yip!</td>
+                                    <td>Wooofoulous!</td>
+                                </tr>
+                                <tr>
+                                    <td>Zumzbzz</td>
+                                    <td>albina</td>
+                                    <td>Bzz.</td>
+                                    <td>Bzz.</td>
+                                    <td>Bzz.</td>
+                                    <td>Tot bzz.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tabelescu-footer">
+                        Numar animalute: 4
+                    </div>
+                </div>
+            </section>
+
             <section id="evenimente">
                 <h2>Evenimente</h2>
                 <ol>
@@ -230,31 +296,37 @@
                 <h2>Galerie</h2>
                 <%- include('../fragmente/galerie_statica') %>
             </section>
+            <%- include('../fragmente/galerie_animata') %>
 
-            <aside id="useri-online">
-                <h2><i class="fa-solid fa-users"></i> Utilizatori online</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utilizatori activi acum: <b>42</b>.</p>
-                <p>Adresa ta IP este: <b><%- locals.ip %></b></p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </aside>
+                <aside id="useri-online">
+                    <h2><i class="fa-solid fa-users"></i> Utilizatori online</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utilizatori activi acum: <b>42</b>.</p>
+                    <p>Adresa ta IP este: <b><%- locals.ip %></b></p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </aside>
 
-            <aside id="statistici">
-                <h2><i class="fa-solid fa-chart-bar"></i> Statistici</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vizite azi: <b>1.204</b>.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Produse vândute: <b>89</b>.</p>
-            </aside>
+                <aside id="statistici">
+                    <h2><i class="fa-solid fa-chart-bar"></i> Statistici</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vizite azi: <b>1.204</b>.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Produse vândute: <b>89</b>.</p>
+                </aside>
 
-            <aside id="date-server">
-                <h2><i class="fa-solid fa-server"></i> Date despre server</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p>Versiune server: <b>Node.js 20 LTS</b>. Uptime: <b>99.9%</b>.</p>
-            </aside>
+                <aside id="date-server">
+                    <h2><i class="fa-solid fa-server"></i> Date despre server</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>Versiune server: <b>Node.js 20 LTS</b>. Uptime: <b>99.9%</b>.</p>
+                </aside>
 
-            <section id="club-vintage">
-                <h2>Club HaiVintage</h2>
-                <p>Abonează-te pentru oferte exclusive și noutăți despre colecțiile noastre vintage.</p>
-                <p><i class="fa-solid fa-envelope icon-animat"></i> Newsletter săptămânal cu piese noi.</p>
-            </section>
+                <section id="club-vintage">
+                    <h2>Club HaiVintage</h2>
+                    <p>Abonează-te pentru oferte exclusive și noutăți despre colecțiile noastre vintage.</p>
+                    <p><i class="fa-solid fa-envelope icon-animat"></i> Newsletter săptămânal cu piese noi.</p>
+                </section>
+
+                <section id="sectiune-duotone">
+                    <h2>Efect Duotone</h2>
+                    <div id="imagine"></div>
+                </section>
 
 
         </main>

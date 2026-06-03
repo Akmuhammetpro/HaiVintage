@@ -1,0 +1,104 @@
+{
+  "cale_galerie": "/resurse/img/galerie",
+  "numar": 9,
+  "imagini": [
+    {
+      "cale_fisier": "img5.jpg",
+      "titlu": "Vintage Item 5",
+      "alt": "Alt text for vintage item 5",
+      "text_descriere": "This is a beautiful vintage item number 5.",
+      "luni": [
+        "noiembrie",
+        "iunie"
+      ]
+    },
+    {
+      "cale_fisier": "img10.jpg",
+      "titlu": "Vintage Item 10",
+      "alt": "Alt text for vintage item 10",
+      "text_descriere": "This is a beautiful vintage item number 10.",
+      "luni": [
+        "aprilie",
+        "august",
+        "mai"
+      ]
+    },
+    {
+      "cale_fisier": "img14.jpg",
+      "titlu": "Vintage Item 14",
+      "alt": "Alt text for vintage item 14",
+      "text_descriere": "This is a beautiful vintage item number 14.",
+      "luni": [
+        "iunie",
+        "decembrie",
+        "august",
+        "septembrie",
+        "mai"
+      ]
+    },
+    {
+      "cale_fisier": "img6.jpg",
+      "titlu": "Vintage Item 6",
+      "alt": "Alt text for vintage item 6",
+      "text_descriere": "This is a beautiful vintage item number 6.",
+      "luni": [
+        "octombrie",
+        "mai",
+        "iunie"
+      ]
+    },
+    {
+      "cale_fisier": "img9.jpg",
+      "titlu": "Vintage Item 9",
+      "alt": "Alt text for vintage item 9",
+      "text_descriere": "This is a beautiful vintage item number 9.",
+      "luni": [
+        "ianuarie",
+        "februarie"
+      ]
+    },
+    {
+      "cale_fisier": "img8.jpg",
+      "titlu": "Vintage Item 8",
+      "alt": "Alt text for vintage item 8",
+      "text_descriere": "This is a beautiful vintage item number 8.",
+      "luni": [
+        "ianuarie",
+        "mai"
+      ]
+    },
+    {
+      "cale_fisier": "img4.jpg",
+      "titlu": "Vintage Item 4",
+      "alt": "Alt text for vintage item 4",
+      "text_descriere": "This is a beautiful vintage item number 4.",
+      "luni": [
+        "noiembrie",
+        "mai"
+      ]
+    },
+    {
+      "cale_fisier": "img3.jpg",
+      "titlu": "Vintage Item 3",
+      "alt": "Alt text for vintage item 3",
+      "text_descriere": "This is a beautiful vintage item number 3.",
+      "luni": [
+        "noiembrie",
+        "aprilie",
+        "septembrie"
+      ]
+    },
+    {
+      "cale_fisier": "img2.jpg",
+      "titlu": "Vintage Item 2",
+      "alt": "Alt text for vintage item 2",
+      "text_descriere": "This is a beautiful vintage item number 2.",
+      "luni": [
+        "noiembrie",
+        "decembrie",
+        "martie",
+        "mai"
+      ]
+    }
+  ]
+}

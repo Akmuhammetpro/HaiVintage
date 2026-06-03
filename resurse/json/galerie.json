@@ -54,7 +54,8 @@
             "alt": "Alt text for vintage item 5",
             "text_descriere": "This is a beautiful vintage item number 5.",
             "luni": [
-                "noiembrie"
+                "noiembrie",
+                "iunie"
             ]
         },
         {
@@ -64,7 +65,8 @@
             "text_descriere": "This is a beautiful vintage item number 6.",
             "luni": [
                 "octombrie",
-                "mai"
+                "mai",
+                "iunie"
             ]
         },
         {

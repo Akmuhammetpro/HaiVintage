@@ -1,0 +1,113 @@
+<% if (locals.galerieAnimata && locals.galerieAnimata.imagini && locals.galerieAnimata.imagini.length > 0) { %>
+
+<section id="galerie-animata-sectiune">
+  <div class="galerie-animata-wrapper">
+
+    <h2 class="galerie-animata-titlu">Galerie Animată</h2>
+
+    <div class="galerie-animata" id="galerieAnimata">
+      <% locals.galerieAnimata.imagini.forEach(function(img, i) { %>
+        <div class="galerie-slide<%= i === 0 ? ' slide-activ' : '' %>" data-index="<%= i %>">
+          <img
+            src="<%= locals.galerieAnimata.cale_galerie %>/<%= img.cale_fisier %>"
+            alt="<%= img.alt || img.titlu %>"
+            loading="<%= i === 0 ? 'eager' : 'lazy' %>"
+          >
+          <div class="galerie-caption"><%= img.titlu %></div>
+        </div>
+      <% }); %>
+    </div>
+
+    <div class="galerie-animata-contor" id="galerieContor">
+      1 / <%= locals.galerieAnimata.imagini.length %>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  var TOTAL      = <%= locals.galerieAnimata.imagini.length %>;
+  var ANIM_MS    = 3300;
+  var AFISARE_MS = 3000;
+
+  var container = document.getElementById('galerieAnimata');
+  var contor    = document.getElementById('galerieContor');
+  if (!container) return;
+
+  var slides        = Array.from(container.querySelectorAll('.galerie-slide'));
+  var curent        = 0;
+  var inAnimatie    = false;
+  var timer         = null;
+  var pauza         = false;
+  var timeoutId     = null;
+  var animStartTime = null;
+  var animElapsed   = 0;
+  var animElCurent  = null;
+  var animElUrm     = null;
+  var animUrmator   = null;
+
+  function reseteazaSlide(el) {
+    el.classList.remove('slide-activ', 'slide-iesire', 'slide-intrare');
+  }
+
+  function finalizeazaAnimatie() {
+    reseteazaSlide(animElCurent);
+    reseteazaSlide(animElUrm);
+    animElUrm.classList.add('slide-activ');
+    curent = animUrmator;
+    contor.textContent = (curent + 1) + ' / ' + TOTAL;
+    inAnimatie = false;
+    timeoutId = null;
+    animElCurent = animElUrm = animUrmator = null;
+    animElapsed = 0;
+  }
+
+  function urmatorul() {
+    if (inAnimatie) return;
+    inAnimatie = true;
+
+    animUrmator  = (curent + 1) % TOTAL;
+    animElCurent = slides[curent];
+    animElUrm    = slides[animUrmator];
+    animElapsed  = 0;
+    animStartTime = Date.now();
+
+    animElCurent.classList.remove('slide-activ');
+    animElCurent.classList.add('slide-iesire');
+    animElUrm.classList.add('slide-intrare');
+
+    timeoutId = setTimeout(finalizeazaAnimatie, ANIM_MS);
+  }
+
+  function pornestTimer() {
+    clearInterval(timer);
+    timer = setInterval(function() {
+      if (!pauza) urmatorul();
+    }, AFISARE_MS + ANIM_MS);
+  }
+
+  container.addEventListener('mouseenter', function() {
+    pauza = true;
+    container.classList.add('in-pauza');
+    if (timeoutId !== null) {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+      animElapsed += Date.now() - animStartTime;
+    }
+  });
+  container.addEventListener('mouseleave', function() {
+    pauza = false;
+    container.classList.remove('in-pauza');
+    if (inAnimatie) {
+      animStartTime = Date.now();
+      var ramas = Math.max(0, ANIM_MS - animElapsed);
+      timeoutId = setTimeout(finalizeazaAnimatie, ramas);
+    }
+  });
+
+  pornestTimer();
+})();
+</script>
+
+<% } %>

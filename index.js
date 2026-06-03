@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const sharp = require('sharp');
-
+const sass = require('sass');
 const app = express();
 const port = 8080;
 
@@ -22,7 +22,97 @@ vect_foldere.forEach(folder => {
     }
 });
 
-let obGlobal = { obErori: null };
+let obGlobal = {
+    obErori: null,
+    folderScss: path.join(__dirname, 'resurse', 'sass'),
+    folderCss:  path.join(__dirname, 'resurse', 'css')
+};
+
+function compileazaScss(caleScss, caleCss) {
+    // Dacă caleScss e relativă, o facem absolută față de folderScss
+    if (!path.isAbsolute(caleScss)) {
+        caleScss = path.join(obGlobal.folderScss, caleScss);
+    }
+
+    // Dacă caleCss lipsește sau e relativă
+    if (!caleCss) {
+        // Folosim același nume dar cu extensia .css
+        let numeFisier = path.basename(caleScss, '.scss') + '.css';
+        caleCss = path.join(obGlobal.folderCss, numeFisier);
+    } else if (!path.isAbsolute(caleCss)) {
+        caleCss = path.join(obGlobal.folderCss, caleCss);
+    }
+
+    // TASK C: Backup al fișierului css vechi înainte de suprascriere
+    if (fs.existsSync(caleCss)) {
+        try {
+            let backupDir = path.join(__dirname, 'backup', 'resurse', 'css');
+            if (!fs.existsSync(backupDir)) {
+                fs.mkdirSync(backupDir, { recursive: true });
+            }
+            let numeCss = path.basename(caleCss);
+            let backupCale = path.join(backupDir, numeCss);
+            fs.copyFileSync(caleCss, backupCale);
+            console.log(`Backup realizat: ${backupCale}`);
+        } catch (err) {
+            console.error(`Eroare la backup pentru ${caleCss}:`, err);
+        }
+    }
+
+    // COMPILARE efectivă
+    try {
+        let rezultat = sass.compile(caleScss, { style: 'expanded' });
+        fs.writeFileSync(caleCss, rezultat.css, 'utf8');
+        console.log(`Compilat: ${caleScss} → ${caleCss}`);
+    } catch (err) {
+        console.error(`Eroare compilare SCSS (${caleScss}):`, err.message);
+    }
+}
+
+
+function compileazaToateScss() {
+    if (!fs.existsSync(obGlobal.folderScss)) {
+        console.log("Folderul SCSS nu există:", obGlobal.folderScss);
+        return;
+    }
+    let fisiere = fs.readdirSync(obGlobal.folderScss);
+    fisiere.forEach(fisier => {
+        if (fisier.endsWith('.scss')) {
+            let caleScss = path.join(obGlobal.folderScss, fisier);
+            compileazaScss(caleScss);
+        }
+    });
+}
+
+// Apelăm la pornire
+compileazaToateScss();
+
+
+function watchScss() {
+    if (!fs.existsSync(obGlobal.folderScss)) return;
+
+    fs.watch(obGlobal.folderScss, (eventType, filename) => {
+        if (filename && filename.endsWith('.scss')) {
+            console.log(`Modificare detectată: ${filename}`);
+            let caleScss = path.join(obGlobal.folderScss, filename);
+            // Mică întârziere ca să fie siguri că fișierul e salvat complet
+            setTimeout(() => {
+                compileazaScss(caleScss);
+            }, 100);
+        }
+    });
+    console.log("Urmăresc modificări în folderul SCSS...");
+}
+
+watchScss(); 
+
+app.use(function(req, res, next) {
+    const gaPath = path.join(__dirname, 'resurse', 'json', 'galerie-animata.json');
+    if (!fs.existsSync(gaPath)) { res.locals.galerieAnimata = null; return next(); }
+    try { res.locals.galerieAnimata = JSON.parse(fs.readFileSync(gaPath, 'utf8')); }
+    catch (e) { res.locals.galerieAnimata = null; }
+    next();
+});
 
 function initErori() {
     try {
