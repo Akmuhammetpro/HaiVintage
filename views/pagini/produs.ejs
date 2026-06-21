@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head') %>
+    <title><%= produs.nume %> – HaiVintage</title>
+    <link rel="stylesheet" href="/resurse/css/produse.css">
+</head>
+<body>
+    <%- include('../fragmente/header') %>
+
+    <main class="pagina-produs-unic">
+        <h2><%= produs.nume %></h2>
+
+        <div class="produs-detalii">
+
+            <!-- Imagine produs -->
+            <div class="produs-imagine-mare">
+                <% if (produs.imagine) { %>
+                    <img src="<%= produs.imagine %>"
+                         alt="<%= produs.nume %>"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder" style="display:none">
+                        <i class="fa-solid fa-shirt" style="font-size:3rem"></i>
+                    </div>
+                <% } else { %>
+                    <div class="img-placeholder">
+                        <i class="fa-solid fa-shirt" style="font-size:3rem"></i>
+                    </div>
+                <% } %>
+            </div>
+
+            <!-- Informatii complete -->
+            <div class="produs-info">
+                <span class="badge-categorie"><%= produs.categorie %></span>
+
+                <table class="tabel-detalii">
+                    <tbody>
+                        <tr>
+                            <td>ID produs</td>
+                            <td><%= produs.id %></td>
+                        </tr>
+                        <tr>
+                            <td>Subcategorie</td>
+                            <td><%= produs.subcategorie ? produs.subcategorie.replace(/_/g, ' ') : '–' %></td>
+                        </tr>
+                        <tr>
+                            <td>Preț</td>
+                            <td><strong><%= parseFloat(produs.pret).toFixed(2) %> RON</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Deceniu</td>
+                            <td><%= produs.deceniu %>s</td>
+                        </tr>
+                        <tr>
+                            <td>Culoare</td>
+                            <td><%= produs.culoare %></td>
+                        </tr>
+                        <tr>
+                            <td>Materiale</td>
+                            <td><%= produs.materiale ? produs.materiale.replace(/,/g, ', ') : '–' %></td>
+                        </tr>
+                        <tr>
+                            <td>Disponibil</td>
+                            <td>
+                                <% if (produs.disponibil) { %>
+                                    <span style="color:#6B8E23;font-weight:bold">✔ Da</span>
+                                <% } else { %>
+                                    <span style="color:#A3391F;font-weight:bold">✘ Nu</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Data adăugare</td>
+                            <td>
+                                <time datetime="<%= produs.data_adaugare_iso %>">
+                                    <%= produs.data_adaugare_ro %>
+                                </time>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Descriere</td>
+                            <td><%= produs.descriere %></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="/produse" class="link-inapoi">
+                    <i class="fa-solid fa-arrow-left"></i> Înapoi la produse
+                </a>
+            </div>
+
+        </div><!-- .produs-detalii -->
+
+        <!-- Bonus 16: Produse similare -->
+        <% if (locals.similare && similare.length > 0) { %>
+        <section class="produse-similare-sectiune">
+            <h3><i class="bi bi-grid-3x3-gap"></i> Produse similare</h3>
+            <div class="similare-grid">
+                <% similare.forEach(s => { %>
+                <a href="/produse/<%= s.id %>" class="similar-card">
+                    <% if (s.imagine) { %>
+                        <img src="<%= s.imagine %>" alt="<%= s.nume %>"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="similar-placeholder" style="display:none">
+                            <i class="fa-solid fa-shirt"></i>
+                        </div>
+                    <% } else { %>
+                        <div class="similar-placeholder"><i class="fa-solid fa-shirt"></i></div>
+                    <% } %>
+                    <div class="similar-info">
+                        <strong><%= s.nume %></strong>
+                        <span class="similar-pret"><%= parseFloat(s.pret).toFixed(2) %> RON</span>
+                    </div>
+                </a>
+                <% }) %>
+            </div>
+        </section>
+        <% } %>
+
+    </main>
+
+    <%- include('../fragmente/footer') %>
+</body>
+</html>

@@ -1,44 +1,81 @@
-// ====================================
-// Variabile customizate Bootstrap
-// ====================================
 
-// Schema cromatică HaiVintage
-$primary:   #8B4513;
-$secondary: #C4503A;
-$success:   #6B8E23;
-$warning:   #D4A96A;
-$danger:    #A3391F;
-$light:     #F5ECD7;
-$dark:      #2C160A;
+// Bootstrap
 
-// Culori de font
-$body-color:        #3E2010;
-$headings-color:    #8B4513;
+// Range input – Bonus cerinta Bootstrap (thumb 50% mai mare decat font-size html)
+$form-range-thumb-width:  1.5rem;   // html font-size=18px => 50% mai mare = 27px ≈ 1.5rem
+$form-range-thumb-height: 1.5rem;
+$form-range-thumb-bg:     #8B4513;
+$form-range-track-bg:     #D4A96A;
+$form-range-track-height: 0.4rem;
+$form-range-thumb-border: none;
 
-// Dimensiuni ecran (mediu și mare diferite față de default)
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 850px,
-  lg: 1100px,
-  xl: 1400px,
-  xxl: 1700px
+$primary: #8B4513; 
+$secondary: #C4503A; 
+$success: #6B8E23; 
+$warning: #D4A96A; 
+$danger: #A3391F;
+$light: #F5ECD7; 
+$dark: #2C160A; 
+
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark
 );
+
+
+$body-color: #3E2010;
+$headings-color: #8B4513;
+
+
+$body-bg: $light;
+
+
+
+// Dimensiuni ecran diferite față de Bootstrap default
+
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 850px,
+    lg: 1100px,
+    xl: 1400px,
+    xxl: 1700px
+);
+
+
+
+// Dimensiuni containere diferite
+
 
 $container-max-widths: (
-  sm: 820px,
-  md: 1050px,
-  lg: 1300px,
-  xl: 1600px,
-  xxl: 1900px
+    sm: 820px,
+    md: 1050px,
+    lg: 1300px,
+    xl: 1600px,
+    xxl: 1900px
 );
 
+
+
 // Raze de border
-$border-radius:    0.6rem;
+
+
+$border-radius: 0.6rem;
 $border-radius-sm: 0.3rem;
 $border-radius-lg: 1rem;
 
+
+
 // Dimensiuni headinguri
+
+
 $h1-font-size: 2.5rem;
 $h2-font-size: 2rem;
 $h3-font-size: 1.6rem;
@@ -46,71 +83,132 @@ $h4-font-size: 1.3rem;
 $h5-font-size: 1.1rem;
 $h6-font-size: 0.95rem;
 
-// Font implicit
+
+// Font implicit și font pentru headinguri
+
+
 $font-family-base: 'Lato', sans-serif;
 $headings-font-family: 'Playfair Display', serif;
 
-// Padding butoane
+
+// Variabile suplimentare alese de noi
+// Padding pentru butoane
+
+
 $btn-padding-y: 0.6rem;
 $btn-padding-x: 1.4rem;
 
-// ====================================
-// Importăm Bootstrap după variabile
-// ====================================
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+$btn-border-radius: 0.6rem;
 
-// ====================================
-// Corectare: Bootstrap poate strica aspectul site-ului
-// Rescriem ce e nevoie
-// ====================================
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
-// Resetăm img (Bootstrap pune max-width:100% pe toate img)
+
+
+:root {
+    --meniu-text: #F5ECD7;
+    --culoare-bordura: #8B4513;
+    --culoare-fundal-card: #F5ECD7;
+    --culoare-text-principal: #3E2010;
+}
+
+
 header img,
 nav img {
     width: auto;
     max-width: none;
 }
 
-// Bootstrap schimbă box-sizing — lăsăm dar verificăm
-*, *::before, *::after {
+
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-// Rescriem link-urile din meniu care Bootstrap poate colora altfel
+
+
 nav#meniu-principal a,
 nav#meniu-principal button {
     color: var(--meniu-text) !important;
     text-decoration: none !important;
+    font-family: $font-family-base;
 }
 
-// Bootstrap pune margin pe body — anulăm dacă strică layout-ul
+
 body {
     margin: 0;
+    background-color: $body-bg;
+    color: $body-color;
+    font-family: $font-family-base;
 }
 
-// Exemplu Bootstrap: card cu tema noastră
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $headings-font-family;
+    color: $headings-color;
+}
+
+
+
 .card {
     border-color: var(--culoare-bordura);
-    
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+
     .card-header {
         background-color: $primary;
         color: $light;
         font-family: $headings-font-family;
+        font-size: 1.2rem;
     }
-    
+
     .card-body {
-        background-color: $light;
-        color: $body-color;
+        background-color: var(--culoare-fundal-card);
+        color: var(--culoare-text-principal);
     }
 }
 
-// Exemplu Bootstrap: buton cu tema noastră  
+
+
 .btn-primary {
     background-color: $primary;
     border-color: $primary;
-    
+    color: $light;
+
     &:hover {
         background-color: $secondary;
         border-color: $secondary;
+        color: $light;
     }
+}
+
+
+
+
+.btn-secondary {
+    background-color: $secondary;
+    border-color: $secondary;
+    color: $light;
+
+    &:hover {
+        background-color: $primary;
+        border-color: $primary;
+        color: $light;
+    }
+}
+
+
+
+.bg-primary {
+    background-color: $primary !important;
+}
+
+.bg-secondary {
+    background-color: $secondary !important;
 }

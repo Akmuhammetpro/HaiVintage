@@ -105,6 +105,7 @@ nav#meniu-principal .menu-wrapper > ul > li > ul {
   opacity: 0;
   pointer-events: none;
   transition: 0.35s;
+  z-index: 1000;
 }
 nav#meniu-principal .menu-wrapper > ul > li > ul li a {
   display: block;
@@ -159,6 +160,7 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
     border-radius: 6px;
     border: none;
     margin-bottom: 0;
+    
   }
   nav#meniu-principal .menu-wrapper > ul > li:not(.has-submenu) > a i, nav#meniu-principal .menu-wrapper > ul > li.has-submenu > label.menu-trigger i {
     width: 30px;
@@ -276,6 +278,7 @@ nav#meniu-principal .menu-wrapper > ul > li:hover > ul {
   nav#meniu-principal .menu-wrapper > ul > li.has-submenu:hover > ul {
     max-height: 400px;
     opacity: 1;
+    
   }
   nav#meniu-principal .menu-toggle:checked ~ .menu-wrapper {
     clip-path: circle(200% at 0px 0px);

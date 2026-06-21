@@ -3,8 +3,8 @@
 // ============================================================
 
 $border-width: 14px;
-$gallery-width: 680px;
-$gallery-height: 430px;
+$gallery-width: 500px;
+$gallery-height: 316px;
 $caption-height: 48px;
 $anim-duration: 3s;
 
@@ -45,7 +45,8 @@ $border-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width
 
 .galerie-animata {
   position: relative;
-  width: $gallery-width;
+  width: 100%;
+  max-width: $gallery-width;
   height: $gallery-height + $caption-height + $border-width * 2;
   overflow: hidden;
 
@@ -57,20 +58,8 @@ $border-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width
   background: #fff;
   box-shadow: 0 6px 28px rgba(30, 80, 180, 0.25);
 
-  // Perspectiva necesară pentru rotateY vizibil
-  perspective: 1400px;
-  perspective-origin: left center;
 
-  &::after {
-    content: '';
-    position: absolute;
-    right: -$border-width + 2px;
-    top: 10%;
-    height: 80%;
-    border-right: 3px dashed #00c8ff;
-    pointer-events: none;
-    z-index: 20;
-  }
+
 
 }
 
@@ -121,17 +110,43 @@ $border-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width
 
 // Vechea poză: sплющire → rotire 180° de la marginea stângă
 @keyframes ga-iesire {
-  0%   { opacity: 1;   transform: scaleY(1)   scaleX(1) }
-  20%  { opacity: 1;   transform: scaleY(0.3) scaleX(1)}
-  60%  { opacity: 1;   transform: scaleY(0.3) rotate(180deg); }
-  85%  { opacity: 0.4; transform: scaleY(0.3) rotate(180deg); }
-  100% { opacity: 0;   transform: scaleY(0.3)  rotate(180deg); }
+  0% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1)
+  }
+
+  20% {
+    opacity: 1;
+    transform: scaleY(0.3) scaleX(1)
+  }
+
+  60% {
+    opacity: 1;
+    transform: scaleY(0.3) rotate(180deg);
+  }
+
+  85% {
+    opacity: 0.4;
+    transform: scaleY(0.3) rotate(180deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0.3) rotate(180deg);
+  }
 }
 
 // Noua poză: apare lin din transparență
 @keyframes ga-intrare {
-  0%   { opacity: 0;   transform: scale(1); }
-  100% { opacity: 1;   transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .galerie-animata-contor {
@@ -145,4 +160,3 @@ $border-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width
 .galerie-animata.in-pauza .slide-intrare {
   animation-play-state: paused !important;
 }
-

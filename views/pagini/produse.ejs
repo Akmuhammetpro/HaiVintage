@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include('../fragmente/head') %>
+    <title>Produse – HaiVintage</title>
+    <link rel="stylesheet" href="/resurse/css/produse.css">
+</head>
+<body>
+    <%- include('../fragmente/header') %>
+
+    <main class="pagina-produse">
+        <h2>
+            <% if (categorieActiva) { %>
+                Produse – <span style="text-transform:capitalize"><%= categorieActiva %></span>
+            <% } else { %>
+                Toate Produsele
+            <% } %>
+        </h2>
+
+        <!-- ── Sectiunea de filtre ──────────────────────────────────────────── -->
+        <div id="sectiune-filtre">
+            <h3><i class="bi bi-funnel-fill"></i> Filtrare &amp; Sortare</h3>
+
+            <div id="erori-filtre" class="alerta-eroare" style="display:none"></div>
+
+            <!-- Bootstrap grid pentru inputuri (Bonus 1 + cerinta Bootstrap) -->
+            <div class="row g-2 mb-3">
+
+                <!-- a) Input text – cautare fuzzy dupa nume; maxlength din BD (Bonus 1) -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <label class="form-label" for="filtru-nume">
+                        <i class="bi bi-search"></i> Nume produs
+                    </label>
+                    <input type="text" class="form-control form-control-sm"
+                           id="filtru-nume" placeholder="ex: jacheta"
+                           maxlength="<%= maxNume %>"
+                           title="Căutare aproximativă (max 2 litere greșite)">
+                </div>
+
+                <!-- b) Range – pret; min si max din BD (Bonus 1) -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <label class="form-label" for="filtru-pret">
+                        <i class="bi bi-currency-dollar"></i> Preț max:
+                        <span id="filtru-pret-val" class="badge bg-primary ms-1"><%= pretMax %> RON</span>
+                    </label>
+                    <div class="d-flex align-items-center gap-1">
+                        <small class="text-muted"><%= pretMin %></small>
+                        <input type="range" class="form-range flex-grow-1"
+                               id="filtru-pret"
+                               min="<%= pretMin %>" max="<%= pretMax %>" step="5"
+                               value="<%= pretMax %>">
+                        <small class="text-muted"><%= pretMax %></small>
+                    </div>
+                </div>
+
+                <!-- c) Datalist – culori din BD (Bonus 1) -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <label class="form-label" for="filtru-culoare">
+                        <i class="bi bi-palette"></i> Culoare
+                    </label>
+                    <input type="text" class="form-control form-control-sm"
+                           id="filtru-culoare" list="culori-datalist"
+                           placeholder="ex: albastru">
+                    <datalist id="culori-datalist">
+                        <% culori.forEach(c => { %><option value="<%= c %>"><% }) %>
+                    </datalist>
+                </div>
+
+                <!-- f) Textarea cu floating label Bootstrap (cerinta Bootstrap) -->
+                <!-- maxlength din BD (Bonus 1 – tip textarea) -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <div class="form-floating">
+                        <textarea class="form-control" id="filtru-descriere"
+                                  placeholder=" " style="height:60px"
+                                  maxlength="<%= maxDescriere %>"></textarea>
+                        <label for="filtru-descriere">
+                            <i class="bi bi-card-text"></i> Cuvânt în descriere
+                        </label>
+                    </div>
+                </div>
+
+                <!-- g) Select simplu – subcategorii din BD (Bonus 1) -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <label class="form-label" for="filtru-subcategorie">
+                        <i class="bi bi-tags"></i> Subcategorie
+                    </label>
+                    <select class="form-select form-select-sm" id="filtru-subcategorie">
+                        <option value="">oricare</option>
+                        <% subcategorii.forEach(s => { %>
+                            <option value="<%= s %>"><%= s.replace(/_/g, ' ') %></option>
+                        <% }) %>
+                    </select>
+                </div>
+
+                <!-- h) Select multiplu – decenii din BD (Bonus 1) -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <label class="form-label" for="filtru-deceniu">
+                        <i class="bi bi-calendar3"></i> Deceniu (Ctrl+click multiplu)
+                    </label>
+                    <select class="form-select form-select-sm" id="filtru-deceniu" multiple size="4">
+                        <% decenii.forEach(d => { %>
+                            <option value="<%= d %>"><%= d %>s</option>
+                        <% }) %>
+                    </select>
+                </div>
+
+                <!-- Bonus 8: Sort cheie 1 -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <label class="form-label" for="sort-cheie1">
+                        <i class="bi bi-sort-alpha-down"></i> Sortare – cheie 1
+                    </label>
+                    <select class="form-select form-select-sm" id="sort-cheie1">
+                        <option value="ratio">Deceniu / Preț</option>
+                        <option value="pret">Preț</option>
+                        <option value="deceniu">Deceniu</option>
+                        <option value="nume">Nume</option>
+                        <option value="data">Dată adăugare</option>
+                    </select>
+                </div>
+
+                <!-- Bonus 8: Sort cheie 2 -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <label class="form-label" for="sort-cheie2">
+                        <i class="bi bi-sort-alpha-down-alt"></i> Sortare – cheie 2
+                    </label>
+                    <select class="form-select form-select-sm" id="sort-cheie2">
+                        <option value="subcategorie">Subcategorie</option>
+                        <option value="pret">Preț</option>
+                        <option value="culoare">Culoare</option>
+                        <option value="disponibil">Disponibilitate</option>
+                    </select>
+                </div>
+
+            </div><!-- .row -->
+
+            <!-- d) Radiobuttons disponibilitate ca Bootstrap toggle buttons (cerinta Bootstrap) -->
+            <!-- Valorile disponibil generate din BD (Bonus 1 – tip radio) -->
+            <div class="mb-2">
+                <span class="form-label d-block">
+                    <i class="bi bi-box-seam"></i> Disponibilitate
+                </span>
+                <div class="btn-group btn-group-sm" role="group">
+                    <input type="radio" class="btn-check" name="filtru-disponibil"
+                           id="rad-oricare" value="oricare" autocomplete="off" checked>
+                    <label class="btn btn-outline-secondary" for="rad-oricare">Oricare</label>
+
+                    <% if (disponibilValues.includes(true)) { %>
+                    <input type="radio" class="btn-check" name="filtru-disponibil"
+                           id="rad-disponibil" value="disponibil" autocomplete="off">
+                    <label class="btn btn-outline-success" for="rad-disponibil">✔ Disponibil</label>
+                    <% } %>
+
+                    <% if (disponibilValues.includes(false)) { %>
+                    <input type="radio" class="btn-check" name="filtru-disponibil"
+                           id="rad-indisponibil" value="indisponibil" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="rad-indisponibil">✘ Indisponibil</label>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- e) Checkbox materiale ca Bootstrap toggle buttons (cerinta Bootstrap) -->
+            <!-- Materiale generate din BD (Bonus 1 – tip checkbox) -->
+            <div id="grup-materiale" class="mb-3">
+                <span class="form-label d-block">
+                    <i class="bi bi-scissors"></i> Materiale
+                    <small class="text-muted ms-1">(bifează + alege condiția)</small>
+                </span>
+                <div class="d-flex flex-wrap gap-2">
+                    <% materiale.forEach(mat => { %>
+                    <div class="grup-material-item">
+                        <input type="checkbox" class="btn-check cb-material"
+                               id="cb-<%= mat %>" value="<%= mat %>" autocomplete="off">
+                        <label class="btn btn-outline-secondary btn-sm" for="cb-<%= mat %>">
+                            <%= mat %>
+                        </label>
+                        <div class="mod-selector" id="mod-<%= mat %>" style="display:none">
+                            <input type="radio" class="btn-check" name="mod-<%= mat %>"
+                                   id="rad-are-<%= mat %>" value="are" autocomplete="off" checked>
+                            <label class="btn btn-outline-success btn-sm" for="rad-are-<%= mat %>">are</label>
+                            <input type="radio" class="btn-check" name="mod-<%= mat %>"
+                                   id="rad-nu-<%= mat %>" value="nu_are" autocomplete="off">
+                            <label class="btn btn-outline-danger btn-sm" for="rad-nu-<%= mat %>">nu are</label>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+
+            <!-- Butoane actiuni cu iconuri Bootstrap Icons (cerinta Bootstrap) -->
+            <!-- Pe ecran mic: doar iconuri; pe ecran mare: icon + text -->
+            <div class="butoane-filtre">
+                <button id="btn-filtreaza" class="btn btn-primary btn-sm">
+                    <i class="bi bi-funnel-fill"></i>
+                    <span class="d-none d-md-inline"> Filtrează</span>
+                </button>
+                <button id="btn-sort-asc" class="btn btn-secondary btn-sm">
+                    <i class="bi bi-sort-up"></i>
+                    <span class="d-none d-md-inline"> Sortare ↑</span>
+                </button>
+                <button id="btn-sort-desc" class="btn btn-secondary btn-sm">
+                    <i class="bi bi-sort-down"></i>
+                    <span class="d-none d-md-inline"> Sortare ↓</span>
+                </button>
+                <button id="btn-calculeaza" class="btn btn-success btn-sm">
+                    <i class="bi bi-calculator"></i>
+                    <span class="d-none d-md-inline"> Calculează media</span>
+                </button>
+                <button id="btn-reset" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <span class="d-none d-md-inline"> Resetare</span>
+                </button>
+            </div>
+        </div><!-- #sectiune-filtre -->
+
+        <!-- Bonus 15: Contor produse + Bonus 3: mesaj nicio produs -->
+        <div class="d-flex align-items-center justify-content-between mb-2">
+            <p id="contor-produse" class="mb-0 text-muted small">
+                <i class="bi bi-grid-3x3-gap"></i>
+                Se afișează <strong id="nr-vizibile"><%= produse.length %></strong>
+                din <strong><%= produse.length %></strong> produse
+            </p>
+        </div>
+        <div id="mesaj-gol" style="display:none" class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle"></i>
+            Niciun produs nu corespunde filtrelor curente.
+        </div>
+
+        <!-- Grid produse -->
+        <div id="produse-grid">
+            <% if (produse.length === 0) { %>
+                <p>Nu există produse pentru această categorie.</p>
+            <% } %>
+
+            <% produse.forEach(prod => {
+                const dataIso = prod.data_adaugare_iso;
+                const dataRo  = prod.data_adaugare_ro;
+            %>
+            <article
+                id="artc-<%= prod.id %>"
+                class="produs-articol <%= prod.categorie %>"
+                data-id="<%= prod.id %>"
+                data-nume="<%= prod.nume.replace(/"/g,'&quot;') %>"
+                data-pret="<%= prod.pret %>"
+                data-deceniu="<%= prod.deceniu %>"
+                data-subcategorie="<%= prod.subcategorie || '' %>"
+                data-culoare="<%= prod.culoare || '' %>"
+                data-materiale="<%= prod.materiale || '' %>"
+                data-descriere="<%= prod.descriere ? prod.descriere.replace(/"/g,'&quot;') : '' %>"
+                data-disponibil="<%= prod.disponibil %>"
+                data-data="<%= dataIso %>">
+
+                <!-- Antet card -->
+                <div class="card-header">
+                    <h3><%= prod.nume %></h3>
+                    <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                        <% if (prod.isNou) { %>
+                            <span class="badge bg-danger badge-nou">NOU</span>
+                        <% } %>
+                        <% if (prod.celMaiIeftin) { %>
+                            <span class="badge bg-warning text-dark badge-ieftin" title="Cel mai ieftin din categorie">
+                                <i class="bi bi-trophy-fill"></i>
+                            </span>
+                        <% } %>
+                        <span class="badge-cat"><%= prod.categorie %></span>
+                    </div>
+                </div>
+
+                <!-- Bonus 6: 3 butoane per produs -->
+                <div class="butoane-produs">
+                    <button class="btn-produs btn-pin" title="Fixează (rămâne vizibil chiar și la filtrare)">
+                        <i class="bi bi-pin-angle"></i>
+                    </button>
+                    <button class="btn-produs btn-ascunde-temp" title="Ascunde temporar (reapare la filtrare nouă)">
+                        <i class="bi bi-eye-slash"></i>
+                    </button>
+                    <button class="btn-produs btn-elimina-sesiune" title="Elimină pe toată sesiunea tab-ului">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </div>
+
+                <div class="produs-coloane">
+                    <!-- Coloana 1: imagine + lista caracteristici -->
+                    <div class="coloana-1">
+                        <% if (prod.imagine) { %>
+                            <img src="<%= prod.imagine %>"
+                                 alt="<%= prod.nume %>"
+                                 title="<%= prod.descriere %>"
+                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            <div class="img-placeholder" style="display:none">
+                                <i class="fa-solid fa-shirt"></i>
+                            </div>
+                        <% } else { %>
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-shirt"></i>
+                            </div>
+                        <% } %>
+                        <ul>
+                            <li>
+                                <span class="eticheta">Preț</span>
+                                <span class="valoare"><strong><%= parseFloat(prod.pret).toFixed(2) %> RON</strong></span>
+                            </li>
+                            <li>
+                                <span class="eticheta">Culoare</span>
+                                <span class="valoare"><%= prod.culoare || '–' %></span>
+                            </li>
+                            <li>
+                                <span class="eticheta">Materiale</span>
+                                <span class="valoare"><%= prod.materiale ? prod.materiale.replace(/,/g, ', ') : '–' %></span>
+                            </li>
+                            <li>
+                                <span class="eticheta">Adăugat</span>
+                                <span class="valoare">
+                                    <time datetime="<%= dataIso %>"><%= dataRo %></time>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="eticheta">Stoc</span>
+                                <span class="valoare <%- prod.disponibil ? 'disponibil-da' : 'disponibil-nu' %>">
+                                    <%= prod.disponibil ? '✔ Disponibil' : '✘ Indisponibil' %>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Coloana 2: subcategorie + descriere + link -->
+                    <div class="coloana-2">
+                        <p class="subcategorie-produs">
+                            <i class="bi bi-tag"></i>
+                            <%= prod.subcategorie ? prod.subcategorie.replace(/_/g, ' ') : '' %>
+                        </p>
+                        <% if (prod.celMaiIeftin) { %>
+                            <p class="text-warning-emphasis small fw-bold">
+                                <i class="bi bi-trophy-fill"></i> Cel mai ieftin din categoria <%= prod.categorie %>!
+                            </p>
+                        <% } %>
+                        <p class="descriere-produs"><%= prod.descriere %></p>
+                        <a href="/produse/<%= prod.id %>" class="link-detalii">
+                            <i class="bi bi-arrow-right-circle-fill"></i> Detalii complete
+                        </a>
+                    </div>
+                </div><!-- .produs-coloane -->
+            </article>
+            <% }) %>
+
+        </div><!-- #produse-grid -->
+
+        <!-- Paginare (Bonus 5) -->
+        <nav id="paginare" class="mt-3" aria-label="Paginare produse" style="display:none">
+            <ul class="pagination pagination-sm justify-content-center" id="lista-pagini"></ul>
+        </nav>
+
+    </main>
+
+    <!-- Modal produs (Bonus 11) -->
+    <div id="modal-produs" class="modal-overlay" style="display:none" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <button id="modal-close" class="modal-close-btn" aria-label="Închide">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div id="modal-continut"></div>
+        </div>
+    </div>
+
+    <%- include('../fragmente/footer') %>
+    <script src="/resurse/js/produse.js"></script>
+</body>
+</html>

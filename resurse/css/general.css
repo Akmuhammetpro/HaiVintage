@@ -1,32 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap");
 
+/* ── Tema LIGHT (implicita) ─────────────────────────────────────────────────── */
+:root, [data-tema="light"] {
+    --culoare-primara: #8b4513;
+    --culoare-secundara: #c4503a;
+    --culoare-accent: #d4a96a;
+    --culoare-fundal: #f5ecd7;
+    --culoare-text: #3e2010;
+    --culoare-fundal-card: #fdf6ec;
+    --culoare-fundal-header: #2c160a;
+    --culoare-text-secundar: #7a4a2e;
+    --culoare-text-invers: #f5ecd7;
+    --culoare-bordura: #d4a96a;
+    --culoare-bordura-subtila: #ead9be;
+    --culoare-hover: #a3391f;
+    --culoare-shadow: rgba(62,32,16,0.15);
+    --culoare-overlay: rgba(62,32,16,0.55);
+    --culoare-input-bg: #ffffff;
+}
+
+/* ── Tema DARK ───────────────────────────────────────────────────────────────── */
+[data-tema="dark"] {
+    --culoare-primara: #d4a96a;
+    --culoare-secundara: #e08060;
+    --culoare-accent: #f0c890;
+    --culoare-fundal: #1a0d05;
+    --culoare-text: #f0e0c8;
+    --culoare-fundal-card: #2c1608;
+    --culoare-fundal-header: #0d0602;
+    --culoare-text-secundar: #c8956a;
+    --culoare-text-invers: #1a0d05;
+    --culoare-bordura: #6b4020;
+    --culoare-bordura-subtila: #3a1e0a;
+    --culoare-hover: #e08060;
+    --culoare-shadow: rgba(0,0,0,0.4);
+    --culoare-overlay: rgba(0,0,0,0.65);
+    --culoare-input-bg: #2c1608;
+    color-scheme: dark;
+}
+
+/* ── Tema SEPIA (vintage) ────────────────────────────────────────────────────── */
+[data-tema="sepia"] {
+    --culoare-primara: #6b4226;
+    --culoare-secundara: #9b5a3a;
+    --culoare-accent: #c8956a;
+    --culoare-fundal: #f4e4c1;
+    --culoare-text: #3a1e0a;
+    --culoare-fundal-card: #faf0dd;
+    --culoare-fundal-header: #3a1e0a;
+    --culoare-text-secundar: #6b4226;
+    --culoare-text-invers: #f4e4c1;
+    --culoare-bordura: #c8956a;
+    --culoare-bordura-subtila: #e8d4a8;
+    --culoare-hover: #9b5a3a;
+    --culoare-shadow: rgba(58,30,10,0.18);
+    --culoare-overlay: rgba(58,30,10,0.55);
+    --culoare-input-bg: #fdf7e8;
+}
+
+/* ── Aplicare variabile pe body ─────────────────────────────────────────────── */
 body {
-    --culoare-primara: #8B4513;
-    --culoare-secundara: #C4503A;
-    --culoare-accent: #D4A96A;
-    --culoare-fundal: #F5ECD7;
-    --culoare-text: #3E2010;
-
-    --culoare-fundal-card: #FDF6EC;
-    --culoare-fundal-header: #2C160A;
-    --culoare-text-secundar: #7A4A2E;
-    --culoare-text-invers: #F5ECD7;
-    --culoare-bordura: #D4A96A;
-    --culoare-bordura-subtila: #EAD9BE;
-    --culoare-hover: #A3391F;
-    --culoare-shadow: rgba(62, 32, 16, 0.15);
-    --culoare-overlay: rgba(62, 32, 16, 0.55);
-
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+    transition: background-color 0.3s, color 0.3s;
 
     --margine-pagina: 80px;
     --gap-grid: 50px;
     --padding-zone: 20px;
 
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     line-height: 1.7;
-    background-color: var(--culoare-fundal);
-    color: var(--culoare-text);
 }
+
+/* Tema selector in header */
+.tema-selector {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    flex-shrink: 0;
+}
+.tema-selector select {
+    background-color: rgba(255,255,255,0.12);
+    color: var(--culoare-text-invers);
+    border-color: rgba(255,255,255,0.25);
+    font-size: 0.78rem;
+    padding: 0.2rem 0.5rem;
+    min-width: 90px;
+    cursor: pointer;
+}
+.tema-selector select option { color: #000; background: #fff; }
 
 html {
     font-size: 18px;
@@ -39,7 +101,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     color: var(--culoare-primara);
     margin-bottom: 0.5em;
 }
@@ -74,7 +136,6 @@ a:hover {
     color: var(--culoare-hover);
 }
 
-
 img,
 video,
 iframe,
@@ -87,13 +148,11 @@ embed {
     margin: 0 auto;
 }
 
-
 header.principal,
 footer {
     margin-left: var(--margine-pagina);
     margin-right: var(--margine-pagina);
     padding: var(--padding-zone);
-
 }
 
 header.principal {
@@ -105,7 +164,7 @@ header.principal {
 }
 
 header.principal h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     color: var(--culoare-accent);
     font-size: 2.4rem;
     letter-spacing: 2px;
@@ -139,14 +198,15 @@ main {
     gap: var(--gap-grid);
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-        "z1-prezentare z1-prezentare     z1-prezentare      z1-prezentare"
-        "z3-calendar   z2-tabel          z2-tabel           z4-anunturi"
-        "z5-useri      z2-tabel          z2-tabel           z4-anunturi"
-        "z5-useri      z6-statistici     z6-statistici      z7-server"
-        "z11-tabelescu z11-tabelescu     z11-tabelescu      z11-tabelescu"
-        "z9-galerie    z9-galerie        z9-galerie         z9-galerie"
-        "z8-libre      z8-libre          z12-duotone        z12-duotone"
-        "z10-galerie-anim z10-galerie-anim z10-galerie-anim z10-galerie-anim";
+        "z1-prezentare   z1-prezentare   z1-prezentare   z1-prezentare"
+        "z3-calendar     z2-tabel        z2-tabel        z4-anunturi"
+        "z5-useri        z2-tabel        z2-tabel        z4-anunturi"
+        "z5-useri        z6-statistici   z6-statistici   z7-server"
+        "z11-tabelescu   z11-tabelescu   z11-tabelescu   z11-tabelescu"
+        "z9-galerie      z9-galerie      z9-galerie      z9-galerie"
+        "z8-libre        z8-libre        z12-duotone     z12-duotone"
+        "z10-galerie-anim z10-galerie-anim z10-galerie-anim z10-galerie-anim"
+        "z13-produse-noi z13-produse-noi z13-produse-noi z13-produse-noi";
 }
 
 #prezentare {
@@ -191,6 +251,11 @@ main {
 
 #galerie-animata-sectiune {
     grid-area: z10-galerie-anim;
+}
+
+/* Bonus 18: sectiunea cu produse noi span pe toata latimea */
+#produse-noi-sectiune {
+    grid-area: z13-produse-noi;
 }
 
 #sectiune-duotone {
@@ -250,7 +315,6 @@ main>aside {
     color: var(--culoare-text-invers);
 }
 
-
 .container-tabel {
     width: 100%;
     overflow-x: auto;
@@ -292,7 +356,6 @@ table tfoot td {
     font-style: italic;
 }
 
-
 table tbody td:nth-child(odd) {
     border-right: 2px solid var(--culoare-secundara);
 }
@@ -300,7 +363,6 @@ table tbody td:nth-child(odd) {
 table tbody td:nth-child(even) {
     border-right: 2px solid var(--culoare-accent);
 }
-
 
 table thead {
     border-bottom: 3px solid var(--culoare-primara);
@@ -344,7 +406,10 @@ table tbody tr:hover {
     border-radius: 8px 8px 0 0;
     font-weight: 700;
     text-decoration: none;
-    transition: background-color 0.5s, color 0.5s, transform 0.7s;
+    transition:
+        background-color 0.5s,
+        color 0.5s,
+        transform 0.7s;
 }
 
 .taburi-iframe a:hover,
@@ -384,7 +449,7 @@ table tbody tr:hover {
 #link-top .cerc-btn {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #3E2010, #8B4513, #3E2010);
+    background: linear-gradient(135deg, #3e2010, #8b4513, #3e2010);
     border: 2px dashed var(--culoare-accent);
     border-radius: 50%;
     display: flex;
@@ -401,20 +466,17 @@ table tbody tr:hover {
     transition: transform 0.6s ease;
 }
 
-
 #link-top:hover {
     opacity: 1;
 }
 
 #link-top:hover .cerc-btn {
     transform: rotate(90deg);
-
 }
 
 #link-top:hover .sageata {
     transform: rotate(-90deg);
 }
-
 
 #link-top::after {
     content: attr(data-tooltip);
@@ -435,8 +497,6 @@ table tbody tr:hover {
 #link-top:hover::after {
     opacity: 1;
 }
-
-
 
 details {
     border: 1px solid var(--culoare-bordura-subtila);
@@ -486,6 +546,7 @@ summary:hover {
     color: var(--culoare-text-invers);
     border-radius: 8px;
     box-shadow: 0 2px 8px var(--culoare-shadow);
+
 }
 
 .banner-animat-text {
@@ -504,25 +565,21 @@ summary:hover {
         transform: translateY(-100%);
         top: 0;
     }
+
     100% {
         transform: translateY(0);
         top: 100%;
     }
 }
 
-
 /* media*/
 
-
-
 @media screen and (max-width: 1200px) {
-
     html {
         font-size: 16px;
     }
 
     body {
-
         --margine-pagina: 30px;
         --gap-grid: 50px;
     }
@@ -537,7 +594,8 @@ summary:hover {
             "z7-server     z7-server"
             "z11-tabelescu z11-tabelescu"
             "z9-galerie    z9-galerie"
-            "z8-libre      z12-duotone";
+            "z8-libre      z12-duotone"
+            "z10-galerie-anim z10-galerie-anim";
     }
 
     #prezentare {
@@ -545,31 +603,41 @@ summary:hover {
     }
 
     #galerie-statica {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    /* Reset checkerboard placement — sequential 2-column flow */
+    /* Reset checkerboard placement — sequential flow */
     #galerie-statica figure:nth-child(n) {
-        grid-column: auto;
-        grid-row: auto;
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    /* Tabelescu — medium screen: compact but still a normal table */
+    table.tabelescu {
+        min-width: unset;
+        font-size: 0.85rem;
+    }
+
+    table.tabelescu th,
+    table.tabelescu td {
+        padding: 8px 10px !important;
     }
 }
 
-
 @media screen and (max-width: 700px) {
     html {
-        font-size: 15px;
+        font-size: 10px;
     }
 
     body {
-        --margine-pagina: 10px;
-        --gap-grid: 10px;
+        --margine-pagina: 5px;
+        --gap-grid: 5px;
     }
 
     img,
     video,
     object {
-        max-width: 100%;
+        max-width: 80%;
         min-width: 120px;
     }
 
@@ -586,9 +654,9 @@ summary:hover {
             "z11-tabelescu"
             "z9-galerie"
             "z8-libre"
-            "z12-duotone";
+            "z12-duotone"
+            "z10-galerie-anim";
     }
-
 
     *,
     *::before,
@@ -597,24 +665,36 @@ summary:hover {
     }
 
     #galerie-statica {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     /* Reset checkerboard placement — single column flow */
     #galerie-statica figure:nth-child(n) {
-        grid-column: auto;
-        grid-row: auto;
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    /* Tabelescu — small screen: very compact table */
+    .tabelescu-wrapper {
+        padding: 8px;
+    }
+
+    table.tabelescu {
+        min-width: unset;
+        font-size: 0.62rem;
+    }
+
+    table.tabelescu th,
+    table.tabelescu td {
+        padding: 4px 4px !important;
+        word-break: break-word;
     }
 }
 
 @media print {
-
-
     /* 7.2: Скрываем навигацию, видео, картинки, iframe и кнопку "наверх" */
 
-
     /* 7.3: Сброс Grid-а в блочный вид */
-
 
     section,
     article,
@@ -624,10 +704,7 @@ summary:hover {
         margin-bottom: 2cm;
     }
 
-
-
     /* 7.7: Разные поля для четных и нечетных страниц */
-
 }
 
 /* Etapa 4 - Stilizare linkuri si video */
@@ -650,12 +727,13 @@ a[href^="http"]:hover::before {
     color: var(--culoare-accent);
 }
 
-
-
-
 main a:not(#meniu-principal a) {
     position: relative;
-    background-image: radial-gradient(circle, var(--culoare-accent) 0%, var(--culoare-accent) 40%, transparent 80%, transparent 100%);
+    background-image: radial-gradient(circle,
+            var(--culoare-accent) 0%,
+            var(--culoare-accent) 40%,
+            transparent 80%,
+            transparent 100%);
     background-position: center;
     background-size: 0;
     background-repeat: no-repeat;
@@ -828,7 +906,6 @@ main.galerie-main {
     background-image: url("/resurse/img/background/back1.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     background-attachment: fixed;
     animation: schimbareBackground 10s infinite;
 }
@@ -853,7 +930,7 @@ main.galerie-main {
     padding: 15px;
     background-color: white;
     color: black;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .tabel-responsive {
@@ -875,7 +952,7 @@ table.tabelescu td {
     border: 1px solid black !important;
     padding: 12px 15px !important;
     text-align: left;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
     background-color: transparent !important;
 }
 
@@ -896,7 +973,7 @@ table.tabelescu tbody tr:hover {
 
 .tabelescu-footer {
     margin-top: 15px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
     font-size: 1rem;
     color: black;
     text-align: left;
@@ -943,7 +1020,8 @@ table.tabelescu tbody tr:hover {
     background-color: rgb(86, 183, 126);
     mix-blend-mode: lighten;
 }
-/* CSS Tricks - Full Page Background Video Styles */
+
+/* Background photo */
 video#bgvid {
     position: fixed;
     top: 50%;
@@ -957,17 +1035,18 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(/resurse/img/background/back1.jpg) no-repeat;
+
     background-size: cover;
     margin: 0;
     max-width: none;
 }
 
 @media screen and (max-device-width: 800px) {
-  html {
-     background: url(/resurse/img/background/back1.jpg) #000 no-repeat center center fixed;
-  }
-  #bgvid {
-    display: none;
-  }
+    html {
+        background: url(/resurse/img/background/back1.jpg) #000 no-repeat center center fixed;
+    }
+
+    #bgvid {
+        display: none;
+    }
 }

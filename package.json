@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build_galerie.js && node index.js",
+    "dev": "node build_galerie.js && nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -20,14 +21,12 @@
   "homepage": "https://github.com/Akmuhammetpro/HaiVintage#readme",
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "dotenv": "^17.4.2",
     "ejs": "^5.0.2",
     "express": "^5.2.1",
     "nodemon": "^3.1.14",
+    "pg": "^8.22.0",
     "sass": "^1.100.0",
     "sharp": "^0.34.5"
-  },
-  "scripts": {
-  "start": "node build_galerie.js && node index.js",
-  "dev":   "node build_galerie.js && nodemon index.js"
-}
+  }
 }

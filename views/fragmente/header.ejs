@@ -2,7 +2,7 @@
   <h1>HaiVintage</h1>
   <nav id="meniu-principal">
 
-    <!-- Чекбокс гамбургера -->
+    
     <input type="checkbox" id="menu-toggle" class="menu-toggle" hidden>
 
     <label for="menu-toggle" class="hamburger-btn" aria-label="Deschide meniul">
@@ -71,6 +71,29 @@
           </ul>
         </li>
 
+        <li class="has-submenu">
+          <input type="checkbox" id="sub-produse" class="sub-toggle" hidden>
+          <button class="btn-submeniu menu-link">
+            <i class="fa-solid fa-tag"></i>
+            <span>Produse ▾</span>
+          </button>
+          <label for="sub-produse" class="menu-trigger">
+            <i class="fa-solid fa-tag"></i>
+            <span>Produse ▾</span>
+          </label>
+          <ul>
+            <li><a href="/produse">Toate</a></li>
+            <% if (locals.categoriiProduse && categoriiProduse.length > 0) { %>
+              <% categoriiProduse.forEach(cat => { %>
+                <li>
+                  <a href="/produse?categorie=<%= cat %>"
+                     style="text-transform:capitalize"><%= cat %></a>
+                </li>
+              <% }) %>
+            <% } %>
+          </ul>
+        </li>
+
         <li>
           <a href="/despre">
             <i class="fa-solid fa-circle-info"></i>
@@ -94,5 +117,28 @@
 
       </ul>
     </div>
+
+    <!-- Tema selector (Bonus 2 / light-dark mandatory) -->
+    <div class="tema-selector">
+      <select id="select-tema" class="form-select form-select-sm" title="Schimbă tema">
+        <option value="light">☀️ Light</option>
+        <option value="dark">🌙 Dark</option>
+        <option value="sepia">📜 Sepia</option>
+      </select>
+    </div>
+
   </nav>
 </header>
+<script>
+(function () {
+    const sel = document.getElementById('select-tema');
+    if (!sel) return;
+    const saved = localStorage.getItem('tema') || 'light';
+    sel.value = saved;
+    sel.addEventListener('change', function () {
+        const t = this.value;
+        localStorage.setItem('tema', t);
+        document.documentElement.setAttribute('data-tema', t);
+    });
+})();
+</script>

@@ -14,7 +14,7 @@
 
         <div class="banner-animat-container">
             <div class="banner-animat-text">
-                🎉 Colecția de primăvară este aici! Prinde cele mai bune oferte HaiVintage! 🎉
+                 Colecția de primăvară este aici! Prinde cele mai bune oferte HaiVintage! 
             </div>
         </div>
 
@@ -272,6 +272,7 @@
                     <h3>Videoclip HaiVintage</h3>
                     <video controls preload="metadata" poster="/resurse/img/colectie-mica.jpg">
                         <source src="/resurse/video/video.mp4" type="video/mp4">
+                        <source src="/resurse/video/video.webm" type="video/webm">
                         <track src="/resurse/video/ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
                         <track src="/resurse/video/en.vtt" kind="subtitles" srclang="en" label="English">
                         Browserul tău nu suportă elementul video.
@@ -316,6 +317,30 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <p>Versiune server: <b>Node.js 20 LTS</b>. Uptime: <b>99.9%</b>.</p>
                 </aside>
+
+                <!-- Bonus 18: Sectiune produse noi -->
+                <section id="produse-noi-sectiune">
+                    <h2><i class="bi bi-stars"></i> Cele mai noi piese</h2>
+                    <div class="produse-noi-grid">
+                        <% if (locals.produseNoi && produseNoi.length > 0) { %>
+                            <% produseNoi.forEach(p => { %>
+                            <a href="/produse/<%= p.id %>" class="card-nou">
+                                <% if (p.imagine) { %>
+                                    <img src="<%= p.imagine %>" alt="<%= p.nume %>"
+                                         onerror="this.style.display='none'">
+                                <% } %>
+                                <div class="card-nou-info">
+                                    <span class="badge-nou-home">NOU</span>
+                                    <strong><%= p.nume %></strong>
+                                    <span class="pret-nou"><%= parseFloat(p.pret).toFixed(2) %> RON</span>
+                                </div>
+                            </a>
+                            <% }) %>
+                        <% } else { %>
+                            <p>Nu există produse recente.</p>
+                        <% } %>
+                    </div>
+                </section>
 
                 <section id="club-vintage">
                     <h2>Club HaiVintage</h2>
